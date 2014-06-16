@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Hacker School Log]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-06-15T22:44:49-04:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="blog.dariajung.com/atom.xml" rel="self"/>
+  <link href="blog.dariajung.com/"/>
+  <updated>2014-06-16T10:39:22-04:00</updated>
+  <id>blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hacker School Week 1]]></title>
-    <link href="http://yoursite.com/blog/2014/06/15/hacker-school-week-1/"/>
+    <link href="blog.dariajung.com/blog/2014/06/15/hacker-school-week-1/"/>
     <updated>2014-06-15T18:20:07-04:00</updated>
-    <id>http://yoursite.com/blog/2014/06/15/hacker-school-week-1</id>
+    <id>blog.dariajung.com/blog/2014/06/15/hacker-school-week-1</id>
     <content type="html"><![CDATA[<p><img src="../images/hs_logo.png" alt="&quot;HS Logo&quot;" /></p>
 
 <p>This past week was my first week at Hacker School, and I am finally getting around to setting up a blog!</p>

@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-!["HS Logo"](../images/hs_logo.png)
+!["HS Logo"](/images/hs_logo.png)
 
 This past week was my first week at Hacker School, and I am finally getting around to setting up a blog!
 
@@ -42,7 +42,7 @@ Something else that I did last week was playing with Arduinos and Addressable LE
 
 The cool thing was that Adafruit already had a library called [Adafruit NeoPixels](https://github.com/adafruit/Adafruit_NeoPixel) we could use, so we were able to just hook up the LEDs to the Arduino and we immediately saw a light show. 
 
-!["HS Logo"](../images/led.jpg)
+!["HS Logo"](/images/led.jpg)
 
 We played around with making the LEDs blink, which we achieved by Mod-ing the number of LEDs, and then changing the RGB value to (0, 0, 0). It definitely distilled the fear of hardware many of us had once we understood how easy it was to get started with it with all of the resources online. I am totally obsessed with Adafruit now!
 

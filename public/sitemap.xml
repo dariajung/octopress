@@ -1,23 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>blog.dariajung.com/blog/2014/06/15/hacker-school-week-1/</loc>
+        <loc>http://blog.dariajung.com//blog/2014/06/15/hacker-school-week-1/</loc>
         <lastmod>2014-06-16T11:25:27-04:00</lastmod>
     </url>
     <url>
-        <loc>blog.dariajung.com/about/</loc>
+        <loc>http://blog.dariajung.com//blog/2014/06/16/applicative-functors/</loc>
+        <lastmod>2014-06-16T17:02:53-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.dariajung.com//about/</loc>
         <lastmod>2014-06-15T14:37:14-04:00</lastmod>
     </url>
     <url>
-        <loc>blog.dariajung.com/blog/archives/</loc>
-        <lastmod>2014-06-16T11:25:27-04:00</lastmod>
+        <loc>http://blog.dariajung.com//blog/archives/</loc>
+        <lastmod>2014-06-16T17:02:53-04:00</lastmod>
     </url>
     <url>
-        <loc>blog.dariajung.com/</loc>
-        <lastmod>2014-06-16T11:25:27-04:00</lastmod>
+        <loc>http://blog.dariajung.com//</loc>
+        <lastmod>2014-06-16T17:02:53-04:00</lastmod>
     </url>
     <url>
-        <loc>blog.dariajung.com/robots.txt</loc>
+        <loc>http://blog.dariajung.com//robots.txt</loc>
         <lastmod>2014-06-15T14:02:10-04:00</lastmod>
     </url>
 </urlset>

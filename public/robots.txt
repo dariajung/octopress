@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: blog.dariajung.com/sitemap.xml 
+Sitemap: http://blog.dariajung.com//sitemap.xml 

@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hacker School: Day 6 - Hacker School Log</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hacker School Log</a></h1>
+  
+    <h2>Daria goes to Hacker School</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com/" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hacker School: Day 6</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-17T17:09:44-04:00" pubdate data-updated="true">Jun 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://localhost:4000/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
+
+<p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
+
+<p>If we remember from my previous blogpost, <code>Parser</code> is defined as such:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">newtype</span> <span class="kt">Parser</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="p">{</span> <span class="n">runParser</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>Applicative Parser</code> instance is useful for making parsers of fixed and simple formats. Because we want to be able to handle
+the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</p>
+
+<p>The <code>Alternative</code> class is defined something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">class</span> <span class="kt">Applicative</span> <span class="n">f</span> <span class="ow">=&gt;</span> <span class="kt">Alternative</span> <span class="n">f</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">empty</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">&lt;|&gt;</span><span class="p">)</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(&lt;|>) denotes a choice, so something like <code>p &lt;|&gt; q</code> means a choice between <code>p</code> or <code>q</code>.</p>
+
+<p>So, my <code>Alternative</code> instance ended up being:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Alternative</span> <span class="kt">Parser</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">empty</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="o">$</span> <span class="n">const</span> <span class="kt">Nothing</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">&lt;|&gt;</span> <span class="n">q</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="o">$</span> <span class="nf">\</span><span class="n">s</span> <span class="ow">-&gt;</span> <span class="n">runParser</span> <span class="n">p</span> <span class="n">s</span> <span class="o">&lt;|&gt;</span> <span class="n">runParser</span> <span class="n">q</span> <span class="n">s</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An important hint here is that there is already an Alternative instance for Maybe:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Alternative</span> <span class="kt">Maybe</span> <span class="kr">where</span>
+</span><span class='line'>    <span class="n">empty</span> <span class="ow">=</span> <span class="kt">Nothing</span>
+</span><span class='line'>    <span class="kt">Nothing</span> <span class="o">&lt;|&gt;</span> <span class="n">p</span> <span class="ow">=</span> <span class="n">p</span>
+</span><span class='line'>    <span class="kt">Just</span> <span class="n">x</span> <span class="o">&lt;|&gt;</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This means that we can simply call <code>runParser p s</code> and <code>runParser q s</code>, which gives us Maybe tuples. We can then use (&lt;|>) from the <code>Alternative</code> instance of <code>Maybe</code> to choose between those two tuples and pass it to the Parser constructor.</p>
+
+<p>If <code>runParser p s</code> suceeds, return its results, else try <code>runParser q s</code>. If that suceeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
+
+<p>Pretty nifty!</p>
+
+<p>The rest of today, I worked on a very simple <a href="https://github.com/dariajung/url_shortener">URL shortener</a>.</p>
+
+<p>I found a tutorial online that used the md5 hashing algorithm and a base 64 encoding to generate a randomized string. The last five characters of this were taken, sanitized, and then used as the key for a key value store in Redis as well as a slug.</p>
+
+<p>I whipped up a simple Flask app for 301 redirects from the shortened URL to the original URL. A quick lookup in Redis, and then a <code>return redirect(location, 301)</code> call did the trick.</p>
+
+<p><code>http://blog.dariajung.com</code> results in <code>http://localhost:5000/iJp4fHs</code>. When I go to that URL, I am then redirected to my original URL.</p>
+
+<p>The functionality is all very simple, so I don&rsquo;t check that the protocol identifier and such are in the URL. That might be for another day.</p>
+
+<p>Overall, I think today was rather productive!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-17T17:09:44-04:00" pubdate data-updated="true">Jun 17<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flask/'>Flask</a>, <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/redis/'>Redis</a>, <a class='category' href='/blog/categories/url-shortener/'>URL Shortener</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6/" data-via="" data-counturl="http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/16/applicative-functors/" title="Previous Post: Applicative Functors">&laquo; Applicative Functors</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/17/hacker-school-day-6/">Hacker School: Day 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/16/applicative-functors/">Applicative Functors</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/15/hacker-school-week-1/">Hacker School Week 1</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

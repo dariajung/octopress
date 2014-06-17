@@ -2,26 +2,30 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.dariajung.com//blog/2014/06/15/hacker-school-week-1/</loc>
-        <lastmod>2014-06-17T17:05:46-04:00</lastmod>
+        <lastmod>2014-06-17T18:09:01-04:00</lastmod>
     </url>
     <url>
         <loc>http://blog.dariajung.com//blog/2014/06/16/applicative-functors/</loc>
-        <lastmod>2014-06-17T17:05:56-04:00</lastmod>
+        <lastmod>2014-06-17T18:09:01-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6/</loc>
+        <lastmod>2014-06-17T18:45:29-04:00</lastmod>
     </url>
     <url>
         <loc>http://blog.dariajung.com//about/</loc>
-        <lastmod>2014-06-15T14:37:14-04:00</lastmod>
+        <lastmod>2014-06-17T18:09:01-04:00</lastmod>
     </url>
     <url>
         <loc>http://blog.dariajung.com//blog/archives/</loc>
-        <lastmod>2014-06-17T17:05:56-04:00</lastmod>
+        <lastmod>2014-06-17T18:45:29-04:00</lastmod>
     </url>
     <url>
         <loc>http://blog.dariajung.com//</loc>
-        <lastmod>2014-06-17T17:05:56-04:00</lastmod>
+        <lastmod>2014-06-17T18:45:29-04:00</lastmod>
     </url>
     <url>
         <loc>http://blog.dariajung.com//robots.txt</loc>
-        <lastmod>2014-06-15T14:02:10-04:00</lastmod>
+        <lastmod>2014-06-17T18:09:01-04:00</lastmod>
     </url>
 </urlset>

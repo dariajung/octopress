@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com//blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com//"/>
-  <updated>2014-06-17T17:06:33-04:00</updated>
+  <updated>2014-06-17T18:46:00-04:00</updated>
   <id>http://blog.dariajung.com//</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hacker School: Day 6]]></title>
+    <link href="http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6/"/>
+    <updated>2014-06-17T17:09:44-04:00</updated>
+    <id>http://blog.dariajung.com//blog/2014/06/17/hacker-school-day-6</id>
+    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://localhost:4000/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
+
+<p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
+
+<p>If we remember from my previous blogpost, <code>Parser</code> is defined as such:</p>
+
+<p><code>haskell
+newtype Parser a = Parser { runParser :: String -&gt; Maybe (a, String) }
+</code></p>
+
+<p>The <code>Applicative Parser</code> instance is useful for making parsers of fixed and simple formats. Because we want to be able to handle
+the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</p>
+
+<p>The <code>Alternative</code> class is defined something like this:</p>
+
+<p>```haskell
+class Applicative f => Alternative f where</p>
+
+<pre><code>empty :: f a
+(&lt;|&gt;) :: f a -&gt; f a -&gt; f a
+</code></pre>
+
+<p>```</p>
+
+<p>(&lt;|>) denotes a choice, so something like <code>p &lt;|&gt; q</code> means a choice between <code>p</code> or <code>q</code>.</p>
+
+<p>So, my <code>Alternative</code> instance ended up being:</p>
+
+<p>```haskell
+instance Alternative Parser where</p>
+
+<pre><code>empty = Parser $ const Nothing
+p &lt;|&gt; q = Parser $ \s -&gt; runParser p s &lt;|&gt; runParser q s
+</code></pre>
+
+<p>```</p>
+
+<p>An important hint here is that there is already an Alternative instance for Maybe:</p>
+
+<p>```haskell
+instance Alternative Maybe where</p>
+
+<pre><code>empty = Nothing
+Nothing &lt;|&gt; p = p
+Just x &lt;|&gt; _ = Just x
+</code></pre>
+
+<p>```</p>
+
+<p>This means that we can simply call <code>runParser p s</code> and <code>runParser q s</code>, which gives us Maybe tuples. We can then use (&lt;|>) from the <code>Alternative</code> instance of <code>Maybe</code> to choose between those two tuples and pass it to the Parser constructor.</p>
+
+<p>If <code>runParser p s</code> suceeds, return its results, else try <code>runParser q s</code>. If that suceeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
+
+<p>Pretty nifty!</p>
+
+<p>The rest of today, I worked on a very simple <a href="https://github.com/dariajung/url_shortener">URL shortener</a>.</p>
+
+<p>I found a tutorial online that used the md5 hashing algorithm and a base 64 encoding to generate a randomized string. The last five characters of this were taken, sanitized, and then used as the key for a key value store in Redis as well as a slug.</p>
+
+<p>I whipped up a simple Flask app for 301 redirects from the shortened URL to the original URL. A quick lookup in Redis, and then a <code>return redirect(location, 301)</code> call did the trick.</p>
+
+<p><code>http://blog.dariajung.com</code> results in <code>http://localhost:5000/iJp4fHs</code>. When I go to that URL, I am then redirected to my original URL.</p>
+
+<p>The functionality is all very simple, so I don&rsquo;t check that the protocol identifier and such are in the URL. That might be for another day.</p>
+
+<p>Overall, I think today was rather productive!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Applicative Functors]]></title>

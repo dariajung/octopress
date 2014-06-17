@@ -48,7 +48,7 @@ instance Alternative Maybe where
 
 This means that we can simply call ```runParser p s``` and ```runParser q s```, which gives us Maybe tuples. We can then use (<|>) from the ```Alternative``` instance of ```Maybe``` to choose between those two tuples and pass it to the Parser constructor.
 
-If ```runParser p s``` suceeds, return its results, else try ```runParser q s```. If that suceeds, return its results. Otherwise, a ```Nothing``` will be returned.
+If ```runParser p s``` succeeds, return its results, else try ```runParser q s```. If that succeeds, return its results. Otherwise, a ```Nothing``` will be returned.
 
 Pretty nifty!
 

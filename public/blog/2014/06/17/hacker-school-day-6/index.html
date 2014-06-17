@@ -146,7 +146,7 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
 
 <p>This means that we can simply call <code>runParser p s</code> and <code>runParser q s</code>, which gives us Maybe tuples. We can then use (&lt;|>) from the <code>Alternative</code> instance of <code>Maybe</code> to choose between those two tuples and pass it to the Parser constructor.</p>
 
-<p>If <code>runParser p s</code> suceeds, return its results, else try <code>runParser q s</code>. If that suceeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
+<p>If <code>runParser p s</code> succeeds, return its results, else try <code>runParser q s</code>. If that succeeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
 
 <p>Pretty nifty!</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Applicative Functors | Hacker School Log]]></title>
-  <link href="http://blog.dariajung.com//blog/categories/applicative-functors/atom.xml" rel="self"/>
-  <link href="http://blog.dariajung.com//"/>
-  <updated>2014-06-17T18:51:00-04:00</updated>
-  <id>http://blog.dariajung.com//</id>
+  <link href="http://blog.dariajung.com/blog/categories/applicative-functors/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com/"/>
+  <updated>2014-06-17T19:01:31-04:00</updated>
+  <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Applicative Functors]]></title>
-    <link href="http://blog.dariajung.com//blog/2014/06/16/applicative-functors/"/>
+    <link href="http://blog.dariajung.com/blog/2014/06/16/applicative-functors/"/>
     <updated>2014-06-16T17:02:53-04:00</updated>
-    <id>http://blog.dariajung.com//blog/2014/06/16/applicative-functors</id>
+    <id>http://blog.dariajung.com/blog/2014/06/16/applicative-functors</id>
     <content type="html"><![CDATA[<p>Today at Hacker School, I was studying functors and applicative functors in Haskell. Functors are structures that &ldquo;can be mapped over&rdquo; [1]. So, applicative functors are functors that allow functions to be applied <em>within</em> a functor. Functor-ception.</p>
 
 <p>This concept proved to be a pretty difficult one for me to grasp today. I wrangled with it for several hours, reading and re-reading Learn You a Haskell&rsquo;s <a href="http://learnyouahaskell.com/functors-applicative-functors-and-monoids">explanation</a> for them before I broke down and asked for help on the Haskell Zuplip thread. (Now I know that I should ask for help if I can&rsquo;t figure something out in 15 minutes on my own.)</p>

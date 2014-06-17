@@ -3,7 +3,7 @@ layout: post
 title: "Applicative Functors"
 date: 2014-06-16 17:02:53 -0400
 comments: true
-categories: 
+categories: [Hacker School, Haskell, Applicative Functors]
 ---
 
 Today at Hacker School, I was studying functors and applicative functors in Haskell. Functors are structures that "can be mapped over" [1]. So, applicative functors are functors that allow functions to be applied *within* a functor. Functor-ception.

@@ -3,7 +3,7 @@ layout: post
 title: "Hacker School Week 1"
 date: 2014-06-15 18:20:07 -0400
 comments: true
-categories: 
+categories: [Hacker School, Haskell, Arduino, Hardware]
 ---
 
 !["HS Logo"](/images/hs_logo.png)

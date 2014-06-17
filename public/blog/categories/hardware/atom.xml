@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hardware | Hacker School Log]]></title>
+  <link href="http://blog.dariajung.com//blog/categories/hardware/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com//"/>
+  <updated>2014-06-17T17:06:33-04:00</updated>
+  <id>http://blog.dariajung.com//</id>
+  <author>
+    <name><![CDATA[Daria Jung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hacker School Week 1]]></title>
+    <link href="http://blog.dariajung.com//blog/2014/06/15/hacker-school-week-1/"/>
+    <updated>2014-06-15T18:20:07-04:00</updated>
+    <id>http://blog.dariajung.com//blog/2014/06/15/hacker-school-week-1</id>
+    <content type="html"><![CDATA[<p><img src="/images/hs_logo.png" alt="&quot;HS Logo&quot;" /></p>
+
+<p>This past week was my first week at Hacker School, and I am finally getting around to setting up a blog!</p>
+
+<p>I really haven&rsquo;t had much success with blogging in the past, so I am wondering how this is going to go, but I will try my best to write something everyday. The posts from my fellow batchmates have been very exciting to read, and have been a motivating factor for me to finally get Octopress set up.</p>
+
+<p>Because I had already been working on a <a href="http://www.seas.upenn.edu/~cis194/lectures.html">course on Haskell</a> that I found online before Hacker School started, that was mainly what I focused on during my first week. The course is broken up into 12 lectures, with corresponding homework assignments. The amazing thing is, I was able to work through about one week&rsquo;s worth of material <em>per day</em>. It&rsquo;s incredible what can happen when you are learning for the sake of learning, with no worries that generally come from a work or school setting. If you had told me one year ago that I would be geeking out over Haskell, I would have laughed in your face. I would have thought that it was too academic, too hard of a language for someone like myself to learn. What I am finding though, is that once I commited myself to learning Haskell, once I was comfortable with the idea that I <em>too</em> was capable of learning Haskell, I started to have fun with the assignments.</p>
+
+<p>The most recent assignment I worked on was with using the rose tree data structure from the <code>Data.Tree</code> library. Based on a tree of employees, where employees are given a name and a &ldquo;fun&rdquo; score, I was given the task of maximizing the fun score for a party and  returning its optimized guest list. The caveat is that if an employee&rsquo;s direct superior were also in attendance of the party, that employee wouldn&rsquo;t be able to have any fun, lowering their fun score to 0.</p>
+
+<p>I think my road block for this assignment was implementing a fold function for the <code>tree</code> data type (to which I could pass a function that found the max fun score at each subtree later). I wasn&rsquo;t sure what the type signature for the fold should have been, which took up the most of my time. Once I got this function worked out, I was able to work through the rest of the assignment.</p>
+
+<p>I wrote the fold as such:</p>
+
+<p><code>haskell
+treeFold :: (a -&gt; [b] -&gt; b) -&gt; Tree a -&gt; b
+treeFold f tree = f (rootLabel tree) (map (treeFold f) (subForest tree))
+</code></p>
+
+<p>where <code>tree</code> is defined as</p>
+
+<p>```haskell
+ data Tree a = Node {</p>
+
+<pre><code>rootLabel :: a, -- label value
+subForest :: [Tree a] -- zero or more child trees
+</code></pre>
+
+<p>```</p>
+
+<p>The <code>rootLabel</code> of the tree returns the element at that Node and then we map <code>treeFold f</code> to the subtrees of the Node, recursively calling <code>treeFold f</code> on the subtrees. These are then passed as parameters to the function <code>f</code>.</p>
+
+<hr />
+
+<p>Something else that I did last week was playing with Arduinos and Addressable LEDs (each pixel is individually programmable!). I bought an Arduino UNO a few years ago, and never had really done anything with it. Dana, a batchmate with lots of hardware experience, brought some addressable LEDs in for some of the Hacker Schoolers to play with.</p>
+
+<p>The cool thing was that Adafruit already had a library called <a href="https://github.com/adafruit/Adafruit_NeoPixel">Adafruit NeoPixels</a> we could use, so we were able to just hook up the LEDs to the Arduino and we immediately saw a light show.</p>
+
+<p><img src="/images/led.jpg" alt="&quot;HS Logo&quot;" /></p>
+
+<p>We played around with making the LEDs blink, which we achieved by Mod-ing the number of LEDs, and then changing the RGB value to (0, 0, 0). It definitely distilled the fear of hardware many of us had once we understood how easy it was to get started with it with all of the resources online. I am totally obsessed with Adafruit now!</p>
+
+<p>My hardware project that I would like to accomplish this summer is a temperature sensor that based on the serial output changes the colors of the addressable LEDs. If warm, the LEDs light up yellow/orange, if cool, a green color, etc.</p>
+
+<p>I am loving Hacker School thus far. Well, love is a bit of an understatement.</p>
+]]></content>
+  </entry>
+  
+</feed>

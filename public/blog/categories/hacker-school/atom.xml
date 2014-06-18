@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-06-17T19:04:56-04:00</updated>
+  <updated>2014-06-18T19:12:02-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -14,11 +14,134 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Hacker School: Day 7]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7/"/>
+    <updated>2014-06-18T16:22:18-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7</id>
+    <content type="html"><![CDATA[<p>I can&rsquo;t believe it has already been a week and a half at Hacker School. Wow. 12 weeks seems like a lot but the time is already flying by.</p>
+
+<p>Today, I decided to resume my studies in Haskell. I worked on the week 11 assignment for Brent Yorgey&rsquo;s Haskell course. I continued working with the <code>Parser</code> data type, implementing some utilies and several new Parsers.</p>
+
+<p>This is where I was introduced to <code>*&gt;</code> and <code>&lt;*</code> and the concept of lifting in functional programming (which I am still having a hard time fully understanding).</p>
+
+<p>Described in the source for module <code>Control.Applicative</code> as:</p>
+
+<p>```haskell
+&mdash; | Sequence actions, discarding the value of the first argument.</p>
+
+<pre><code>(*&gt;) :: f a -&gt; f b -&gt; f b
+(*&gt;) = liftA2 (const id)
+</code></pre>
+
+<p>```
+and</p>
+
+<p>```haskell
+&mdash; | Sequence actions, discarding the value of the second argument.</p>
+
+<pre><code>(&lt;*) :: f a -&gt; f b -&gt; f a
+(&lt;*) = liftA2 const
+</code></pre>
+
+<p>```</p>
+
+<p>Using some examples I worked out by hand:</p>
+
+<p><code>haskell
+ghci&gt; runParser (spaces *&gt; posInt) " 345"
+</code></p>
+
+<p>I understood this computation as first:</p>
+
+<p><code>haskell
+ghci&gt; runParser spaces " 345"
+Just (" ", "345")
+</code>
+The <code>" "</code>, the result, is disregarded. We pass on &ldquo;345&rdquo; to the next call:</p>
+
+<p><code>haskell
+ghci&gt; runParser posInt "345"
+Just (345, "")
+</code></p>
+
+<p>Since we are ignoring the result of <code>runParser spaces " 345"</code>, the final result is:</p>
+
+<p><code>haskell
+Just (345, "")
+</code></p>
+
+<p>Using the same inputs, but for <code>&lt;*</code> this time:</p>
+
+<p><code>haskell
+ghci&gt; runParser (spaces &lt;* posInt) " 345"
+</code></p>
+
+<p>First we run:</p>
+
+<p><code>haskell
+ghci&gt; runParser spaces " 345"
+Just (" ", "345")
+</code></p>
+
+<p>This time, we <em>don&rsquo;t</em> disregard <code>" "</code>.</p>
+
+<p>We pass on &ldquo;345&rdquo;:</p>
+
+<p><code>haskell
+ghci&gt; runParser posInt "345"
+Just (345, "")
+</code></p>
+
+<p>Here we are ignoring <code>345</code>, the result of <code>runParser posInt "345"</code>.</p>
+
+<p>The final result ends up being:</p>
+
+<p><code>haskell
+Just (" ", "")
+</code>
+Cool, how about one more.</p>
+
+<p><code>haskell
+ghci&gt; runParser (ident &lt;* posInt) "hello 345"
+</code></p>
+
+<p><code>haskell
+ghci&gt; runParser ident "hello 345"
+Just ("hello", " 345")
+</code></p>
+
+<p>We keep <code>"hello"</code> and pass on <code>" 345"</code>.</p>
+
+<p><code>haskell
+ghci&gt; runParser posInt " 345"
+Nothing
+</code></p>
+
+<p>Uh oh. We got <code>Nothing</code>. There is no state for us to use in the return <code>Maybe</code> tuple, so we end up with <code>Nothing</code>.</p>
+
+<ul>
+<li><code>posInt :: Parser Integer</code> : Checks for positive integers in String input.</li>
+<li><code>spaces :: Parser String</code> : Checks for spaces in String input.</li>
+<li><code>ident :: Parser String</code> : an identiﬁer can be any nonempty sequence of letters and digits, except that it may not start with a digit.</li>
+</ul>
+
+
+<p>I got this far in my understanding of these functions, but I still do not quite understand what is being &ldquo;lifted&rdquo; behind the scenes.</p>
+
+<p>Lifting in the case of <code>(a -&gt; b) -&gt; f a -&gt; f b</code> is defined in LYaH as &ldquo;a function that takes a function and returns a new function that&rsquo;s just like the old one, only it takes a functor as a parameter and returns a functor as the result.&rdquo; I will mull this over more tonight, and perhaps ask Alan or some alumni in Zulip tomorrow if I am still having a hard time understanding the concept.</p>
+
+<p>For about 30 minutes, I worked through the first six problems of <a href="http://www.haskell.org/haskellwiki/99_questions">99 Haskell Problems</a>. It&rsquo;s been pretty fun to revist things I learned a while back now that I am getting wrapped up in the intricacies of Haskell. My brain feels like it is exploding all the time.</p>
+
+<p>Learning Haskell has been challenging. It is definitely rewarding, but there are many times when I feel discouraged because I don&rsquo;t know when I will understand things like Applicative Functors like the back of my hand. I often feel afraid that I <em>won&rsquo;t</em> ever understand these things, but then I tell myself, what&rsquo;s the rush?</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Hacker School: Day 6]]></title>
     <link href="http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6/"/>
     <updated>2014-06-17T17:09:44-04:00</updated>
     <id>http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6</id>
-    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://localhost:4000/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
+    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://blog.dariajung.com/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
 
 <p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
 

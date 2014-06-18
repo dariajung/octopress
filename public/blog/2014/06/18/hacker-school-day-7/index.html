@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hacker School: Day 7 - Hacker School Log</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="I can&rsquo;t believe it has already been a week and a half at Hacker School. Wow. 12 weeks seems like a lot but the time is already flying by. Today &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hacker School Log</a></h1>
+  
+    <h2>Daria goes to Hacker School</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hacker School: Day 7</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-18T16:22:18-04:00" pubdate data-updated="true">Jun 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I can&rsquo;t believe it has already been a week and a half at Hacker School. Wow. 12 weeks seems like a lot but the time is already flying by.</p>
+
+<p>Today, I decided to resume my studies in Haskell. I worked on the week 11 assignment for Brent Yorgey&rsquo;s Haskell course. I continued working with the <code>Parser</code> data type, implementing some utilies and several new Parsers.</p>
+
+<p>This is where I was introduced to <code>*&gt;</code> and <code>&lt;*</code> and the concept of lifting in functional programming (which I am still having a hard time fully understanding).</p>
+
+<p>Described in the source for module <code>Control.Applicative</code> as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="c1">-- | Sequence actions, discarding the value of the first argument.</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">*&gt;</span><span class="p">)</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">b</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">*&gt;</span><span class="p">)</span> <span class="ow">=</span> <span class="n">liftA2</span> <span class="p">(</span><span class="n">const</span> <span class="n">id</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+and</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="c1">-- | Sequence actions, discarding the value of the second argument.</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">&lt;*</span><span class="p">)</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">&lt;*</span><span class="p">)</span> <span class="ow">=</span> <span class="n">liftA2</span> <span class="n">const</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using some examples I worked out by hand:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="p">(</span><span class="n">spaces</span> <span class="o">*&gt;</span> <span class="n">posInt</span><span class="p">)</span> <span class="s">&quot; 345&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I understood this computation as first:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">spaces</span> <span class="s">&quot; 345&quot;</span>
+</span><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;345&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>" "</code>, the result, is disregarded. We pass on &ldquo;345&rdquo; to the next call:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">posInt</span> <span class="s">&quot;345&quot;</span>
+</span><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since we are ignoring the result of <code>runParser spaces " 345"</code>, the final result is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using the same inputs, but for <code>&lt;*</code> this time:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="p">(</span><span class="n">spaces</span> <span class="o">&lt;*</span> <span class="n">posInt</span><span class="p">)</span> <span class="s">&quot; 345&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First we run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">spaces</span> <span class="s">&quot; 345&quot;</span>
+</span><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;345&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This time, we <em>don&rsquo;t</em> disregard <code>" "</code>.</p>
+
+<p>We pass on &ldquo;345&rdquo;:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">posInt</span> <span class="s">&quot;345&quot;</span>
+</span><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we are ignoring <code>345</code>, the result of <code>runParser posInt "345"</code>.</p>
+
+<p>The final result ends up being:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cool, how about one more.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="p">(</span><span class="n">ident</span> <span class="o">&lt;*</span> <span class="n">posInt</span><span class="p">)</span> <span class="s">&quot;hello 345&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">ident</span> <span class="s">&quot;hello 345&quot;</span>
+</span><span class='line'><span class="kt">Just</span> <span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="s">&quot; 345&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We keep <code>"hello"</code> and pass on <code>" 345"</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">runParser</span> <span class="n">posInt</span> <span class="s">&quot; 345&quot;</span>
+</span><span class='line'><span class="kt">Nothing</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Uh oh. We got <code>Nothing</code>. There is no state for us to use in the return <code>Maybe</code> tuple, so we end up with <code>Nothing</code>.</p>
+
+<ul>
+<li><code>posInt :: Parser Integer</code> : Checks for positive integers in String input.</li>
+<li><code>spaces :: Parser String</code> : Checks for spaces in String input.</li>
+<li><code>ident :: Parser String</code> : an identiﬁer can be any nonempty sequence of letters and digits, except that it may not start with a digit.</li>
+</ul>
+
+
+<p>I got this far in my understanding of these functions, but I still do not quite understand what is being &ldquo;lifted&rdquo; behind the scenes.</p>
+
+<p>Lifting in the case of <code>(a -&gt; b) -&gt; f a -&gt; f b</code> is defined in LYaH as &ldquo;a function that takes a function and returns a new function that&rsquo;s just like the old one, only it takes a functor as a parameter and returns a functor as the result.&rdquo; I will mull this over more tonight, and perhaps ask Alan or some alumni in Zulip tomorrow if I am still having a hard time understanding the concept.</p>
+
+<p>For about 30 minutes, I worked through the first six problems of <a href="http://www.haskell.org/haskellwiki/99_questions">99 Haskell Problems</a>. It&rsquo;s been pretty fun to revist things I learned a while back now that I am getting wrapped up in the intricacies of Haskell. My brain feels like it is exploding all the time.</p>
+
+<p>Learning Haskell has been challenging. It is definitely rewarding, but there are many times when I feel discouraged because I don&rsquo;t know when I will understand things like Applicative Functors like the back of my hand. I often feel afraid that I <em>won&rsquo;t</em> ever understand these things, but then I tell myself, what&rsquo;s the rush?</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-18T16:22:18-04:00" pubdate data-updated="true">Jun 18<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/applicative-functors/'>Applicative Functors</a>, <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/lifting/'>Lifting</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/17/hacker-school-day-6/" title="Previous Post: Hacker School: Day 6">&laquo; Hacker School: Day 6</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/18/hacker-school-day-7/">Hacker School: Day 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/17/hacker-school-day-6/">Hacker School: Day 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/16/applicative-functors/">Applicative Functors</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/15/hacker-school-week-1/">Hacker School Week 1</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

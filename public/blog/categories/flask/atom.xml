@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flask | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/flask/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-06-17T19:04:56-04:00</updated>
+  <updated>2014-06-18T19:12:02-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6/"/>
     <updated>2014-06-17T17:09:44-04:00</updated>
     <id>http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6</id>
-    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://localhost:4000/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
+    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://blog.dariajung.com/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
 
 <p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
 

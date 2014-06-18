@@ -6,7 +6,7 @@ comments: true
 categories: [Hacker School, Python, Flask, Redis, URL Shortener, Haskell]
 ---
 
-Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the [Applicative Functors](http://localhost:4000/blog/2014/06/16/applicative-functors/) blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working. 
+Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the [Applicative Functors](http://blog.dariajung.com/blog/2014/06/16/applicative-functors/) blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working. 
 
 The little bit of Haskell I did today was to implement an ```Alternative``` instance for a ```Parser```.
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-06-19T22:22:21-04:00</updated>
+  <updated>2014-06-24T10:23:05-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hacker School: Days 9 &amp; 10]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10/"/>
+    <updated>2014-06-24T09:58:30-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10</id>
+    <content type="html"><![CDATA[<p>I didn&rsquo;t get a chance to blog about last Friday (Day 9) so I&rsquo;ll do a quick recap:</p>
+
+<ul>
+<li>First day of interview prep.</li>
+<li>Worked on <a href="https://hackpad.com/Manage-those-phone-books-wK1MycZ5ATb">Manage those Phonebooks</a> in Python.</li>
+<li>Turns out I had a lot of trouble parsing command line inputs, so I spent a good chunk of time on that before I decided to come back to it at the end.</li>
+<li>This exercise made me feel a bit uncomfortable about how well I know a language. I&rsquo;ve been spending all of my time on Haskell and haven&rsquo;t touched Java or Python in a while.</li>
+<li>Continued reading about Monads.</li>
+</ul>
+
+
+<p>Yesterday (Day 10), we received new check-in groups. It seems that they rotate every two weeks, and I&rsquo;m enjoying that as it gives me the chance to interact with more of my fellow Hacker Schoolers in a smaller setting.</p>
+
+<p>I spent a good chunk of the morning finishing up the last assignment from Brent Yorgey&rsquo;s Haskell course programming a Risk, the <a href="https://en.wikipedia.org/wiki/Risk_(game)" target="_blank">boardgame</a>, simulator. It was cool to play around with Random generators to simulate die rolls, and also to simulate 1000 invasions (repeated calls to battle until there are no defenders remaining, or fewer than two attackers left) of varying defending and attacking army sizes. This was encompassed in a Battlefield data type, where Battlefield is defined as:</p>
+
+<p>```haskell
+type Army = Int</p>
+
+<p>data Battlefield = Battlefield</p>
+
+<pre><code>               { attackers :: Army, defenders :: Army }
+</code></pre>
+
+<p>```</p>
+
+<p>After this, I ended up stumbling on Peter Norvig&rsquo;s Sudoku solver <a href="http://norvig.com/sudoku.html">paper</a> and decided to implement it in Haskell. I&rsquo;ve been struggling through lots of type errors but I was surprised and happy to find that I got so engrossed in my task that I stayed at Hacker School for almost 12 hours yesterday. It&rsquo;s really neat to be this absorbed in something, and feeling myself gain more confidence through being challenged by my own curiosities. Once I finish this up, I will definitely be needing some code review.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hacker School: Day 6]]></title>

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hacker School: Days 11 &amp; 12 - Hacker School Log</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="I&rsquo;m getting behind on my blogging, meep. Day 11 recap: Spent half of the day trying to debug my sudoku solver&rsquo;s board parser, which was &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/06/25/hacker-school-days-11-and-12">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hacker School Log</a></h1>
+  
+    <h2>Daria goes to Hacker School</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hacker School: Days 11 &amp; 12</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T20:36:12-04:00" pubdate data-updated="true">Jun 25<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;m getting behind on my blogging, meep.</p>
+
+<p>Day 11 recap:</p>
+
+<ul>
+<li>Spent half of the day trying to debug my sudoku solver&rsquo;s board parser, which was pretty difficult as everything type checked, but I was getting the wrong output.</li>
+<li>Learned about the <a href="http://www.haskell.org/ghc/docs/latest/html/users_guide/ghci-debugger.html">GHCI interactive debugger</a>, which let me place break points and inspect variables where the execution of the program has stopped.</li>
+<li>Alan gave me a quick overview of &ldquo;equational debugging&rdquo;, which is to test little snippets of your program and make sure that it is returning the right output.</li>
+<li>I ended up pulling out more complicated bits of my code into smaller functions to make equational debugging more manageable.</li>
+<li>Spent the rest of the day finishing up the sudoku solver. I debugged the constraint propagation aspect of the program, and then implemented the depth first search function which utilized the constraint propagation logic.</li>
+</ul>
+
+
+<p>Day 12 (today!), I decided to take (another) break from Haskell. I played around for most of the day with Paper.js, trying to make something beautiful, but eventually found that it didn&rsquo;t actually interest me too much. Around 3:00 pm, Stacy from Winter 2013 batch came by Hacker School to do a goal making workshop. It did really get me thinking about my time at Hacker School, and how I need to figure out when I can say that I have achieved my goal of being literate in Haskell. I think I will spend maybe a couple more weeks max on Haskell, and then switch over to Python. My main fear is that while Haskell is awesome, it isn&rsquo;t exactly a language that I will be able to work in once I become a professional software engineer.</p>
+
+<p>After hitting a dead end with Paper.js, I decided to pivot and play around with Python. I implemented a simple echo server in Python, where the client will send back what the server sent to it. Then I got the idea to work on a GIF bot for Zulip because sometimes emoji just aren&rsquo;t enough :). You can ask gif bot &ldquo;gif me cats&rdquo; and an API query is sent to <a href="http://giphy.com/">Giphy</a>, and gif bot returns a gif that has been tagged with cats, in this example. It&rsquo;s basically done at this point, and works locally, but I&rsquo;m not sure what the protocol is for having a permanent presence from the bot. Do I serve it on AWS/Heroku? I think I will ask Allison tomorrow. I&rsquo;m also curious if I should demo this tomorrow afternoon.</p>
+
+<p>Here is gif bot in action:</p>
+
+<p><img src="/images/gifbot.png" alt="&quot;Gif Bot in action&quot;" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T20:36:12-04:00" pubdate data-updated="true">Jun 25<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/zulip/'>Zulip</a>, <a class='category' href='/blog/categories/bot/'>bot</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/06/25/hacker-school-days-11-and-12/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/06/25/hacker-school-days-11-and-12/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/24/hacker-school-days-9-and-10/" title="Previous Post: Hacker School: Days 9 &amp; 10">&laquo; Hacker School: Days 9 &amp; 10</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/25/hacker-school-days-11-and-12/">Hacker School: Days 11 &amp; 12</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/24/hacker-school-days-9-and-10/">Hacker School: Days 9 &amp; 10</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/19/hacker-school-day-8/">Hacker School: Day 8</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/18/hacker-school-day-7/">Hacker School: Day 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/17/hacker-school-day-6/">Hacker School: Day 6</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

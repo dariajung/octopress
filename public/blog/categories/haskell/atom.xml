@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-06-25T22:33:37-04:00</updated>
+  <updated>2014-06-27T16:51:27-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hacker School: Day 13]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/06/27/hacker-school-day-13/"/>
+    <updated>2014-06-27T16:33:32-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/06/27/hacker-school-day-13</id>
+    <content type="html"><![CDATA[<p>Day 13 of Hacker School went by pretty quickly, mostly due to some of us playing hooky to go watch the Germany vs. USA game. We were initially going to go to a German bar, but it turns out there were a lot of Germans there already (I guess they like their futbol). We ended up back tracking and found a bar called Sweet &amp; Vicious, which was sweet (their jargaritas are great), but not particularly vicious. The game was slow paced, and the atmosphere of the bar made it a nice spot to lounge.</p>
+
+<p style="text-align: center;"><img src="images/jargarita.png" style="width: 50%;"></p>
+
+
+<p>I guess my main reason for leaving in the middle of the day was that I was in a weird headspace after the goal making workshop. I started to doubt my decisions about the things I wanted to do this summer and that was bumming me out. On top of that, I couldn&rsquo;t install <a href="http://www.haskell.org/haskellwiki/ThreadScope">threadscope</a> to save my life, and spent almost five hours trying to get that to run (yay yak-shaving) before just giving up and deciding to read <a href="http://chimera.labs.oreilly.com/books/1230000000929">Simon Marlow&rsquo;s book</a> without it.</p>
+
+<p>I did have a productive talk with Allison yesterday. My worries were that I was working on Haskell, a language that is rather impractical for the purpose of jobs and I wasn&rsquo;t sure if I should switch to Python or not. Which turns out it was a rather silly fear to have since I am going back to school and won&rsquo;t ostensibly be looking for a new job for at least two more years. So I have decided to stick with Haskell, and will work on some side projects in Python once in a while when the mood strikes me.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hacker School: Days 11 &amp; 12]]></title>
@@ -248,80 +264,6 @@ Nothing
 <p>For about 30 minutes, I worked through the first six problems of <a href="http://www.haskell.org/haskellwiki/99_questions">99 Haskell Problems</a>. It&rsquo;s been pretty fun to revist things I learned a while back now that I am getting wrapped up in the intricacies of Haskell. My brain feels like it is exploding all the time.</p>
 
 <p>Learning Haskell has been challenging. It is definitely rewarding, but there are many times when I feel discouraged because I don&rsquo;t know when I will understand things like Applicative Functors like the back of my hand. I often feel afraid that I <em>won&rsquo;t</em> ever understand these things, but then I tell myself, what&rsquo;s the rush?</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Day 6]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6/"/>
-    <updated>2014-06-17T17:09:44-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/17/hacker-school-day-6</id>
-    <content type="html"><![CDATA[<p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://blog.dariajung.com/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
-
-<p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
-
-<p>If we remember from my previous blogpost, <code>Parser</code> is defined as such:</p>
-
-<p><code>haskell
-newtype Parser a = Parser { runParser :: String -&gt; Maybe (a, String) }
-</code></p>
-
-<p>The <code>Applicative Parser</code> instance is useful for making parsers of fixed and simple formats. Because we want to be able to handle
-the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</p>
-
-<p>The <code>Alternative</code> class is defined something like this:</p>
-
-<p>```haskell
-class Applicative f => Alternative f where</p>
-
-<pre><code>empty :: f a
-(&lt;|&gt;) :: f a -&gt; f a -&gt; f a
-</code></pre>
-
-<p>```</p>
-
-<p>(&lt;|>) denotes a choice, so something like <code>p &lt;|&gt; q</code> means a choice between <code>p</code> or <code>q</code>.</p>
-
-<p>So, my <code>Alternative</code> instance ended up being:</p>
-
-<p>```haskell
-instance Alternative Parser where</p>
-
-<pre><code>empty = Parser $ const Nothing
-p &lt;|&gt; q = Parser $ \s -&gt; runParser p s &lt;|&gt; runParser q s
-</code></pre>
-
-<p>```</p>
-
-<p>An important hint here is that there is already an Alternative instance for Maybe:</p>
-
-<p>```haskell
-instance Alternative Maybe where</p>
-
-<pre><code>empty = Nothing
-Nothing &lt;|&gt; p = p
-Just x &lt;|&gt; _ = Just x
-</code></pre>
-
-<p>```</p>
-
-<p>This means that we can simply call <code>runParser p s</code> and <code>runParser q s</code>, which gives us Maybe tuples. We can then use (&lt;|>) from the <code>Alternative</code> instance of <code>Maybe</code> to choose between those two tuples and pass it to the Parser constructor.</p>
-
-<p>If <code>runParser p s</code> succeeds, return its results, else try <code>runParser q s</code>. If that succeeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
-
-<p>Pretty nifty!</p>
-
-<p>The rest of today, I worked on a very simple <a href="https://github.com/dariajung/url_shortener">URL shortener</a>.</p>
-
-<p>I found a tutorial online that used the md5 hashing algorithm and a base 64 encoding to generate a randomized string. The last five characters of this were taken, sanitized, and then used as the key for a key value store in Redis as well as a slug.</p>
-
-<p>I whipped up a simple Flask app for 301 redirects from the shortened URL to the original URL. A quick lookup in Redis, and then a <code>return redirect(location, 301)</code> call did the trick.</p>
-
-<p><code>http://blog.dariajung.com</code> results in <code>http://localhost:5000/iJp4fHs</code>. When I go to that URL, I am then redirected to my original URL.</p>
-
-<p>The functionality is all very simple, so I don&rsquo;t check that the protocol identifier and such are in the URL. That might be for another day.</p>
-
-<p>Overall, I think today was rather productive!</p>
 ]]></content>
   </entry>
   

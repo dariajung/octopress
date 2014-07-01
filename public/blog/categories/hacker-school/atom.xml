@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-06-27T17:03:28-04:00</updated>
+  <updated>2014-07-01T11:04:22-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bencoding and Networking]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking/"/>
+    <updated>2014-07-01T10:15:49-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking</id>
+    <content type="html"><![CDATA[<p>One of the things that I have always been fearful of is networking. Sockets, TCP/IP, and forking, all of that. In a class at university, I had done some networking in C; I remember reading <a href="http://beej.us/guide/bgnet/">Beej&rsquo;s guide to network programming</a>, and I found myself returning to it, and appreciating it a bit more this time. It&rsquo;s funny how when you&rsquo;re learning something in school, you could care less about it. You just want to get from point A to point B in the shortest way possible. But when you have the time to be in a self-directed environment like Hacker School, you find yourself wanting to revisit things that you didn&rsquo;t learn properly the first time around, wanting to tell your past self: &ldquo;You should have paid more attention when you were learning this!&rdquo;</p>
+
+<p>So, to learn networking in Haskell, I have decided to incrementally work towards building a simple Bittorrent client. Yesterday, I read about <a href="http://en.wikipedia.org/wiki/Bencode">bencode</a>, the encoding used by the Bittorrent protocol for torrent files (metadata).</p>
+
+<p>Bencode supports four types of values:</p>
+
+<ul>
+<li>Integers</li>
+<li>(Byte) Strings</li>
+<li>Lists</li>
+<li>Dictionaries (Hash Maps)</li>
+</ul>
+
+
+<p>Integers are encoded as <code>i&lt;integer encoded in base 10 ASCII&gt;e</code>. Integers can be negative, but 0 cannot be -0.</p>
+
+<p>ByteStrings are encoded as <code>&lt;length&gt;:&lt;contents&gt;</code>. So &ldquo;foo&rdquo; would be encoded as 3:foo. The length of the content can be 0, but cannot be negative.</p>
+
+<p>Lists are encoded as <code>l&lt;contents&gt;e</code>. Contents are bencoded elements of the list (in order), and are concatenated. Something like &ldquo;cat31&rdquo; would be encoded as l3:cati31ee.</p>
+
+<p>Dictionaries are encoded as <code>d&lt;contents&gt;e</code>. The keys must be bytestrings, and the dictionary is ordered lexiographically by key. The encoded key value pair follow each other immediately. {&ldquo;cat&rdquo;: &ldquo;meow&rdquo;, &ldquo;dog&rdquo;: 44} would be encoded as d3:cat4:meow3:dogi44ee.</p>
+
+<p>After reading this, I used the <a href="http://www.haskell.org/haskellwiki/Parsec">Parsec</a> library and wrote a parser for bencoded values in Haskell. I tested it on a torrent for Ubuntu and got back this:</p>
+
+<p><img src="/images/torrent.png" alt="&quot;Metadata&quot;" /></p>
+
+<p>We can see things like:</p>
+
+<ul>
+<li>&ldquo;announce&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
+<li>&ldquo;announce-list&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;, &ldquo;<a href="http://ipv6.torrent.ubuntu.com:6969/announce">http://ipv6.torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
+<li>&ldquo;comment&rdquo;: &ldquo;Ubuntu CD releases.ubuntu.com&rdquo;</li>
+<li>&ldquo;creation date&rdquo;: 1391706680</li>
+</ul>
+
+
+<p>and so on.</p>
+
+<p>The crazy wall of text is mostly due to all of the pieces for this particular torrent.</p>
+
+<p>After this, to get a better sense of networking in Haskell, I read up on TCP/IP and started working towards this <a href="http://www.haskell.org/haskellwiki/Implement_a_chat_server">tutorial</a> on building a multi-threaded chat server in Haskell, and getting a feel for the Network.Socket library.</p>
+
+<p>At the very basic level: Socket &ndash;> Bind &ndash;> Listen &ndash;> Accept.</p>
+
+<p>My networking journey will continue today&hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hacker School: Day 13]]></title>
@@ -140,129 +193,6 @@ fail :: String -&gt; m a
 <p>Mihai&rsquo;s demo on creating music and outputting the result as MIDI files actually inspired me to search for something that would allow me to do that in Haskell. I was able to come across the <a href="https://github.com/Euterpea/Euterpea">Euterpea</a> library, which looks very promising. I think it would be fun to create a Markov Chain that took training data of different songs, and created new compositions. I hope to play around with this some in the coming days.</p>
 
 <p>To conclude the day, Marisa, Alex, Rachel, and I started watching a documentary on the font Helvetica. It was very interesting to see how Helvetica&rsquo;s usage has evolved over time, and also the connotations that it has to people. Going from a clean, revolutionary font to an overused &ldquo;nameless&rdquo; font (as it is now employed by many corporations and government agencies) has given Helvetica an interesting reputation. Some people see it as the font of wars (Vietnam, Iraq war), and some see it as the quintessential modern typeface; a debate between modernists and postmodernists.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Day 7]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7/"/>
-    <updated>2014-06-18T16:22:18-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/18/hacker-school-day-7</id>
-    <content type="html"><![CDATA[<p>I can&rsquo;t believe it has already been a week and a half at Hacker School. Wow. 12 weeks seems like a lot but the time is already flying by.</p>
-
-<p>Today, I decided to resume my studies in Haskell. I worked on the week 11 assignment for Brent Yorgey&rsquo;s Haskell course. I continued working with the <code>Parser</code> data type, implementing some utilies and several new Parsers.</p>
-
-<p>This is where I was introduced to <code>*&gt;</code> and <code>&lt;*</code> and the concept of lifting in functional programming (which I am still having a hard time fully understanding).</p>
-
-<p>Described in the source for module <code>Control.Applicative</code> as:</p>
-
-<p>```haskell
-&mdash; | Sequence actions, discarding the value of the first argument.</p>
-
-<pre><code>(*&gt;) :: f a -&gt; f b -&gt; f b
-(*&gt;) = liftA2 (const id)
-</code></pre>
-
-<p>```
-and</p>
-
-<p>```haskell
-&mdash; | Sequence actions, discarding the value of the second argument.</p>
-
-<pre><code>(&lt;*) :: f a -&gt; f b -&gt; f a
-(&lt;*) = liftA2 const
-</code></pre>
-
-<p>```</p>
-
-<p>Using some examples I worked out by hand:</p>
-
-<p><code>haskell
-ghci&gt; runParser (spaces *&gt; posInt) " 345"
-</code></p>
-
-<p>I understood this computation as first:</p>
-
-<p><code>haskell
-ghci&gt; runParser spaces " 345"
-Just (" ", "345")
-</code>
-The <code>" "</code>, the result, is disregarded. We pass on &ldquo;345&rdquo; to the next call:</p>
-
-<p><code>haskell
-ghci&gt; runParser posInt "345"
-Just (345, "")
-</code></p>
-
-<p>Since we are ignoring the result of <code>runParser spaces " 345"</code>, the final result is:</p>
-
-<p><code>haskell
-Just (345, "")
-</code></p>
-
-<p>Using the same inputs, but for <code>&lt;*</code> this time:</p>
-
-<p><code>haskell
-ghci&gt; runParser (spaces &lt;* posInt) " 345"
-</code></p>
-
-<p>First we run:</p>
-
-<p><code>haskell
-ghci&gt; runParser spaces " 345"
-Just (" ", "345")
-</code></p>
-
-<p>This time, we <em>don&rsquo;t</em> disregard <code>" "</code>.</p>
-
-<p>We pass on &ldquo;345&rdquo;:</p>
-
-<p><code>haskell
-ghci&gt; runParser posInt "345"
-Just (345, "")
-</code></p>
-
-<p>Here we are ignoring <code>345</code>, the result of <code>runParser posInt "345"</code>.</p>
-
-<p>The final result ends up being:</p>
-
-<p><code>haskell
-Just (" ", "")
-</code>
-Cool, how about one more.</p>
-
-<p><code>haskell
-ghci&gt; runParser (ident &lt;* posInt) "hello 345"
-</code></p>
-
-<p><code>haskell
-ghci&gt; runParser ident "hello 345"
-Just ("hello", " 345")
-</code></p>
-
-<p>We keep <code>"hello"</code> and pass on <code>" 345"</code>.</p>
-
-<p><code>haskell
-ghci&gt; runParser posInt " 345"
-Nothing
-</code></p>
-
-<p>Uh oh. We got <code>Nothing</code>. There is no state for us to use in the return <code>Maybe</code> tuple, so we end up with <code>Nothing</code>.</p>
-
-<ul>
-<li><code>posInt :: Parser Integer</code> : Checks for positive integers in String input.</li>
-<li><code>spaces :: Parser String</code> : Checks for spaces in String input.</li>
-<li><code>ident :: Parser String</code> : an identiﬁer can be any nonempty sequence of letters and digits, except that it may not start with a digit.</li>
-</ul>
-
-
-<p>I got this far in my understanding of these functions, but I still do not quite understand what is being &ldquo;lifted&rdquo; behind the scenes.</p>
-
-<p>Lifting in the case of <code>(a -&gt; b) -&gt; f a -&gt; f b</code> is defined in LYaH as &ldquo;a function that takes a function and returns a new function that&rsquo;s just like the old one, only it takes a functor as a parameter and returns a functor as the result.&rdquo; I will mull this over more tonight, and perhaps ask Alan or some alumni in Zulip tomorrow if I am still having a hard time understanding the concept.</p>
-
-<p>For about 30 minutes, I worked through the first six problems of <a href="http://www.haskell.org/haskellwiki/99_questions">99 Haskell Problems</a>. It&rsquo;s been pretty fun to revist things I learned a while back now that I am getting wrapped up in the intricacies of Haskell. My brain feels like it is exploding all the time.</p>
-
-<p>Learning Haskell has been challenging. It is definitely rewarding, but there are many times when I feel discouraged because I don&rsquo;t know when I will understand things like Applicative Functors like the back of my hand. I often feel afraid that I <em>won&rsquo;t</em> ever understand these things, but then I tell myself, what&rsquo;s the rush?</p>
 ]]></content>
   </entry>
   

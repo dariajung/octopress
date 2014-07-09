@@ -4,7 +4,7 @@
   <title><![CDATA[Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-01T11:04:22-04:00</updated>
+  <updated>2014-07-09T13:31:32-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sometimes, Giving Up Is A-okay.]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/09/sometimes/"/>
+    <updated>2014-07-09T13:16:49-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/09/sometimes</id>
+    <content type="html"><![CDATA[<p>After spending about a week and a half on my Haskell <a href="https://github.com/dariajung/haskell-bittorrent">BitTorrent client</a>, I&rsquo;ve decided to give it a rest. Am I done? No. Am I close to being done? Depends on what &ldquo;done&rdquo; means (but no, probably not).</p>
+
+<p>I won&rsquo;t lie. I felt a pang of guilt today when I decided to put the project on the backburner.</p>
+
+<p><img src="http://media2.giphy.com/media/lrNS45C9Df904/giphy.gif" alt="Finn crying" />
+</br><sub>Actually, I was something like this on the inside.</sub></p>
+
+<p>But what I&rsquo;ve learned is that when a project stops bringing joy and feels tedious, it is much better to move onto something else so my time can be spent productively. I asked my fellow Hacker Schoolers when they felt it was an appropriate time to move on from a project, and I got a lot of great responses. I was told it was okay to abandon a project if it made me feel sad, but I could write some documentation for it to feel some closure. It also wasn&rsquo;t apparent to me that because I was getting so hung up on trying to finish this project that I was missing other valuable opportunities, and this was pointed out to me by several alums.</p>
+
+<p>I&rsquo;m pretty glad that I asked this question, because I&rsquo;m not sure how much longer I could have dragged on the BitTorrent project. I think I&rsquo;m ready to move onto OCaml and work through <a href="https://realworldocaml.org">Real World OCaml</a> and start afresh.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bencoding and Networking]]></title>

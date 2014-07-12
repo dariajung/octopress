@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-09T13:31:32-04:00</updated>
+  <updated>2014-07-12T12:58:07-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Recursion Friday]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/"/>
+    <updated>2014-07-12T12:38:25-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/12/recursion-friday</id>
+    <content type="html"><![CDATA[<p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
+
+<p>Recursion used to make me go like this:</p>
+
+<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
+
+<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
+
+<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
+
+<p>```
+Permute(&ldquo;abcd&rdquo;) =</p>
+
+<pre><code>"a" + Permute("bcd") 
+&lt;list concatenation&gt; 
+"b" + Permute("acd") 
+&lt;list concatenation&gt;
+"c" + Permute("bcd") 
+&lt;list concatenation&gt;
+"d" + Permute("abc") 
+</code></pre>
+
+<p>```</p>
+
+<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
+
+<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
+
+<p>```haskell
+import Data.List</p>
+
+<p>permute :: Eq a => [a] &ndash;> [[a]]
+permute [] = [[]]
+permute xs = [ y | prefix &lt;&ndash; xs, y &lt;&ndash; map (prefix:)</p>
+
+<pre><code>               $ permute $ xs \\ [prefix]]
+</code></pre>
+
+<p>```</p>
+
+<p>An obnoxiously short list comprehension.</p>
+
+<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
+
+<p>```haskell
+ghci> permute &ldquo;abcd&rdquo;</p>
+
+<p>[&ldquo;abcd&rdquo;,&ldquo;abdc&rdquo;,&ldquo;acbd&rdquo;,&ldquo;acdb&rdquo;,&ldquo;adbc&rdquo;,&ldquo;adcb&rdquo;,
+&ldquo;bacd&rdquo;,&ldquo;badc&rdquo;,&ldquo;bcad&rdquo;,&ldquo;bcda&rdquo;,&ldquo;bdac&rdquo;,&ldquo;bdca&rdquo;,
+&ldquo;cabd&rdquo;,&ldquo;cadb&rdquo;,&ldquo;cbad&rdquo;,&ldquo;cbda&rdquo;,&ldquo;cdab&rdquo;,&ldquo;cdba&rdquo;,
+&ldquo;dabc&rdquo;,&ldquo;dacb&rdquo;,&ldquo;dbac&rdquo;,&ldquo;dbca&rdquo;,&ldquo;dcab&rdquo;,&ldquo;dcba&rdquo;]
+```</p>
+
+<p>Recursion still blows my mind.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sometimes, Giving Up Is A-okay.]]></title>
@@ -124,40 +186,6 @@
 <p>Here is gif bot in action:</p>
 
 <p><img src="/images/gifbot.png" alt="&quot;Gif Bot in action&quot;" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Days 9 &amp; 10]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10/"/>
-    <updated>2014-06-24T09:58:30-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10</id>
-    <content type="html"><![CDATA[<p>I didn&rsquo;t get a chance to blog about last Friday (Day 9) so I&rsquo;ll do a quick recap:</p>
-
-<ul>
-<li>First day of interview prep.</li>
-<li>Worked on <a href="https://hackpad.com/Manage-those-phone-books-wK1MycZ5ATb">Manage those Phonebooks</a> in Python.</li>
-<li>Turns out I had a lot of trouble parsing command line inputs, so I spent a good chunk of time on that before I decided to come back to it at the end.</li>
-<li>This exercise made me feel a bit uncomfortable about how well I know a language. I&rsquo;ve been spending all of my time on Haskell and haven&rsquo;t touched Java or Python in a while.</li>
-<li>Continued reading about Monads.</li>
-</ul>
-
-
-<p>Yesterday (Day 10), we received new check-in groups. It seems that they rotate every two weeks, and I&rsquo;m enjoying that as it gives me the chance to interact with more of my fellow Hacker Schoolers in a smaller setting.</p>
-
-<p>I spent a good chunk of the morning finishing up the last assignment from Brent Yorgey&rsquo;s Haskell course programming a Risk, the <a href="https://en.wikipedia.org/wiki/Risk_(game)" target="_blank">boardgame</a>, simulator. It was cool to play around with Random generators to simulate die rolls, and also to simulate 1000 invasions (repeated calls to battle until there are no defenders remaining, or fewer than two attackers left) of varying defending and attacking army sizes. This was encompassed in a Battlefield data type, where Battlefield is defined as:</p>
-
-<p>```haskell
-type Army = Int</p>
-
-<p>data Battlefield = Battlefield</p>
-
-<pre><code>               { attackers :: Army, defenders :: Army }
-</code></pre>
-
-<p>```</p>
-
-<p>After this, I ended up stumbling on Peter Norvig&rsquo;s Sudoku solver <a href="http://norvig.com/sudoku.html">paper</a> and decided to implement it in Haskell. I&rsquo;ve been struggling through lots of type errors but I was surprised and happy to find that I got so engrossed in my task that I stayed at Hacker School for almost 12 hours yesterday. It&rsquo;s really neat to be this absorbed in something, and feeling myself gain more confidence through being challenged by my own curiosities. Once I finish this up, I will definitely be needing some code review.</p>
 ]]></content>
   </entry>
   

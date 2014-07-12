@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Recursion Friday - Hacker School Log</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/07/12/recursion-friday">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hacker School Log</a></h1>
+  
+    <h2>Daria goes to Hacker School</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Recursion Friday</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-12T12:38:25-04:00" pubdate data-updated="true">Jul 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
+
+<p>Recursion used to make me go like this:</p>
+
+<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
+
+<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
+
+<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Permute("abcd") =
+</span><span class='line'>    "a" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt; 
+</span><span class='line'>    "b" + Permute("acd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "c" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "d" + Permute("abc") </span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
+
+<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">Data.List</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">permute</span> <span class="ow">::</span> <span class="kt">Eq</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="n">a</span><span class="p">]]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">[]</span><span class="p">]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">[</span> <span class="n">y</span> <span class="o">|</span> <span class="n">prefix</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">y</span> <span class="ow">&lt;-</span> <span class="n">map</span> <span class="p">(</span><span class="n">prefix</span><span class="kt">:</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">$</span> <span class="n">permute</span> <span class="o">$</span> <span class="n">xs</span> <span class="o">\\</span> <span class="p">[</span><span class="n">prefix</span><span class="p">]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An obnoxiously short list comprehension.</p>
+
+<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">permute</span> <span class="s">&quot;abcd&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s">&quot;abcd&quot;</span><span class="p">,</span><span class="s">&quot;abdc&quot;</span><span class="p">,</span><span class="s">&quot;acbd&quot;</span><span class="p">,</span><span class="s">&quot;acdb&quot;</span><span class="p">,</span><span class="s">&quot;adbc&quot;</span><span class="p">,</span><span class="s">&quot;adcb&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;bacd&quot;</span><span class="p">,</span><span class="s">&quot;badc&quot;</span><span class="p">,</span><span class="s">&quot;bcad&quot;</span><span class="p">,</span><span class="s">&quot;bcda&quot;</span><span class="p">,</span><span class="s">&quot;bdac&quot;</span><span class="p">,</span><span class="s">&quot;bdca&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;cabd&quot;</span><span class="p">,</span><span class="s">&quot;cadb&quot;</span><span class="p">,</span><span class="s">&quot;cbad&quot;</span><span class="p">,</span><span class="s">&quot;cbda&quot;</span><span class="p">,</span><span class="s">&quot;cdab&quot;</span><span class="p">,</span><span class="s">&quot;cdba&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;dabc&quot;</span><span class="p">,</span><span class="s">&quot;dacb&quot;</span><span class="p">,</span><span class="s">&quot;dbac&quot;</span><span class="p">,</span><span class="s">&quot;dbca&quot;</span><span class="p">,</span><span class="s">&quot;dcab&quot;</span><span class="p">,</span><span class="s">&quot;dcba&quot;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Recursion still blows my mind.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-12T12:38:25-04:00" pubdate data-updated="true">Jul 12<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/recursion/'>Recursion</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/09/sometimes/" title="Previous Post: Sometimes, giving up is a-okay.">&laquo; Sometimes, giving up is a-okay.</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/12/recursion-friday/">Recursion Friday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/09/sometimes/">Sometimes, Giving Up Is A-okay.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/01/bencoding-and-networking/">Bencoding and Networking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/27/hacker-school-day-13/">Hacker School: Day 13</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/25/hacker-school-days-11-and-12/">Hacker School: Days 11 &amp; 12</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

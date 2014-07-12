@@ -4,7 +4,7 @@
   <title><![CDATA[Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-09T13:31:32-04:00</updated>
+  <updated>2014-07-12T12:58:07-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Recursion Friday]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/"/>
+    <updated>2014-07-12T12:38:25-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/12/recursion-friday</id>
+    <content type="html"><![CDATA[<p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
+
+<p>Recursion used to make me go like this:</p>
+
+<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
+
+<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
+
+<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Permute("abcd") =
+</span><span class='line'>    "a" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt; 
+</span><span class='line'>    "b" + Permute("acd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "c" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "d" + Permute("abc") </span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
+
+<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">Data.List</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">permute</span> <span class="ow">::</span> <span class="kt">Eq</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="n">a</span><span class="p">]]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">[]</span><span class="p">]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">[</span> <span class="n">y</span> <span class="o">|</span> <span class="n">prefix</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">y</span> <span class="ow">&lt;-</span> <span class="n">map</span> <span class="p">(</span><span class="n">prefix</span><span class="kt">:</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">$</span> <span class="n">permute</span> <span class="o">$</span> <span class="n">xs</span> <span class="o">\\</span> <span class="p">[</span><span class="n">prefix</span><span class="p">]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An obnoxiously short list comprehension.</p>
+
+<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">permute</span> <span class="s">&quot;abcd&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s">&quot;abcd&quot;</span><span class="p">,</span><span class="s">&quot;abdc&quot;</span><span class="p">,</span><span class="s">&quot;acbd&quot;</span><span class="p">,</span><span class="s">&quot;acdb&quot;</span><span class="p">,</span><span class="s">&quot;adbc&quot;</span><span class="p">,</span><span class="s">&quot;adcb&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;bacd&quot;</span><span class="p">,</span><span class="s">&quot;badc&quot;</span><span class="p">,</span><span class="s">&quot;bcad&quot;</span><span class="p">,</span><span class="s">&quot;bcda&quot;</span><span class="p">,</span><span class="s">&quot;bdac&quot;</span><span class="p">,</span><span class="s">&quot;bdca&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;cabd&quot;</span><span class="p">,</span><span class="s">&quot;cadb&quot;</span><span class="p">,</span><span class="s">&quot;cbad&quot;</span><span class="p">,</span><span class="s">&quot;cbda&quot;</span><span class="p">,</span><span class="s">&quot;cdab&quot;</span><span class="p">,</span><span class="s">&quot;cdba&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;dabc&quot;</span><span class="p">,</span><span class="s">&quot;dacb&quot;</span><span class="p">,</span><span class="s">&quot;dbac&quot;</span><span class="p">,</span><span class="s">&quot;dbca&quot;</span><span class="p">,</span><span class="s">&quot;dcab&quot;</span><span class="p">,</span><span class="s">&quot;dcba&quot;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Recursion still blows my mind.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sometimes, Giving Up Is A-okay.]]></title>

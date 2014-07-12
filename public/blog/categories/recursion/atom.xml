@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Recursion | Hacker School Log]]></title>
+  <link href="http://blog.dariajung.com/blog/categories/recursion/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com/"/>
+  <updated>2014-07-12T12:58:07-04:00</updated>
+  <id>http://blog.dariajung.com/</id>
+  <author>
+    <name><![CDATA[Daria Jung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Recursion Friday]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/"/>
+    <updated>2014-07-12T12:38:25-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/12/recursion-friday</id>
+    <content type="html"><![CDATA[<p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
+
+<p>Recursion used to make me go like this:</p>
+
+<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
+
+<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
+
+<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
+
+<p>```
+Permute(&ldquo;abcd&rdquo;) =</p>
+
+<pre><code>"a" + Permute("bcd") 
+&lt;list concatenation&gt; 
+"b" + Permute("acd") 
+&lt;list concatenation&gt;
+"c" + Permute("bcd") 
+&lt;list concatenation&gt;
+"d" + Permute("abc") 
+</code></pre>
+
+<p>```</p>
+
+<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
+
+<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
+
+<p>```haskell
+import Data.List</p>
+
+<p>permute :: Eq a => [a] &ndash;> [[a]]
+permute [] = [[]]
+permute xs = [ y | prefix &lt;&ndash; xs, y &lt;&ndash; map (prefix:)</p>
+
+<pre><code>               $ permute $ xs \\ [prefix]]
+</code></pre>
+
+<p>```</p>
+
+<p>An obnoxiously short list comprehension.</p>
+
+<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
+
+<p>```haskell
+ghci> permute &ldquo;abcd&rdquo;</p>
+
+<p>[&ldquo;abcd&rdquo;,&ldquo;abdc&rdquo;,&ldquo;acbd&rdquo;,&ldquo;acdb&rdquo;,&ldquo;adbc&rdquo;,&ldquo;adcb&rdquo;,
+&ldquo;bacd&rdquo;,&ldquo;badc&rdquo;,&ldquo;bcad&rdquo;,&ldquo;bcda&rdquo;,&ldquo;bdac&rdquo;,&ldquo;bdca&rdquo;,
+&ldquo;cabd&rdquo;,&ldquo;cadb&rdquo;,&ldquo;cbad&rdquo;,&ldquo;cbda&rdquo;,&ldquo;cdab&rdquo;,&ldquo;cdba&rdquo;,
+&ldquo;dabc&rdquo;,&ldquo;dacb&rdquo;,&ldquo;dbac&rdquo;,&ldquo;dbca&rdquo;,&ldquo;dcab&rdquo;,&ldquo;dcba&rdquo;]
+```</p>
+
+<p>Recursion still blows my mind.</p>
+]]></content>
+  </entry>
+  
+</feed>

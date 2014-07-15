@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-12T12:58:07-04:00</updated>
+  <updated>2014-07-15T19:25:50-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OCaml! Haskell! Gunzip!]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/15/gunzip/"/>
+    <updated>2014-07-15T18:57:22-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/15/gunzip</id>
+    <content type="html"><![CDATA[<p>For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
+difficult to leave Haskell because I am rather enamoured with the language. &#10084;</p>
+
+<p>I did however, manage to read through a good chunk of <a href="http://ocaml-book.com/">OCaml from the Very Beginning</a>, and work through the exercises that accompany each chapter. I found it to be a very solid introductory text, as the author makes no assumptions about the reader&rsquo;s background. I plan to finish it up at some point, and move on to <em>Real World OCaml</em>.</p>
+
+<p>A couple of things that jumped out at me as I started learning OCaml:</p>
+
+<ul>
+<li>The standard library is pretty sparse. Will be checking out Jane Street&rsquo;s Core.</li>
+<li>There are mutable data structures.</li>
+<li>OCaml supports imperative and functional styles.</li>
+<li>The introductory text, at least <em>OCaml from the Very Beginning</em>, emphasized understanding tail recursion (which I didn&rsquo;t really think about when learning Haskell, but maybe I did it wrong)</li>
+<li>Utop is pretty cool.</li>
+<li>I got confused by <code>=</code> and <code>==</code> because I wanted to use <code>==</code> but that seems to be reserved for people who really know what they&rsquo;re doing.</li>
+</ul>
+
+
+<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="Day%2016:%20gzip%20+%20poetry%20=%20awesome">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
+
+<p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
+
+<p>I spent today working on parsing a gzipped file&rsquo;s header and metadata information. Tomorrow I will read up more on the algorithm description and dive into implementing inflate.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Recursion Friday]]></title>
@@ -168,40 +198,6 @@ ghci> permute &ldquo;abcd&rdquo;</p>
 <p>Here is gif bot in action:</p>
 
 <p><img src="/images/gifbot.png" alt="&quot;Gif Bot in action&quot;" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Days 9 &amp; 10]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10/"/>
-    <updated>2014-06-24T09:58:30-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/24/hacker-school-days-9-and-10</id>
-    <content type="html"><![CDATA[<p>I didn&rsquo;t get a chance to blog about last Friday (Day 9) so I&rsquo;ll do a quick recap:</p>
-
-<ul>
-<li>First day of interview prep.</li>
-<li>Worked on <a href="https://hackpad.com/Manage-those-phone-books-wK1MycZ5ATb">Manage those Phonebooks</a> in Python.</li>
-<li>Turns out I had a lot of trouble parsing command line inputs, so I spent a good chunk of time on that before I decided to come back to it at the end.</li>
-<li>This exercise made me feel a bit uncomfortable about how well I know a language. I&rsquo;ve been spending all of my time on Haskell and haven&rsquo;t touched Java or Python in a while.</li>
-<li>Continued reading about Monads.</li>
-</ul>
-
-
-<p>Yesterday (Day 10), we received new check-in groups. It seems that they rotate every two weeks, and I&rsquo;m enjoying that as it gives me the chance to interact with more of my fellow Hacker Schoolers in a smaller setting.</p>
-
-<p>I spent a good chunk of the morning finishing up the last assignment from Brent Yorgey&rsquo;s Haskell course programming a Risk, the <a href="https://en.wikipedia.org/wiki/Risk_(game)" target="_blank">boardgame</a>, simulator. It was cool to play around with Random generators to simulate die rolls, and also to simulate 1000 invasions (repeated calls to battle until there are no defenders remaining, or fewer than two attackers left) of varying defending and attacking army sizes. This was encompassed in a Battlefield data type, where Battlefield is defined as:</p>
-
-<p>```haskell
-type Army = Int</p>
-
-<p>data Battlefield = Battlefield</p>
-
-<pre><code>               { attackers :: Army, defenders :: Army }
-</code></pre>
-
-<p>```</p>
-
-<p>After this, I ended up stumbling on Peter Norvig&rsquo;s Sudoku solver <a href="http://norvig.com/sudoku.html">paper</a> and decided to implement it in Haskell. I&rsquo;ve been struggling through lots of type errors but I was surprised and happy to find that I got so engrossed in my task that I stayed at Hacker School for almost 12 hours yesterday. It&rsquo;s really neat to be this absorbed in something, and feeling myself gain more confidence through being challenged by my own curiosities. Once I finish this up, I will definitely be needing some code review.</p>
 ]]></content>
   </entry>
   

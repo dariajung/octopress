@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-12T12:58:07-04:00</updated>
+  <updated>2014-07-15T19:25:50-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OCaml! Haskell! Gunzip!]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/15/gunzip/"/>
+    <updated>2014-07-15T18:57:22-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/15/gunzip</id>
+    <content type="html"><![CDATA[<p>For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
+difficult to leave Haskell because I am rather enamoured with the language. &#10084;</p>
+
+<p>I did however, manage to read through a good chunk of <a href="http://ocaml-book.com/">OCaml from the Very Beginning</a>, and work through the exercises that accompany each chapter. I found it to be a very solid introductory text, as the author makes no assumptions about the reader&rsquo;s background. I plan to finish it up at some point, and move on to <em>Real World OCaml</em>.</p>
+
+<p>A couple of things that jumped out at me as I started learning OCaml:</p>
+
+<ul>
+<li>The standard library is pretty sparse. Will be checking out Jane Street&rsquo;s Core.</li>
+<li>There are mutable data structures.</li>
+<li>OCaml supports imperative and functional styles.</li>
+<li>The introductory text, at least <em>OCaml from the Very Beginning</em>, emphasized understanding tail recursion (which I didn&rsquo;t really think about when learning Haskell, but maybe I did it wrong)</li>
+<li>Utop is pretty cool.</li>
+<li>I got confused by <code>=</code> and <code>==</code> because I wanted to use <code>==</code> but that seems to be reserved for people who really know what they&rsquo;re doing.</li>
+</ul>
+
+
+<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="Day%2016:%20gzip%20+%20poetry%20=%20awesome">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
+
+<p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
+
+<p>I spent today working on parsing a gzipped file&rsquo;s header and metadata information. Tomorrow I will read up more on the algorithm description and dive into implementing inflate.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Recursion Friday]]></title>
@@ -158,34 +188,6 @@ ghci> permute &ldquo;abcd&rdquo;</p>
 <p>I guess my main reason for leaving in the middle of the day was that I was in a weird headspace after the goal making workshop. I started to doubt my decisions about the things I wanted to do this summer and that was bumming me out. On top of that, I couldn&rsquo;t install <a href="http://www.haskell.org/haskellwiki/ThreadScope">threadscope</a> to save my life, and spent almost five hours trying to get that to run (yay yak-shaving) before just giving up and deciding to read <a href="http://chimera.labs.oreilly.com/books/1230000000929">Simon Marlow&rsquo;s book</a> without it.</p>
 
 <p>I did have a productive talk with Allison yesterday. My worries were that I was working on Haskell, a language that is rather impractical for the purpose of jobs and I wasn&rsquo;t sure if I should switch to Python or not. Which turns out it was a rather silly fear to have since I am going back to school and won&rsquo;t ostensibly be looking for a new job for at least two more years. So I have decided to stick with Haskell, and will work on some side projects in Python once in a while when the mood strikes me.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Days 11 &amp; 12]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/25/hacker-school-days-11-and-12/"/>
-    <updated>2014-06-25T20:36:12-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/25/hacker-school-days-11-and-12</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m getting behind on my blogging, meep.</p>
-
-<p>Day 11 recap:</p>
-
-<ul>
-<li>Spent half of the day trying to debug my sudoku solver&rsquo;s board parser, which was pretty difficult as everything type checked, but I was getting the wrong output.</li>
-<li>Learned about the <a href="http://www.haskell.org/ghc/docs/latest/html/users_guide/ghci-debugger.html">GHCI interactive debugger</a>, which let me place break points and inspect variables where the execution of the program has stopped.</li>
-<li>Alan gave me a quick overview of &ldquo;equational debugging&rdquo;, which is to test little snippets of your program and make sure that it is returning the right output.</li>
-<li>I ended up pulling out more complicated bits of my code into smaller functions to make equational debugging more manageable.</li>
-<li>Spent the rest of the day finishing up the sudoku solver. I debugged the constraint propagation aspect of the program, and then implemented the depth first search function which utilized the constraint propagation logic.</li>
-</ul>
-
-
-<p>Day 12 (today!), I decided to take (another) break from Haskell. I played around for most of the day with Paper.js, trying to make something beautiful, but eventually found that it didn&rsquo;t actually interest me too much. Around 3:00 pm, Stacy from Winter 2013 batch came by Hacker School to do a goal making workshop. It did really get me thinking about my time at Hacker School, and how I need to figure out when I can say that I have achieved my goal of being literate in Haskell. I think I will spend maybe a couple more weeks max on Haskell, and then switch over to Python. My main fear is that while Haskell is awesome, it isn&rsquo;t exactly a language that I will be able to work in once I become a professional software engineer.</p>
-
-<p>After hitting a dead end with Paper.js, I decided to pivot and play around with Python. I implemented a simple echo server in Python, where the client will send back what the server sent to it. Then I got the idea to work on a GIF bot for Zulip because sometimes emoji just aren&rsquo;t enough :). You can ask gif bot &ldquo;gif me cats&rdquo; and an API query is sent to <a href="http://giphy.com/">Giphy</a>, and gif bot returns a gif that has been tagged with cats, in this example. It&rsquo;s basically done at this point, and works locally, but I&rsquo;m not sure what the protocol is for having a permanent presence from the bot. Do I serve it on AWS/Heroku? I think I will ask Allison tomorrow. I&rsquo;m also curious if I should demo this tomorrow afternoon.</p>
-
-<p>Here is gif bot in action:</p>
-
-<p><img src="/images/gifbot.png" alt="&quot;Gif Bot in action&quot;" /></p>
 ]]></content>
   </entry>
   

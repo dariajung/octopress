@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gzip | Hacker School Log]]></title>
+  <link href="http://blog.dariajung.com/blog/categories/gzip/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com/"/>
+  <updated>2014-07-15T19:25:50-04:00</updated>
+  <id>http://blog.dariajung.com/</id>
+  <author>
+    <name><![CDATA[Daria Jung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[OCaml! Haskell! Gunzip!]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/15/gunzip/"/>
+    <updated>2014-07-15T18:57:22-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/15/gunzip</id>
+    <content type="html"><![CDATA[<p>For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
+difficult to leave Haskell because I am rather enamoured with the language. &#10084;</p>
+
+<p>I did however, manage to read through a good chunk of <a href="http://ocaml-book.com/">OCaml from the Very Beginning</a>, and work through the exercises that accompany each chapter. I found it to be a very solid introductory text, as the author makes no assumptions about the reader&rsquo;s background. I plan to finish it up at some point, and move on to <em>Real World OCaml</em>.</p>
+
+<p>A couple of things that jumped out at me as I started learning OCaml:</p>
+
+<ul>
+<li>The standard library is pretty sparse. Will be checking out Jane Street&rsquo;s Core.</li>
+<li>There are mutable data structures.</li>
+<li>OCaml supports imperative and functional styles.</li>
+<li>The introductory text, at least <em>OCaml from the Very Beginning</em>, emphasized understanding tail recursion (which I didn&rsquo;t really think about when learning Haskell, but maybe I did it wrong)</li>
+<li>Utop is pretty cool.</li>
+<li>I got confused by <code>=</code> and <code>==</code> because I wanted to use <code>==</code> but that seems to be reserved for people who really know what they&rsquo;re doing.</li>
+</ul>
+
+
+<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="Day%2016:%20gzip%20+%20poetry%20=%20awesome">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
+
+<p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
+
+<p>I spent today working on parsing a gzipped file&rsquo;s header and metadata information. Tomorrow I will read up more on the algorithm description and dive into implementing inflate.</p>
+]]></content>
+  </entry>
+  
+</feed>

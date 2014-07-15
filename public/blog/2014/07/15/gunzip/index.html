@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sometimes, Giving Up Is A-okay. - Hacker School Log</title>
+  <title>OCaml! Haskell! Gunzip! - Hacker School Log</title>
   <meta name="author" content="Daria Jung">
 
   
-  <meta name="description" content="After spending about a week and a half on my Haskell BitTorrent client, I&rsquo;ve decided to give it a rest. Am I done? No. Am I close to being done &hellip;">
+  <meta name="description" content="For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
+difficult &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/07/09/sometimes">
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/07/15/gunzip">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
@@ -70,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">Sometimes, Giving Up Is A-okay.</h1>
+      <h1 class="entry-title">OCaml! Haskell! Gunzip!</h1>
     
     
       <p class="meta">
@@ -86,23 +87,35 @@
   
 
 
-<time datetime="2014-07-09T13:16:49-04:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
+<time datetime="2014-07-15T18:57:22-04:00" pubdate data-updated="true">Jul 15<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>After spending about a week and a half on my Haskell <a href="https://github.com/dariajung/haskell-bittorrent">BitTorrent client</a>, I&rsquo;ve decided to give it a rest. Am I done? No. Am I close to being done? Depends on what &ldquo;done&rdquo; means (but no, probably not).</p>
+<div class="entry-content"><p>For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
+difficult to leave Haskell because I am rather enamoured with the language. &#10084;</p>
 
-<p>I won&rsquo;t lie. I felt a pang of guilt today when I decided to put the project on the backburner.</p>
+<p>I did however, manage to read through a good chunk of <a href="http://ocaml-book.com/">OCaml from the Very Beginning</a>, and work through the exercises that accompany each chapter. I found it to be a very solid introductory text, as the author makes no assumptions about the reader&rsquo;s background. I plan to finish it up at some point, and move on to <em>Real World OCaml</em>.</p>
 
-<p><img src="http://media2.giphy.com/media/lrNS45C9Df904/giphy.gif" alt="Finn crying" />
-</br><sub>Actually, I was something like this on the inside.</sub></p>
+<p>A couple of things that jumped out at me as I started learning OCaml:</p>
 
-<p>But what I&rsquo;ve learned is that when a project stops bringing joy and feels tedious, it is much better to move onto something else so my time can be spent productively. I asked my fellow Hacker Schoolers when they felt it was an appropriate time to move on from a project, and I got a lot of great responses. I was told it was okay to abandon a project if it made me feel sad, but I could write some documentation for it to feel some closure. It also wasn&rsquo;t apparent to me that because I was getting so hung up on trying to finish this project that I was missing other valuable opportunities, and this was pointed out to me by several alums.</p>
+<ul>
+<li>The standard library is pretty sparse. Will be checking out Jane Street&rsquo;s Core.</li>
+<li>There are mutable data structures.</li>
+<li>OCaml supports imperative and functional styles.</li>
+<li>The introductory text, at least <em>OCaml from the Very Beginning</em>, emphasized understanding tail recursion (which I didn&rsquo;t really think about when learning Haskell, but maybe I did it wrong)</li>
+<li>Utop is pretty cool.</li>
+<li>I got confused by <code>=</code> and <code>==</code> because I wanted to use <code>==</code> but that seems to be reserved for people who really know what they&rsquo;re doing.</li>
+</ul>
 
-<p>I&rsquo;m pretty glad that I asked this question, because I&rsquo;m not sure how much longer I could have dragged on the BitTorrent project. I think I&rsquo;m ready to move onto OCaml and work through <a href="https://realworldocaml.org">Real World OCaml</a> and start afresh.</p>
+
+<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="Day%2016:%20gzip%20+%20poetry%20=%20awesome">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
+
+<p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
+
+<p>I spent today working on parsing a gzipped file&rsquo;s header and metadata information. Tomorrow I will read up more on the algorithm description and dive into implementing inflate.</p>
 </div>
 
 
@@ -125,12 +138,12 @@
   
 
 
-<time datetime="2014-07-09T13:16:49-04:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
+<time datetime="2014-07-15T18:57:22-04:00" pubdate data-updated="true">Jul 15<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/lessons-learned/'>lessons learned</a>
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/ocaml/'>OCaml</a>, <a class='category' href='/blog/categories/gunzip/'>gunzip</a>, <a class='category' href='/blog/categories/gzip/'>gzip</a>
   
 </span>
 
@@ -139,7 +152,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/07/09/sometimes/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/07/09/sometimes/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/07/15/gunzip/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/07/15/gunzip/" >Tweet</a>
   
   
   
@@ -148,10 +161,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/07/01/bencoding-and-networking/" title="Previous Post: Bencoding and Networking">&laquo; Bencoding and Networking</a>
+        <a class="basic-alignment left" href="/blog/2014/07/12/recursion-friday/" title="Previous Post: Recursion Friday">&laquo; Recursion Friday</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/07/12/recursion-friday/" title="Next Post: Recursion Friday">Recursion Friday &raquo;</a>
       
     </p>
   </footer>

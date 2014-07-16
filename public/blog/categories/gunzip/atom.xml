@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gunzip | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/gunzip/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-15T19:25:50-04:00</updated>
+  <updated>2014-07-15T20:15:07-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -35,7 +35,7 @@ difficult to leave Haskell because I am rather enamoured with the language. &#10
 </ul>
 
 
-<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="Day%2016:%20gzip%20+%20poetry%20=%20awesome">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
+<p>For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this <a href="http://jvns.ca/blog/2013/10/24/day-16-gzip-plus-poetry-equals-awesome/">blog post</a> by alumna <a href="https://twitter.com/b0rk">Julia Evans</a> on implementing gunzip in Julia. So I&rsquo;ve decided to implement it in Haskell! :D :D :D</p>
 
 <p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
 

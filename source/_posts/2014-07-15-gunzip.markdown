@@ -20,7 +20,7 @@ A couple of things that jumped out at me as I started learning OCaml:
 - Utop is pretty cool.
 - I got confused by `=` and `==` because I wanted to use `==` but that seems to be reserved for people who really know what they're doing.
 
-For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this [blog post](Day 16: gzip + poetry = awesome) by alumna [Julia Evans](https://twitter.com/b0rk) on implementing gunzip in Julia. So I've decided to implement it in Haskell! :D :D :D
+For the past few days, I have been exploring file compression and decompression. I needed a new project and starting looking at what previous HSers had done, and I found this [blog post](http://jvns.ca/blog/2013/10/24/day-16-gzip-plus-poetry-equals-awesome/) by alumna [Julia Evans](https://twitter.com/b0rk) on implementing gunzip in Julia. So I've decided to implement it in Haskell! :D :D :D
 
 I've been reading up on the [algorithm specifications](http://www.gzip.org/algorithm.txt) for inflating and deflating and the [format](http://www.gzip.org/format.txt) information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia's [implementation](https://github.com/jvns/gzip.jl/blob/master/gzip.jl), which despite me never having seen Julia code before, has been very helpful. 
 

@@ -9,8 +9,7 @@
   <meta name="author" content="Daria Jung">
 
   
-  <meta name="description" content="For a couple of days, I told myself that I would study OCaml now that I have a decent grasp of Haskell. But it&rsquo;s actually been pretty
-difficult &hellip;">
+  <meta name="description" content="Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +67,57 @@ difficult &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/23/halfway/">Halfway, What???</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-23T09:52:02-04:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It&rsquo;s been harder to find a place to sit, which is a good problem to have. :)</p>
+
+<p>I haven&rsquo;t blogged since last week, so a lot has happened since then:</p>
+
+<ul>
+<li>Very proud to say that I made the <code>cats</code> stream on Zulip.</li>
+<li>My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.</li>
+<li>Dana taught me how to solder! I soldered wires onto a strip of NeoPixels.</li>
+<li>Dana and I checked out <a href="https://hackmanhattan.com/">HackManhattan</a>, a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.</li>
+<li>Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for &ldquo;seconds&rdquo; since I feel like some of us floundered at figuring out how to get used to self-directedness.</li>
+<li>I missed my first Friday session to go visit my mom in North Carolina.</li>
+<li>I am back to being addicted to coffee. <a href="http://www.portorico.com/store/">Porto Rico Importing Co.</a> is my vice.</li>
+</ul>
+
+
+<p>Here&rsquo;s to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: &lt;&mdash; Some alums taught me this happy/sad combo face.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -769,109 +819,6 @@ and</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/17/hacker-school-day-6/">Hacker School: Day 6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-17T17:09:44-04:00" pubdate data-updated="true">Jun 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today, I decided to take a mini break from Haskell (erm, I still did a wee bit of Haskell) and work on a one off project. I got in a bit early, around 9:30 am to finish up the <a href="http://blog.dariajung.com/blog/2014/06/16/applicative-functors/">Applicative Functors</a> blog post. I was pretty impressed with how many Hacker Schoolers were already in at that point, and felt eager to start working.</p>
-
-<p>The little bit of Haskell I did today was to implement an <code>Alternative</code> instance for a <code>Parser</code>.</p>
-
-<p>If we remember from my previous blogpost, <code>Parser</code> is defined as such:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">newtype</span> <span class="kt">Parser</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="p">{</span> <span class="n">runParser</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <code>Applicative Parser</code> instance is useful for making parsers of fixed and simple formats. Because we want to be able to handle
-the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</p>
-
-<p>The <code>Alternative</code> class is defined something like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">class</span> <span class="kt">Applicative</span> <span class="n">f</span> <span class="ow">=&gt;</span> <span class="kt">Alternative</span> <span class="n">f</span> <span class="kr">where</span>
-</span><span class='line'>    <span class="n">empty</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span>
-</span><span class='line'>    <span class="p">(</span><span class="o">&lt;|&gt;</span><span class="p">)</span> <span class="ow">::</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(&lt;|>) denotes a choice, so something like <code>p &lt;|&gt; q</code> means a choice between <code>p</code> or <code>q</code>.</p>
-
-<p>So, my <code>Alternative</code> instance ended up being:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Alternative</span> <span class="kt">Parser</span> <span class="kr">where</span>
-</span><span class='line'>    <span class="n">empty</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="o">$</span> <span class="n">const</span> <span class="kt">Nothing</span>
-</span><span class='line'>    <span class="n">p</span> <span class="o">&lt;|&gt;</span> <span class="n">q</span> <span class="ow">=</span> <span class="kt">Parser</span> <span class="o">$</span> <span class="nf">\</span><span class="n">s</span> <span class="ow">-&gt;</span> <span class="n">runParser</span> <span class="n">p</span> <span class="n">s</span> <span class="o">&lt;|&gt;</span> <span class="n">runParser</span> <span class="n">q</span> <span class="n">s</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>An important hint here is that there is already an Alternative instance for Maybe:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">instance</span> <span class="kt">Alternative</span> <span class="kt">Maybe</span> <span class="kr">where</span>
-</span><span class='line'>    <span class="n">empty</span> <span class="ow">=</span> <span class="kt">Nothing</span>
-</span><span class='line'>    <span class="kt">Nothing</span> <span class="o">&lt;|&gt;</span> <span class="n">p</span> <span class="ow">=</span> <span class="n">p</span>
-</span><span class='line'>    <span class="kt">Just</span> <span class="n">x</span> <span class="o">&lt;|&gt;</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="n">x</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This means that we can simply call <code>runParser p s</code> and <code>runParser q s</code>, which gives us Maybe tuples. We can then use (&lt;|>) from the <code>Alternative</code> instance of <code>Maybe</code> to choose between those two tuples and pass it to the Parser constructor.</p>
-
-<p>If <code>runParser p s</code> succeeds, return its results, else try <code>runParser q s</code>. If that succeeds, return its results. Otherwise, a <code>Nothing</code> will be returned.</p>
-
-<p>Pretty nifty!</p>
-
-<p>The rest of today, I worked on a very simple <a href="https://github.com/dariajung/url_shortener">URL shortener</a>.</p>
-
-<p>I found a tutorial online that used the md5 hashing algorithm and a base 64 encoding to generate a randomized string. The last five characters of this were taken, sanitized, and then used as the key for a key value store in Redis as well as a slug.</p>
-
-<p>I whipped up a simple Flask app for 301 redirects from the shortened URL to the original URL. A quick lookup in Redis, and then a <code>return redirect(location, 301)</code> call did the trick.</p>
-
-<p><code>http://blog.dariajung.com</code> results in <code>http://localhost:5000/iJp4fHs</code>. When I go to that URL, I am then redirected to my original URL.</p>
-
-<p>The functionality is all very simple, so I don&rsquo;t check that the protocol identifier and such are in the URL. That might be for another day.</p>
-
-<p>Overall, I think today was rather productive!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -887,6 +834,10 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/23/halfway/">Halfway, What???</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/15/gunzip/">OCaml! Haskell! Gunzip!</a>
       </li>
     
@@ -900,10 +851,6 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
     
       <li class="post">
         <a href="/blog/2014/07/01/bencoding-and-networking/">Bencoding and Networking</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/27/hacker-school-day-13/">Hacker School: Day 13</a>
       </li>
     
   </ul>

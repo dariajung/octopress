@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gunzip | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/gunzip/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-15T20:15:07-04:00</updated>
+  <updated>2014-07-23T10:05:15-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Halfway, What???]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/23/halfway/"/>
+    <updated>2014-07-23T09:52:02-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/23/halfway</id>
+    <content type="html"><![CDATA[<p>Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It&rsquo;s been harder to find a place to sit, which is a good problem to have. :)</p>
+
+<p>I haven&rsquo;t blogged since last week, so a lot has happened since then:</p>
+
+<ul>
+<li>Very proud to say that I made the <code>cats</code> stream on Zulip.</li>
+<li>My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.</li>
+<li>Dana taught me how to solder! I soldered wires onto a strip of NeoPixels.</li>
+<li>Dana and I checked out <a href="https://hackmanhattan.com/">HackManhattan</a>, a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.</li>
+<li>Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for &ldquo;seconds&rdquo; since I feel like some of us floundered at figuring out how to get used to self-directedness.</li>
+<li>I missed my first Friday session to go visit my mom in North Carolina.</li>
+<li>I am back to being addicted to coffee. <a href="http://www.portorico.com/store/">Porto Rico Importing Co.</a> is my vice.</li>
+</ul>
+
+
+<p>Here&rsquo;s to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: &lt;&mdash; Some alums taught me this happy/sad combo face.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OCaml! Haskell! Gunzip!]]></title>

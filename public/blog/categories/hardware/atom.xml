@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hardware | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hardware/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-15T20:15:07-04:00</updated>
+  <updated>2014-07-23T10:05:15-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -14,108 +14,26 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Hacker School: Day 8]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/19/hacker-school-day-8/"/>
-    <updated>2014-06-19T21:35:35-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/19/hacker-school-day-8</id>
-    <content type="html"><![CDATA[<p>End of week two. Crazy!</p>
+    <title type="html"><![CDATA[Halfway, What???]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/23/halfway/"/>
+    <updated>2014-07-23T09:52:02-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/23/halfway</id>
+    <content type="html"><![CDATA[<p>Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It&rsquo;s been harder to find a place to sit, which is a good problem to have. :)</p>
 
-<p>This morning, I spent a bit of time pairing with Dana and Georgi on Arduino and hardware things. Dana introduced us to <a href="http://www.firmata.org/wiki/Main_Page">Firmata</a>, a protocol for interfacing with the Arduino in different programming languages (instead of using the Arduino language, C/C++, or Assembly). She gave us examples in Node.js using <a href="https://github.com/rwaldron/johnny-five">Johnny Five</a> and Python using <a href="https://pypi.python.org/pypi/pyFirmata/0.9.5">PyFirmata</a>. I ended up playing around with the Python example and an Arduino that was set up with a potentiometer, an LED, and a servo motor. Depending on the value read from the petentiometer, the LED would blink at a different rate, and the servo would move to a different angle.</p>
+<p>I haven&rsquo;t blogged since last week, so a lot has happened since then:</p>
 
-<p>After seeing how this worked, and looking through the spare hardware parts at Hacker School, we found a photocell, which senses the amount of light being received. I hooked up the photocell to the breadboard and Arduino using this <a href="https://learn.adafruit.com/photocells/using-a-photocell">guide</a> from AdaFruit &#10084; and a little help from Dana, and now the LED and servo were reacting to the readings from the photocell.</p>
+<ul>
+<li>Very proud to say that I made the <code>cats</code> stream on Zulip.</li>
+<li>My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.</li>
+<li>Dana taught me how to solder! I soldered wires onto a strip of NeoPixels.</li>
+<li>Dana and I checked out <a href="https://hackmanhattan.com/">HackManhattan</a>, a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.</li>
+<li>Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for &ldquo;seconds&rdquo; since I feel like some of us floundered at figuring out how to get used to self-directedness.</li>
+<li>I missed my first Friday session to go visit my mom in North Carolina.</li>
+<li>I am back to being addicted to coffee. <a href="http://www.portorico.com/store/">Porto Rico Importing Co.</a> is my vice.</li>
+</ul>
 
-<p><img src="/images/firmata.jpg" alt="&quot;PyFirmata + Arduino&quot;" /></p>
 
-<p>After playing around with this, I got an idea to use a temperature and humidity sensor for garden/plant health. The Arduino would gather data, and if your plants need a little love, it would trigger something that would text you (maybe using Twilio) to tend to them. I need to order the temperature/humidity sensor before I can get started but I think this would be a fun hack that encompasses hardware and web development.</p>
-
-<p>Once the hardware workshop concluded, I went back to Haskell where I started reading about Monads (<em>eeep</em>). Actually, Monads so far haven&rsquo;t been that scary. Confusing, yes, but not scary. Just another level of complexity up from an Applicative Functor. In fact, all Monads are Applicative Functors. The distinguishing factor is that Monads have the (>>=), or <em>bind</em>, method in their definition.</p>
-
-<p>A Monad is defined as:</p>
-
-<p>```haskell
-class Monad m where</p>
-
-<pre><code>(&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b
-(&gt;&gt;) :: m a -&gt; m b -&gt; m b
-return :: a -&gt; m a
-fail :: String -&gt; m a
-</code></pre>
-
-<p>```</p>
-
-<p>From what I can understand, (>>=) basically lets you pass some value of a Monadic context to a function that expects a normal value, and outputs a Monadic value.</p>
-
-<p>Something else that struck me was that the definition of (>>) seems exactly like the definition of (*>):</p>
-
-<p><code>haskell
-(&gt;&gt;) :: Monad m =&gt; m a -&gt; m b -&gt; m b
-(*&gt;) :: Applicative f =&gt; f a -&gt; f b -&gt; f b
-</code></p>
-
-<p>So cool.</p>
-
-<p><code>(&gt;&gt;)</code> and <code>(*&gt;)</code> ignore the result of the first monadic value/applicative functor but <strong>not</strong> their effects.</p>
-
-<p>I ended up reading most of LYaH&rsquo;s <a href="http://learnyouahaskell.com/a-fistful-of-monads">chapter</a> on Monads, and have gotten a better understanding of both applicative functors and monads. I still have lots of reading material left, so I will continue that tomorrow.</p>
-
-<p>As today was Thursday, Hacker Schoolers demo&rsquo;d projects that they had been working on. Many of the projects were interesting, challenging, and quite frankly, a bit intimidating. They ranged from maze/percolater solvers, to CPUs in Clojure, to letting you edit Jekyll blogs in the browser! I wondered to myself if I would ever be presenting at a demo session this summer. The thought did cross my mind that maybe I should give up on learning Haskell because it is getting incredibly difficult for me to process, and everyone else seemed to be much more productive with their time than I was. I don&rsquo;t know, I will think on this more.</p>
-
-<p>Mihai&rsquo;s demo on creating music and outputting the result as MIDI files actually inspired me to search for something that would allow me to do that in Haskell. I was able to come across the <a href="https://github.com/Euterpea/Euterpea">Euterpea</a> library, which looks very promising. I think it would be fun to create a Markov Chain that took training data of different songs, and created new compositions. I hope to play around with this some in the coming days.</p>
-
-<p>To conclude the day, Marisa, Alex, Rachel, and I started watching a documentary on the font Helvetica. It was very interesting to see how Helvetica&rsquo;s usage has evolved over time, and also the connotations that it has to people. Going from a clean, revolutionary font to an overused &ldquo;nameless&rdquo; font (as it is now employed by many corporations and government agencies) has given Helvetica an interesting reputation. Some people see it as the font of wars (Vietnam, Iraq war), and some see it as the quintessential modern typeface; a debate between modernists and postmodernists.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School Week 1]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/15/hacker-school-week-1/"/>
-    <updated>2014-06-15T18:20:07-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/15/hacker-school-week-1</id>
-    <content type="html"><![CDATA[<p><img src="/images/hs_logo.png" alt="&quot;HS Logo&quot;" /></p>
-
-<p>This past week was my first week at Hacker School, and I am finally getting around to setting up a blog!</p>
-
-<p>I really haven&rsquo;t had much success with blogging in the past, so I am wondering how this is going to go, but I will try my best to write something everyday. The posts from my fellow batchmates have been very exciting to read, and have been a motivating factor for me to finally get Octopress set up.</p>
-
-<p>Because I had already been working on a <a href="http://www.seas.upenn.edu/~cis194/lectures.html">course on Haskell</a> that I found online before Hacker School started, that was mainly what I focused on during my first week. The course is broken up into 12 lectures, with corresponding homework assignments. The amazing thing is, I was able to work through about one week&rsquo;s worth of material <em>per day</em>. It&rsquo;s incredible what can happen when you are learning for the sake of learning, with no worries that generally come from a work or school setting. If you had told me one year ago that I would be geeking out over Haskell, I would have laughed in your face. I would have thought that it was too academic, too hard of a language for someone like myself to learn. What I am finding though, is that once I commited myself to learning Haskell, once I was comfortable with the idea that I <em>too</em> was capable of learning Haskell, I started to have fun with the assignments.</p>
-
-<p>The most recent assignment I worked on was with using the rose tree data structure from the <code>Data.Tree</code> library. Based on a tree of employees, where employees are given a name and a &ldquo;fun&rdquo; score, I was given the task of maximizing the fun score for a party and  returning its optimized guest list. The caveat is that if an employee&rsquo;s direct superior were also in attendance of the party, that employee wouldn&rsquo;t be able to have any fun, lowering their fun score to 0.</p>
-
-<p>I think my road block for this assignment was implementing a fold function for the <code>tree</code> data type (to which I could pass a function that found the max fun score at each subtree later). I wasn&rsquo;t sure what the type signature for the fold should have been, which took up the most of my time. Once I got this function worked out, I was able to work through the rest of the assignment.</p>
-
-<p>I wrote the fold as such:</p>
-
-<p><code>haskell
-treeFold :: (a -&gt; [b] -&gt; b) -&gt; Tree a -&gt; b
-treeFold f tree = f (rootLabel tree) (map (treeFold f) (subForest tree))
-</code></p>
-
-<p>where <code>tree</code> is defined as</p>
-
-<p>```haskell
- data Tree a = Node {</p>
-
-<pre><code>rootLabel :: a, -- label value
-subForest :: [Tree a] -- zero or more child trees
-</code></pre>
-
-<p>```</p>
-
-<p>The <code>rootLabel</code> of the tree returns the element at that Node and then we map <code>treeFold f</code> to the subtrees of the Node, recursively calling <code>treeFold f</code> on the subtrees. These are then passed as parameters to the function <code>f</code>.</p>
-
-<hr />
-
-<p>Something else that I did last week was playing with Arduinos and Addressable LEDs (each pixel is individually programmable!). I bought an Arduino UNO a few years ago, and never had really done anything with it. Dana, a batchmate with lots of hardware experience, brought some addressable LEDs in for some of the Hacker Schoolers to play with.</p>
-
-<p>The cool thing was that Adafruit already had a library called <a href="https://github.com/adafruit/Adafruit_NeoPixel">Adafruit NeoPixels</a> we could use, so we were able to just hook up the LEDs to the Arduino and we immediately saw a light show.</p>
-
-<p><img src="/images/led.jpg" alt="&quot;HS Logo&quot;" /></p>
-
-<p>We played around with making the LEDs blink, which we achieved by Mod-ing the number of LEDs, and then changing the RGB value to (0, 0, 0). It definitely distilled the fear of hardware many of us had once we understood how easy it was to get started with it with all of the resources online. I am totally obsessed with Adafruit now!</p>
-
-<p>My hardware project that I would like to accomplish this summer is a temperature sensor that based on the serial output changes the colors of the addressable LEDs. If warm, the LEDs light up yellow/orange, if cool, a green color, etc.</p>
-
-<p>I am loving Hacker School thus far. Well, love is a bit of an understatement.</p>
+<p>Here&rsquo;s to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: &lt;&mdash; Some alums taught me this happy/sad combo face.</p>
 ]]></content>
   </entry>
   

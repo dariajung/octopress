@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Halfway, what???"
+date: 2014-07-23 09:52:02 -0400
+comments: true
+categories: [Hacker School, Haskell, gunzip, hardware]
+---
+
+Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It's been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It's been harder to find a place to sit, which is a good problem to have. :)
+
+I haven't blogged since last week, so a lot has happened since then:
+
+- Very proud to say that I made the ```cats``` stream on Zulip.
+- My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.
+- Dana taught me how to solder! I soldered wires onto a strip of NeoPixels. 
+- Dana and I checked out [HackManhattan](https://hackmanhattan.com/), a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.
+- Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for "seconds" since I feel like some of us floundered at figuring out how to get used to self-directedness.
+- I missed my first Friday session to go visit my mom in North Carolina.
+- I am back to being addicted to coffee. [Porto Rico Importing Co.](http://www.portorico.com/store/) is my vice.
+
+Here's to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: <-- Some alums taught me this happy/sad combo face.

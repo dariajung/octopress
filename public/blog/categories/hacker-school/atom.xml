@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-15T20:15:07-04:00</updated>
+  <updated>2014-07-23T10:05:15-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Halfway, What???]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/23/halfway/"/>
+    <updated>2014-07-23T09:52:02-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/23/halfway</id>
+    <content type="html"><![CDATA[<p>Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It&rsquo;s been harder to find a place to sit, which is a good problem to have. :)</p>
+
+<p>I haven&rsquo;t blogged since last week, so a lot has happened since then:</p>
+
+<ul>
+<li>Very proud to say that I made the <code>cats</code> stream on Zulip.</li>
+<li>My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.</li>
+<li>Dana taught me how to solder! I soldered wires onto a strip of NeoPixels.</li>
+<li>Dana and I checked out <a href="https://hackmanhattan.com/">HackManhattan</a>, a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.</li>
+<li>Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for &ldquo;seconds&rdquo; since I feel like some of us floundered at figuring out how to get used to self-directedness.</li>
+<li>I missed my first Friday session to go visit my mom in North Carolina.</li>
+<li>I am back to being addicted to coffee. <a href="http://www.portorico.com/store/">Porto Rico Importing Co.</a> is my vice.</li>
+</ul>
+
+
+<p>Here&rsquo;s to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: &lt;&mdash; Some alums taught me this happy/sad combo face.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OCaml! Haskell! Gunzip!]]></title>
@@ -173,21 +197,6 @@ ghci> permute &ldquo;abcd&rdquo;</p>
 <p>At the very basic level: Socket &ndash;> Bind &ndash;> Listen &ndash;> Accept.</p>
 
 <p>My networking journey will continue today&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hacker School: Day 13]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/06/27/hacker-school-day-13/"/>
-    <updated>2014-06-27T16:33:32-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/06/27/hacker-school-day-13</id>
-    <content type="html"><![CDATA[<p>Day 13 of Hacker School went by pretty quickly, mostly due to some of us playing hooky to go watch the Germany vs. USA game. We were initially going to go to a German bar, but it turns out there were a lot of Germans there already (I guess they like their futbol). We ended up back tracking and found a bar called Sweet &amp; Vicious, which was sweet (their jargaritas are great), but not particularly vicious. The game was slow paced, and the atmosphere of the bar made it a nice spot to lounge.</p>
-
-<p><img src="/images/jargarita.png" alt="dat jargarita" /></p>
-
-<p>I guess my main reason for leaving in the middle of the day was that I was in a weird headspace after the goal making workshop. I started to doubt my decisions about the things I wanted to do this summer and that was bumming me out. On top of that, I couldn&rsquo;t install <a href="http://www.haskell.org/haskellwiki/ThreadScope">threadscope</a> to save my life, and spent almost five hours trying to get that to run (yay yak-shaving) before just giving up and deciding to read <a href="http://chimera.labs.oreilly.com/books/1230000000929">Simon Marlow&rsquo;s book</a> without it.</p>
-
-<p>I did have a productive talk with Allison yesterday. My worries were that I was working on Haskell, a language that is rather impractical for the purpose of jobs and I wasn&rsquo;t sure if I should switch to Python or not. Which turns out it was a rather silly fear to have since I am going back to school and won&rsquo;t ostensibly be looking for a new job for at least two more years. So I have decided to stick with Haskell, and will work on some side projects in Python once in a while when the mood strikes me.</p>
 ]]></content>
   </entry>
   

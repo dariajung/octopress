@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-23T10:05:15-04:00</updated>
+  <updated>2014-07-24T11:05:31-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Working Gunzip and Soldering]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering/"/>
+    <updated>2014-07-24T10:01:32-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering</id>
+    <content type="html"><![CDATA[<p>Yesterday was a super productive day for me. In the morning, I was in the midst of debugging my gunzip implementation in Haskell.
+I have a function <code>addItem</code> that adds a node to a HuffmanTree by writing an IORef val because I needed mutability. When I&rsquo;m creating the HuffmanTree, I need to add a whole slew of values (from a code table) into the tree, so I mapped the addItem function over the list of codes, which returned <code>[IO()]</code>. My problem here was that despite having added items to an initial empty tree, I was returning an unaltered tree. I was confused because I was sure I had allowed for mutability! But why?!</p>
+
+<p>Luckily, Alan happened to be running an impromptu session on Monads where he covered the IO Monad, and attending that helped me figure out what my problem was, I think.</p>
+
+<p>I&rsquo;m still not precisely sure if I&rsquo;m understanding correctly but <code>[IO()]</code> is a list of <code>IO()</code>s. And things in the IO monad won&rsquo;t evaluate until run-time. So basically I had a list of thunk-like things that wouldn&rsquo;t write until evaluated.</p>
+
+<p>This does not work
+<code>haskell
+let added =  map (\(label, codes) -&gt; addItem root label codes) code_table
+</code></p>
+
+<p>but this works
+<code>haskell
+added &lt;- sequence $ map (\(label, codes) -&gt; addItem root label codes) (code_table)
+</code></p>
+
+<p>As an aside, <code>added</code> is actually a useless value (it&rsquo;s just a list of <code>()</code>s). I don&rsquo;t care about it. All I care about is the value of <code>root</code> because I have mutated it to add nodes to it.</p>
+
+<p>After this, I spent some time fixing off by one errors because I was translating Julia code to Haskell and Julia is 1-indexed while Haskell is 0-index. Lol. THEN IT WORKED. HUZZAH!</p>
+
+<p>In the afternoon into the evening, I worked with Dana, Minnie, and Sophia on soldering chips, wires, and LEDs together. It was loads of fun and will continue today, I suspect.</p>
+
+<p><img src="https://pbs.twimg.com/media/BtRShaVIUAAQ6LR.jpg:large" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Halfway, What???]]></title>
@@ -144,59 +176,6 @@ ghci> permute &ldquo;abcd&rdquo;</p>
 <p>But what I&rsquo;ve learned is that when a project stops bringing joy and feels tedious, it is much better to move onto something else so my time can be spent productively. I asked my fellow Hacker Schoolers when they felt it was an appropriate time to move on from a project, and I got a lot of great responses. I was told it was okay to abandon a project if it made me feel sad, but I could write some documentation for it to feel some closure. It also wasn&rsquo;t apparent to me that because I was getting so hung up on trying to finish this project that I was missing other valuable opportunities, and this was pointed out to me by several alums.</p>
 
 <p>I&rsquo;m pretty glad that I asked this question, because I&rsquo;m not sure how much longer I could have dragged on the BitTorrent project. I think I&rsquo;m ready to move onto OCaml and work through <a href="https://realworldocaml.org">Real World OCaml</a> and start afresh.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bencoding and Networking]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking/"/>
-    <updated>2014-07-01T10:15:49-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking</id>
-    <content type="html"><![CDATA[<p>One of the things that I have always been fearful of is networking. Sockets, TCP/IP, and forking, all of that. In a class at university, I had done some networking in C; I remember reading <a href="http://beej.us/guide/bgnet/">Beej&rsquo;s guide to network programming</a>, and I found myself returning to it, and appreciating it a bit more this time. It&rsquo;s funny how when you&rsquo;re learning something in school, you could care less about it. You just want to get from point A to point B in the shortest way possible. But when you have the time to be in a self-directed environment like Hacker School, you find yourself wanting to revisit things that you didn&rsquo;t learn properly the first time around, wanting to tell your past self: &ldquo;You should have paid more attention when you were learning this!&rdquo;</p>
-
-<p>So, to learn networking in Haskell, I have decided to incrementally work towards building a simple Bittorrent client. Yesterday, I read about <a href="http://en.wikipedia.org/wiki/Bencode">bencode</a>, the encoding used by the Bittorrent protocol for torrent files (metadata).</p>
-
-<p>Bencode supports four types of values:</p>
-
-<ul>
-<li>Integers</li>
-<li>(Byte) Strings</li>
-<li>Lists</li>
-<li>Dictionaries (Hash Maps)</li>
-</ul>
-
-
-<p>Integers are encoded as <code>i&lt;integer encoded in base 10 ASCII&gt;e</code>. Integers can be negative, but 0 cannot be -0.</p>
-
-<p>ByteStrings are encoded as <code>&lt;length&gt;:&lt;contents&gt;</code>. So &ldquo;foo&rdquo; would be encoded as 3:foo. The length of the content can be 0, but cannot be negative.</p>
-
-<p>Lists are encoded as <code>l&lt;contents&gt;e</code>. Contents are bencoded elements of the list (in order), and are concatenated. Something like &ldquo;cat31&rdquo; would be encoded as l3:cati31ee.</p>
-
-<p>Dictionaries are encoded as <code>d&lt;contents&gt;e</code>. The keys must be bytestrings, and the dictionary is ordered lexiographically by key. The encoded key value pair follow each other immediately. {&ldquo;cat&rdquo;: &ldquo;meow&rdquo;, &ldquo;dog&rdquo;: 44} would be encoded as d3:cat4:meow3:dogi44ee.</p>
-
-<p>After reading this, I used the <a href="http://www.haskell.org/haskellwiki/Parsec">Parsec</a> library and wrote a parser for bencoded values in Haskell. I tested it on a torrent for Ubuntu and got back this:</p>
-
-<p><img src="/images/torrent.png" alt="&quot;Metadata&quot;" /></p>
-
-<p>We can see things like:</p>
-
-<ul>
-<li>&ldquo;announce&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
-<li>&ldquo;announce-list&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;, &ldquo;<a href="http://ipv6.torrent.ubuntu.com:6969/announce">http://ipv6.torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
-<li>&ldquo;comment&rdquo;: &ldquo;Ubuntu CD releases.ubuntu.com&rdquo;</li>
-<li>&ldquo;creation date&rdquo;: 1391706680</li>
-</ul>
-
-
-<p>and so on.</p>
-
-<p>The crazy wall of text is mostly due to all of the pieces for this particular torrent.</p>
-
-<p>After this, to get a better sense of networking in Haskell, I read up on TCP/IP and started working towards this <a href="http://www.haskell.org/haskellwiki/Implement_a_chat_server">tutorial</a> on building a multi-threaded chat server in Haskell, and getting a feel for the Network.Socket library.</p>
-
-<p>At the very basic level: Socket &ndash;> Bind &ndash;> Listen &ndash;> Accept.</p>
-
-<p>My networking journey will continue today&hellip;</p>
 ]]></content>
   </entry>
   

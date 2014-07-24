@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Soldering | Hacker School Log]]></title>
+  <link href="http://blog.dariajung.com/blog/categories/soldering/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com/"/>
+  <updated>2014-07-24T11:05:31-04:00</updated>
+  <id>http://blog.dariajung.com/</id>
+  <author>
+    <name><![CDATA[Daria Jung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Working Gunzip and Soldering]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering/"/>
+    <updated>2014-07-24T10:01:32-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering</id>
+    <content type="html"><![CDATA[<p>Yesterday was a super productive day for me. In the morning, I was in the midst of debugging my gunzip implementation in Haskell.
+I have a function <code>addItem</code> that adds a node to a HuffmanTree by writing an IORef val because I needed mutability. When I&rsquo;m creating the HuffmanTree, I need to add a whole slew of values (from a code table) into the tree, so I mapped the addItem function over the list of codes, which returned <code>[IO()]</code>. My problem here was that despite having added items to an initial empty tree, I was returning an unaltered tree. I was confused because I was sure I had allowed for mutability! But why?!</p>
+
+<p>Luckily, Alan happened to be running an impromptu session on Monads where he covered the IO Monad, and attending that helped me figure out what my problem was, I think.</p>
+
+<p>I&rsquo;m still not precisely sure if I&rsquo;m understanding correctly but <code>[IO()]</code> is a list of <code>IO()</code>s. And things in the IO monad won&rsquo;t evaluate until run-time. So basically I had a list of thunk-like things that wouldn&rsquo;t write until evaluated.</p>
+
+<p>This does not work
+<code>haskell
+let added =  map (\(label, codes) -&gt; addItem root label codes) code_table
+</code></p>
+
+<p>but this works
+<code>haskell
+added &lt;- sequence $ map (\(label, codes) -&gt; addItem root label codes) (code_table)
+</code></p>
+
+<p>As an aside, <code>added</code> is actually a useless value (it&rsquo;s just a list of <code>()</code>s). I don&rsquo;t care about it. All I care about is the value of <code>root</code> because I have mutated it to add nodes to it.</p>
+
+<p>After this, I spent some time fixing off by one errors because I was translating Julia code to Haskell and Julia is 1-indexed while Haskell is 0-index. Lol. THEN IT WORKED. HUZZAH!</p>
+
+<p>In the afternoon into the evening, I worked with Dana, Minnie, and Sophia on soldering chips, wires, and LEDs together. It was loads of fun and will continue today, I suspect.</p>
+
+<p><img src="https://pbs.twimg.com/media/BtRShaVIUAAQ6LR.jpg:large" alt="" /></p>
+]]></content>
+  </entry>
+  
+</feed>

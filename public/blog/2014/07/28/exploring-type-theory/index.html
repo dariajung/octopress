@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Exploring Type Theory - Hacker School Log</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="I started off today with a specific goal in mind. By the end of the day, I was pretty off my mark. My original intent was to work through a tutorial &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hacker School Log" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hacker School Log</a></h1>
+  
+    <h2>Daria goes to Hacker School</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Exploring Type Theory</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T22:19:39-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I started off today with a specific goal in mind. By the end of the day, I was pretty off my mark.</p>
+
+<p>My original intent was to work through a tutorial, <a href="http://www.grabmueller.de/martin/www/pub/AlgorithmW.pdf">Algorithm W Step by Step</a>, for implementing the classic Algorithm W (proposed by Robin Milner) for type inference in Haskell. I was stoked to finally take a closer look at Hindley-Milner and foolishly thought I would spend a few days on it.</p>
+
+<p>In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that while I could infer knowledge from my understanding of Haskell, I was still lacking appropriate knowledge for this literature.</p>
+
+<p>So, I asked this silly question on Zulip:</p>
+
+<blockquote><p><strong>Stream</strong>: Category Theory/Type Theory/Set Theory</p>
+
+<p><strong>Message</strong>: Hi hi. I&rsquo;m delving into Hindley-Milner for type inference and I&rsquo;m finding lots of terminology that I don&rsquo;t understand. Are there any friendly introductions to all of the theories? AM I WAY IN OVER MY HEAD?</p></blockquote>
+
+<p><a href="http://www.rntz.net/">Rntz</a> pointed me to <a href="http://www.cis.upenn.edu/~bcpierce/tapl/">Types and Programming Languages</a> as a resource and I was intrigued. I started reading it, and of course my attention started to wane because textbooks. After some googling, and remember back to my first week at Hacker School, I was reminded of a UPenn grad course called <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a>. The course uses TAPL but also utilizes an interactive book of Coq proofs as its main text. Interactive? Sign me up.</p>
+
+<p>Two ways to run Coq are through the CoqIDE or through Proof General Coq mode in Emacs. I found to my chagrin that CoqIDE was ugly and slow and in general, not something that I wanted to use. But that meant that I had to learn&hellip; Emacs. So for about two hours, I went through the Emacs tutorial and fiddled with my .emacs file, thinking about the time I saw Richard Stallman dressed as a saint from the Church of Emacs and resigned myself to learning a new text editor/operating system/whatever (plz don&rsquo;t hurt me, I&rsquo;m new to emacs).</p>
+
+<p>After this, I couldn&rsquo;t figure out how to return Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn&rsquo;t correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span> <span class="kp">reflexivity</span><span class="o">.</span> <span class="kn">Qed</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yay!</p>
+
+<p>Tomorrow I will continue working through Software Foundations. Aki, an alum, has also kindly pointed me to some resources for implementing type inference algorithms which I plan to hit up once I have gotten a feel for the theory behind it. Excited to see where this leads.</p>
+
+<p>Oh, and I remapped <code>Caps Lock</code> from <code>ESC</code> to <code>CTRL</code>. So, uh, yeah.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T22:19:39-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/coq/'>Coq</a>, <a class='category' href='/blog/categories/emacs/'>Emacs</a>, <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/type-theory/'>Type Theory</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/24/a-working-gunzip-and-soldering/" title="Previous Post: A Working gunzip and Soldering">&laquo; A Working gunzip and Soldering</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/28/exploring-type-theory/">Exploring Type Theory</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/24/a-working-gunzip-and-soldering/">A Working Gunzip and Soldering</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/23/halfway/">Halfway, What???</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/15/gunzip/">OCaml! Haskell! Gunzip!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/12/recursion-friday/">Recursion Friday</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

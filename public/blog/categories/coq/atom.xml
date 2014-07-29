@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coq | Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/blog/categories/coq/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-28T23:42:06-04:00</updated>
+  <updated>2014-07-28T23:45:32-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -34,7 +34,7 @@
 
 <p>Two ways to run Coq are through the CoqIDE or through Proof General Coq mode in Emacs. I found to my chagrin that CoqIDE was ugly and slow and in general, not something that I wanted to use. But that meant that I had to learn&hellip; Emacs. So for about two hours, I went through the Emacs tutorial and fiddled with my .emacs file, thinking about the time I saw Richard Stallman dressed as a saint from the Church of Emacs and resigned myself to learning a new text editor/operating system/whatever (plz don&rsquo;t hurt me, I&rsquo;m new to emacs).</p>
 
-<p>After this, I couldn&rsquo;t figure out how to return Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn&rsquo;t correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:</p>
+<p>After this, I couldn&rsquo;t figure out how to run Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn&rsquo;t correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:</p>
 
 <p><code>coq
 Proof. reflexivity. Qed.

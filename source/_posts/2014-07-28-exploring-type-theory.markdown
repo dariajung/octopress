@@ -22,7 +22,7 @@ So, I asked this silly question on Zulip:
 
 Two ways to run Coq are through the CoqIDE or through Proof General Coq mode in Emacs. I found to my chagrin that CoqIDE was ugly and slow and in general, not something that I wanted to use. But that meant that I had to learn... Emacs. So for about two hours, I went through the Emacs tutorial and fiddled with my .emacs file, thinking about the time I saw Richard Stallman dressed as a saint from the Church of Emacs and resigned myself to learning a new text editor/operating system/whatever (plz don't hurt me, I'm new to emacs).
 
-After this, I couldn't figure out how to return Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn't correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:
+After this, I couldn't figure out how to run Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn't correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:
 
 ```coq
 Proof. reflexivity. Qed.

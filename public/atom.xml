@@ -4,7 +4,7 @@
   <title><![CDATA[Hacker School Log]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-28T23:36:30-04:00</updated>
+  <updated>2014-07-28T23:38:44-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -22,7 +22,7 @@
 
 <p>My original intent was to work through a tutorial, <a href="http://www.grabmueller.de/martin/www/pub/AlgorithmW.pdf">Algorithm W Step by Step</a>, for implementing the classic Algorithm W (proposed by Robin Milner) for type inference in Haskell. I was stoked to finally take a closer look at Hindley-Milner and foolishly thought I would spend a few days on it.</p>
 
-<p>In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that while I could infer knowledge from my understanding of Haskell, I was still lacking appropriate knowledge for this literature.</p>
+<p>In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that yeah, maybe(?) I could infer knowledge from my understanding of Haskell, but I was still lacking appropriate knowledge for this literature.</p>
 
 <p>So, I asked this silly question on Zulip:</p>
 

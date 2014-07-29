@@ -10,7 +10,7 @@ I started off today with a specific goal in mind. By the end of the day, I was p
 
 My original intent was to work through a tutorial, [Algorithm W Step by Step](http://www.grabmueller.de/martin/www/pub/AlgorithmW.pdf), for implementing the classic Algorithm W (proposed by Robin Milner) for type inference in Haskell. I was stoked to finally take a closer look at Hindley-Milner and foolishly thought I would spend a few days on it. 
 
-In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that while I could infer knowledge from my understanding of Haskell, I was still lacking appropriate knowledge for this literature.
+In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that yeah, maybe(?) I could infer knowledge from my understanding of Haskell, but I was still lacking appropriate knowledge for this literature.
 
 So, I asked this silly question on Zulip:
 

@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://blog.dariajung.com
-title: Hacker School Log
-subtitle: Daria goes to Hacker School
+title: reflexivity.
+subtitle: map (\x -> learn x daria) newKnowledge
 author: Daria Jung
 simple_search: https://www.google.com/search
 description:

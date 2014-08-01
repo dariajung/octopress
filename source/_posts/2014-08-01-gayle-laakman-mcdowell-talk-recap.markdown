@@ -12,7 +12,7 @@ She gave us some redundant information, but also some great insights that I had 
 
 First some things before the ~technical~ aspect of the interivew:
 
-- Try to keep your resume to one page because most resume readers spend maybe 5 - 15 seconds looking at it.
+- Try to keep your resume to one page because most resume readers spend maybe 5 - 15 seconds looking at it. There are no fast and hard rules for how it should be formatted, but it should be scannable in that amount of time.
 - Put your outside of school/work projects on your resume! Many candidates don't put their projects on their resume for whatever reason.
 - Ask your recruiter what to expect from the interview. There is no reason to be afraid to ask about what you might encounter. However, take this with a grain of salt because the recruiter isn't going to be the one interviewing you.
 - Coming off a bit weird to a recruiter is okay. As long as you aren't being as asshole, don't worry too much.

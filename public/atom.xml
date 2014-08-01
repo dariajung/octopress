@@ -4,7 +4,7 @@
   <title><![CDATA[Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-01T15:52:05-04:00</updated>
+  <updated>2014-08-01T17:39:39-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -87,7 +87,7 @@
 
 <p>You will have to go through every element in the first array, but not for the second. Why? Well, we know these arrays are sorted. So if we&rsquo;re looking to see if 1 is in both arrays, we look at 1 in the first, but we hit a 2 in the second. Since these are sorted, anything after 2 is going to be greater than 2. We can stop looking here.</p>
 
-<p>Think about spacetime trade offs. Also always keep in mind hashtables because apparently they can be used to solve a lot of algorithms questions in optimal ways. This particular problem can be solved using a hashtable, apparently.</p>
+<p>Think about spacetime trade offs. Also always keep in mind hashtables because apparently they can be used to solve a lot of algorithms questions in optimal ways. This particular problem can be solved using a hashtable. I have solved it in Python <a href="https://github.com/dariajung/interview-prep/blob/master/data_structures_algos/arrayintersect.py">here</a>.</p>
 
 <p>Some whiteboarding tips:</p>
 

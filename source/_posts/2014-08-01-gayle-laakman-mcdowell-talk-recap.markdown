@@ -61,7 +61,7 @@ Let's go back to the example question and see how we can optimize it.
 
 You will have to go through every element in the first array, but not for the second. Why? Well, we know these arrays are sorted. So if we're looking to see if 1 is in both arrays, we look at 1 in the first, but we hit a 2 in the second. Since these are sorted, anything after 2 is going to be greater than 2. We can stop looking here.
 
-Think about spacetime trade offs. Also always keep in mind hashtables because apparently they can be used to solve a lot of algorithms questions in optimal ways. This particular problem can be solved using a hashtable, apparently.
+Think about spacetime trade offs. Also always keep in mind hashtables because apparently they can be used to solve a lot of algorithms questions in optimal ways. This particular problem can be solved using a hashtable. I have solved it in Python [here](https://github.com/dariajung/interview-prep/blob/master/data_structures_algos/arrayintersect.py).
 
 Some whiteboarding tips:
 

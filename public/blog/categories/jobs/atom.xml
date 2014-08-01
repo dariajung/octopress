@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jobs | Yet Another Blog]]></title>
+  <link href="http://blog.dariajung.com/blog/categories/jobs/atom.xml" rel="self"/>
+  <link href="http://blog.dariajung.com/"/>
+  <updated>2014-08-01T15:20:53-04:00</updated>
+  <id>http://blog.dariajung.com/</id>
+  <author>
+    <name><![CDATA[Daria Jung]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Gayle Laakman McDowell Talk Recap]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/01/gayle-laakman-mcdowell-talk-recap/"/>
+    <updated>2014-08-01T14:32:53-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/01/gayle-laakman-mcdowell-talk-recap</id>
+    <content type="html"><![CDATA[<p>On Wednesday evening, a couple of us headed to a talk by Gayle Laakman McDowell, the author of <em>Cracking the Coding Interview</em>.</p>
+
+<p>She gave us some redundant information, but also some great insights that I had never thought about before.</p>
+
+<p>First some things before the ~technical~ aspect of the interivew:</p>
+
+<ul>
+<li>Try to keep your resume to one page because most resume readers spend maybe 5 &ndash; 15 seconds looking at it.</li>
+<li>Put your outside of school/work projects on your resume! Many candidates don&rsquo;t put their projects on their resume for whatever reason.</li>
+<li>Ask your recruiter what to expect from the interview. There is no reason to be afraid to ask about what you might encounter. However, take this with a grain of salt because the recruiter isn&rsquo;t going to be the one interviewing you.</li>
+<li>Coming off a bit weird to a recruiter is okay. As long as you aren&rsquo;t being as asshole, don&rsquo;t worry too much.</li>
+</ul>
+
+
+<p>Other pre-interview stuff to know:</p>
+
+<ul>
+<li>Struggling during an interview is <em>normal</em>. The whole point is to see how you reason through difficult questions.</li>
+<li>How you do is relative to people who are asked the <strong>same</strong> question. (This in particular was something that made so much sense, but was something I had never realized. I always quantified my success by how many questions I got correct.)</li>
+<li>Hashtables go a long way.</li>
+<li>Know linked lists, arrays, arraylists, binary search trees, merge sort, and quicksort well.</li>
+<li>Know Big O like the back of your hand.</li>
+<li>Try to recode data structures from scratch.</li>
+<li>Write code on paper so you don&rsquo;t freak out when you have to white board and don&rsquo;t have nice things like syntax highlighting.</li>
+</ul>
+
+
+<p>During the interview:</p>
+
+<ul>
+<li>LISTEN for the little details. If you&rsquo;re given a list, is it sorted already? Are the elements distinct? Repeat the question back to make sure you understood it.</li>
+<li>Work through the question using a <em>good</em> example.</li>
+</ul>
+
+
+<p>But what is a good example? Let&rsquo;s work with this question Gayle gave us:</p>
+
+<blockquote><p>Given two sorted arrays, compute the intersection.</p></blockquote>
+
+<p>What about:
+<code>haskell
+[1, 5, 9, 15]
+[2, 3, 9, 20]
+</code></p>
+
+<p>This is bad because this is a special case, in several ways. The two arrays are the same length, and the element that appears in both arrays are in the same index. These are also too small.</p>
+
+<p>In general, try to come up with examples that avoid special cases, and are about 50% larger than your initial instinct. So if you think about three element arrays, try working with six element arrays.</p>
+
+<p>Brute force a solution first; you can optimize it later but it&rsquo;s better to have a solution to work with. Walk through the brute force solution using your example. Remember the small details when implementing your algorithm, ie: is the input sorted? is the information cached? etc.</p>
+
+<p>The brute force approach to solving this is go through the elements of the first array, and check all elements of the second array to see if they match. Move onto the next element in the second array and do the same thing. Keep doing this until you&rsquo;ve gone through the entire first array.</p>
+
+<p>After this, try to imagine what the fastest you can imagine an algorithm being for the problem you have been given. She called this the best conceivable runtime. Was your solution O(nlogn)? Can you see it being solved in linear time? Try to get there.</p>
+
+<p>Let&rsquo;s go back to the example question and see how we can optimize it.</p>
+
+<p><code>haskell
+[1, 5, 6, 8, 9, 15]
+[2, 3, 4, 5, 9, 20, 31, 33, 34]
+</code></p>
+
+<p>You will have to go through every element in the first array, but not for the second. Why? Well, we know these arrays are sorted. So if we&rsquo;re looking to see if 1 is in both arrays, we look at 1 in the first, but we hit a 2 in the second. Since these are sorted, anything after 2 is going to be greater than 2. We can stop looking here.</p>
+
+<p>Think about spacetime trade offs. Also always keep in mind hashtables because apparently they can be used to solve a lot of algorithms questions in optimal ways. This particular problem can be solved using a hashtable, apparently.</p>
+
+<p>Some whiteboarding tips:</p>
+
+<ul>
+<li>Code far top left corner.</li>
+<li>Write small and straight.</li>
+<li><em>If</em> it helps, write pseudocode. But don&rsquo;t write psuedocode that uses syntax that looks too much like a programming language&rsquo;s because it&rsquo;ll just look like shitty code.</li>
+</ul>
+
+
+<p>Code breadth first:</p>
+
+<ul>
+<li>Modularize from the very beginning.</li>
+<li>Go level by level, top down.</li>
+<li>Hit the most interesting thing first, then move down.</li>
+<li>You&rsquo;re most likely to screw up on something like shifting bits around, but that isn&rsquo;t very interesting, so just save it for last.
+Interviewers will not care if you messed up on something like that if you got the bigger picture correct.</li>
+</ul>
+
+
+<p>If you&rsquo;re ever confused, stop, and recoup. Don&rsquo;t push through when confused. Walk through your example again.</p>
+
+<p>When you&rsquo;re done writing your algorithm, test your code with an example, but NOT the example you used to understand the question. Good examples are long but not necessarily good test cases. Go with something shorter so if you hit a bug, you&rsquo;ll hit the bug faster. Start with small general test cases, then go to special cases.</p>
+
+<p>Look at your code for interesting lines; what lines are most probable for errors?</p>
+
+<p>After this, follow up with your recruiter!</p>
+
+<p>Also, always keep in mind that interviewers are people too, and they all have varying personalities. If one is being really quiet, that doesn&rsquo;t mean you aren&rsquo;t doing well. Sometimes interviewers act harsher if you are doing well! What. They don&rsquo;t think you need their help and they&rsquo;re thinking about ways to push you.</p>
+
+<p>Cool. Once you get an offer, negotiate, because it&rsquo;s a win-win. 30 minutes isn&rsquo;t a lot, but hey, you might get a couple thousand dollars out of it. Counter offer their offer by bumping it up $20k. They&rsquo;ll probably throw you a bone and meet you in the middle.</p>
+
+<p>Obviously Gayle&rsquo;s advice should also be taken with a grain of salt.</p>
+]]></content>
+  </entry>
+  
+</feed>

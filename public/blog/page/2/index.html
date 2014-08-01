@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>reflexivity.</title>
+  <title>Yet Another Blog</title>
   <meta name="author" content="Daria Jung">
 
   
-  <meta name="description" content="End of week two. Crazy! This morning, I spent a bit of time pairing with Dana and Georgi on Arduino and hardware things. Dana introduced us to &hellip;">
+  <meta name="description" content="I didn&rsquo;t get a chance to blog about last Friday (Day 9) so I&rsquo;ll do a quick recap: First day of interview prep.
+Worked on Manage those &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +22,7 @@
   <link rel="canonical" href="http://blog.dariajung.com/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="reflexivity." type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Yet Another Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -37,9 +38,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">reflexivity.</a></h1>
+  <h1><a href="/">Yet Another Blog</a></h1>
   
-    <h2>map (\x -> learn x daria) newKnowledge</h2>
+    <h2>Daria goes to Hacker School.</h2>
   
 </hgroup>
 
@@ -67,6 +68,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/24/hacker-school-days-9-and-10/">Hacker School: Days 9 &amp; 10</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-24T09:58:30-04:00" pubdate data-updated="true">Jun 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I didn&rsquo;t get a chance to blog about last Friday (Day 9) so I&rsquo;ll do a quick recap:</p>
+
+<ul>
+<li>First day of interview prep.</li>
+<li>Worked on <a href="https://hackpad.com/Manage-those-phone-books-wK1MycZ5ATb">Manage those Phonebooks</a> in Python.</li>
+<li>Turns out I had a lot of trouble parsing command line inputs, so I spent a good chunk of time on that before I decided to come back to it at the end.</li>
+<li>This exercise made me feel a bit uncomfortable about how well I know a language. I&rsquo;ve been spending all of my time on Haskell and haven&rsquo;t touched Java or Python in a while.</li>
+<li>Continued reading about Monads.</li>
+</ul>
+
+
+<p>Yesterday (Day 10), we received new check-in groups. It seems that they rotate every two weeks, and I&rsquo;m enjoying that as it gives me the chance to interact with more of my fellow Hacker Schoolers in a smaller setting.</p>
+
+<p>I spent a good chunk of the morning finishing up the last assignment from Brent Yorgey&rsquo;s Haskell course programming a Risk, the <a href="https://en.wikipedia.org/wiki/Risk_(game)" target="_blank">boardgame</a>, simulator. It was cool to play around with Random generators to simulate die rolls, and also to simulate 1000 invasions (repeated calls to battle until there are no defenders remaining, or fewer than two attackers left) of varying defending and attacking army sizes. This was encompassed in a Battlefield data type, where Battlefield is defined as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">type</span> <span class="kt">Army</span> <span class="ow">=</span> <span class="kt">Int</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">data</span> <span class="kt">Battlefield</span> <span class="ow">=</span> <span class="kt">Battlefield</span>
+</span><span class='line'>                   <span class="p">{</span> <span class="n">attackers</span> <span class="ow">::</span> <span class="kt">Army</span><span class="p">,</span> <span class="n">defenders</span> <span class="ow">::</span> <span class="kt">Army</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this, I ended up stumbling on Peter Norvig&rsquo;s Sudoku solver <a href="http://norvig.com/sudoku.html">paper</a> and decided to implement it in Haskell. I&rsquo;ve been struggling through lots of type errors but I was surprised and happy to find that I got so engrossed in my task that I stayed at Hacker School for almost 12 hours yesterday. It&rsquo;s really neat to be this absorbed in something, and feeling myself gain more confidence through being challenged by my own curiosities. Once I finish this up, I will definitely be needing some code review.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -600,6 +663,10 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/31/re-learning-math-with-coq/">Re-learning Math With Coq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/28/exploring-type-theory/">Exploring Type Theory</a>
       </li>
     
@@ -613,10 +680,6 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
     
       <li class="post">
         <a href="/blog/2014/07/15/gunzip/">OCaml! Haskell! Gunzip!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/12/recursion-friday/">Recursion Friday</a>
       </li>
     
   </ul>

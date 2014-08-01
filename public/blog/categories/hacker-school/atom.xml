@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Hacker School | reflexivity.]]></title>
+  <title><![CDATA[Category: Hacker School | Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-31T09:16:06-04:00</updated>
+  <updated>2014-08-01T14:30:58-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Re-learning Math With Coq]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/31/re-learning-math-with-coq/"/>
+    <updated>2014-07-31T10:25:40-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/31/re-learning-math-with-coq</id>
+    <content type="html"><![CDATA[<p>The last time I was doing a lot of inductive proofs was during my third year of high school. I did a few in my Discrete Mathematics class, but to be quite honest, I hardly remember anything from that it (I should really revisit the material at some point&hellip;).</p>
+
+<p>Considering that it has been more than four years &mdash;I took a gap year between my second and third year of university, I am now going into third year&mdash; I was a bit unsure of my math chops. But working through <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a> has been an absolute blast. And it&rsquo;s been so cool to see the <a href="http://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry-Howard correspondence</a> in action through writing proofs in Coq.</p>
+
+<p>Rntz gave a great presentation on <a href="https://github.com/rntz/curry-howard-slides/raw/master/pres.pdf">Curry-Howard</a>, presenting formal logic, a lambda-calculus, and then showing the connection between formal logic proofs and typed expressions/programs.</p>
+
+<p>So far, I&rsquo;ve been spending time proving some mathematical axioms such as the additive identity, multiplicative communtativity, right distributive property of multiplication over addition of numbers, and so on.</p>
+
+<p>Coq has various proof tactics, <code>intros</code>, <code>destruct</code>, and <code>induction</code>, to name a few.</p>
+
+<p>To show you the kind of stuff I&rsquo;ve been doing, let&rsquo;s work through an example.</p>
+
+<p>Let&rsquo;s prove that <code>n + 0 = 0</code>.</p>
+
+<p>First we define the theorem (adding a 0 to the right side of a natural number gives us the original natural number):</p>
+
+<p><code>coq
+Theorem plus_0_r : forall n:nat, n + 0 = n.
+</code></p>
+
+<p>So how do we prove this?</p>
+
+<p>Well, first we need to introduce n into the scope of the proof.</p>
+
+<p>```coq
+Proof.</p>
+
+<pre><code>intros.
+</code></pre>
+
+<p>```</p>
+
+<p>Coq shows us that we can now work with n, and that our subgoal is to prove that n + 0 = n.</p>
+
+<p>```coq
+1 subgoals, subgoal 1 (ID 88)</p>
+
+<h1>n : nat</h1>
+
+<p>n + 0 = n
+```</p>
+
+<p>Cool. And now we can induct on n. In induction, you must prove the base case of <code>n = 0</code>, and for <code>n = S n'</code>; <code>S n'</code> can be read as the <em>successor</em> of n', which is equivalent to n.</p>
+
+<p>So now, we use the <code>induction</code> tactic in Coq:</p>
+
+<p>```coq
+Proof.</p>
+
+<pre><code>intros. induction n as [| n'].
+</code></pre>
+
+<p>```</p>
+
+<p>Now we have two subgoals to prove, the base case and the successor case:</p>
+
+<p>```coq
+2 subgoals, subgoal 1 (ID 91)</p>
+
+<p>============================
+0 + 0 = 0</p>
+
+<p>subgoal 2 (ID 94) is:
+S n' + 0 = S n'
+```</p>
+
+<p>For my own benefit, I like to write out what case I am proving, which in this case is for when <code>n = 0</code>.
+As we see, Coq gives us <code>0 + 0 = 0</code>. We can simplify this expression by writing <code>simpl</code>, and Coq will reduce this to <code>0 = 0</code>. And we know <code>0 = 0</code>. It&rsquo;s a fact. We can simply write <code>reflexivity</code> to finish proving this subgoal.</p>
+
+<p>As a sidenote, reflexivity will simplify for you, so it wasn&rsquo;t necessary to do the <code>simpl</code> step. However, I found it helps my thought process to write out all of the steps.</p>
+
+<p>```coq
+Proof.</p>
+
+<pre><code>intros. induction n as [| n'].
+Case "n = 0". simpl. reflexivity.
+</code></pre>
+
+<p>```</p>
+
+<p>Coq now tells us we have one subgoal remaining:</p>
+
+<p>```coq
+1 subgoals, subgoal 1 (ID 94)</p>
+
+<p>n' : nat</p>
+
+<h1>IHn' : n' + 0 = n'</h1>
+
+<p>S n' + 0 = S n'
+```</p>
+
+<p>As you can see, we are given <code>IHn'</code>, an induction hypothesis to work with. So let&rsquo;s prove our second subgoal for case &ldquo;n = S n'&rdquo;:</p>
+
+<p>We can simplify this down to <code>S (n' + 0) = S n</code> by using the <code>simpl</code> tactic. Adding a 0 to n', and then calling a successor on it is no different from adding 0 to the successor of n'.</p>
+
+<p>```coq
+1 subgoals, subgoal 1 (ID 101)</p>
+
+<p>Case := &ldquo;n = S n'&rdquo; : String.string
+n' : nat</p>
+
+<h1>IHn' : n' + 0 = n'</h1>
+
+<p>S (n' + 0) = S n'
+```</p>
+
+<p>But what&rsquo;s this? We have an induction hypothesis that tells us that <code>n' + 0 = n'</code>. Oh, this looks familiar. So let&rsquo;s rewrite <code>S (n' + 0)</code> using our induction hypothesis:</p>
+
+<p>```coq
+Proof.</p>
+
+<pre><code>intros. induction n as [| n'].
+Case "n = 0". simpl. reflexivity.
+Case "n = S n'". simpl.  rewrite -&gt; IHn'.
+</code></pre>
+
+<p>```</p>
+
+<p>```coq
+1 subgoals, subgoal 1 (ID 102)</p>
+
+<p>Case := &ldquo;n = S n'&rdquo; : String.string
+n' : nat</p>
+
+<h1>IHn' : n' + 0 = n'</h1>
+
+<p>S n' = S n'
+```</p>
+
+<p>Omg, the left and the right are equivalent. And now we can say, this is true by reflexivity, and end our proof by writing <code>Qed.</code></p>
+
+<p>Our full proof:</p>
+
+<p>```coq
+Proof.</p>
+
+<pre><code>intros. induction n as [| n'].
+Case "n = 0". simpl. reflexivity.
+Case "n = S n'". simpl.  rewrite -&gt; IHn'. reflexivity.
+</code></pre>
+
+<p>Qed.
+```</p>
+
+<p>HOW COOL IS THAT???</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Exploring Type Theory]]></title>
@@ -131,68 +285,6 @@ difficult to leave Haskell because I am rather enamoured with the language. &#10
 <p>I&rsquo;ve been reading up on the <a href="http://www.gzip.org/algorithm.txt">algorithm specifications</a> for inflating and deflating and the <a href="http://www.gzip.org/format.txt">format</a> information. I tried looking at the source in C but my head started to hurt, so I have been studying Julia&rsquo;s <a href="https://github.com/jvns/gzip.jl/blob/master/gzip.jl">implementation</a>, which despite me never having seen Julia code before, has been very helpful.</p>
 
 <p>I spent today working on parsing a gzipped file&rsquo;s header and metadata information. Tomorrow I will read up more on the algorithm description and dive into implementing inflate.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recursion Friday]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/12/recursion-friday/"/>
-    <updated>2014-07-12T12:38:25-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/12/recursion-friday</id>
-    <content type="html"><![CDATA[<p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
-
-<p>Recursion used to make me go like this:</p>
-
-<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
-
-<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
-
-<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
-
-<p>```
-Permute(&ldquo;abcd&rdquo;) =</p>
-
-<pre><code>"a" + Permute("bcd") 
-&lt;list concatenation&gt; 
-"b" + Permute("acd") 
-&lt;list concatenation&gt;
-"c" + Permute("bcd") 
-&lt;list concatenation&gt;
-"d" + Permute("abc") 
-</code></pre>
-
-<p>```</p>
-
-<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
-
-<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
-
-<p>```haskell
-import Data.List</p>
-
-<p>permute :: Eq a => [a] &ndash;> [[a]]
-permute [] = [[]]
-permute xs = [ y | prefix &lt;&ndash; xs, y &lt;&ndash; map (prefix:)</p>
-
-<pre><code>               $ permute $ xs \\ [prefix]]
-</code></pre>
-
-<p>```</p>
-
-<p>An obnoxiously short list comprehension.</p>
-
-<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
-
-<p>```haskell
-ghci> permute &ldquo;abcd&rdquo;</p>
-
-<p>[&ldquo;abcd&rdquo;,&ldquo;abdc&rdquo;,&ldquo;acbd&rdquo;,&ldquo;acdb&rdquo;,&ldquo;adbc&rdquo;,&ldquo;adcb&rdquo;,
-&ldquo;bacd&rdquo;,&ldquo;badc&rdquo;,&ldquo;bcad&rdquo;,&ldquo;bcda&rdquo;,&ldquo;bdac&rdquo;,&ldquo;bdca&rdquo;,
-&ldquo;cabd&rdquo;,&ldquo;cadb&rdquo;,&ldquo;cbad&rdquo;,&ldquo;cbda&rdquo;,&ldquo;cdab&rdquo;,&ldquo;cdba&rdquo;,
-&ldquo;dabc&rdquo;,&ldquo;dacb&rdquo;,&ldquo;dbac&rdquo;,&ldquo;dbca&rdquo;,&ldquo;dcab&rdquo;,&ldquo;dcba&rdquo;]
-```</p>
-
-<p>Recursion still blows my mind.</p>
 ]]></content>
   </entry>
   

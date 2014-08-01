@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Coq | Yet Another Blog]]></title>
-  <link href="http://blog.dariajung.com/blog/categories/coq/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Proofs | Yet Another Blog]]></title>
+  <link href="http://blog.dariajung.com/blog/categories/proofs/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
   <updated>2014-08-01T14:30:58-04:00</updated>
   <id>http://blog.dariajung.com/</id>
@@ -164,41 +164,6 @@ Case "n = S n'". simpl.  rewrite -&gt; IHn'. reflexivity.
 ```</p>
 
 <p>HOW COOL IS THAT???</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Exploring Type Theory]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory/"/>
-    <updated>2014-07-28T22:19:39-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory</id>
-    <content type="html"><![CDATA[<p>I started off today with a specific goal in mind. By the end of the day, I was pretty off my mark.</p>
-
-<p>My original intent was to work through a tutorial, <a href="http://www.grabmueller.de/martin/www/pub/AlgorithmW.pdf">Algorithm W Step by Step</a>, for implementing the classic Algorithm W (proposed by Robin Milner) for type inference in Haskell. I was stoked to finally take a closer look at Hindley-Milner and foolishly thought I would spend a few days on it.</p>
-
-<p>In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that yeah, maybe(?) I could infer something from my understanding of Haskell, but I was still lacking appropriate knowledge for this literature.</p>
-
-<p>So, I asked this silly question on Zulip:</p>
-
-<blockquote><p><strong>Stream Subject</strong>: Category Theory/Type Theory/Set Theory</p>
-
-<p><strong>Message</strong>: Hi hi. I&rsquo;m delving into Hindley-Milner for type inference and I&rsquo;m finding lots of terminology that I don&rsquo;t understand. Are there any friendly introductions to all of the theories? AM I WAY IN OVER MY HEAD?</p></blockquote>
-
-<p><a href="http://www.rntz.net/">Rntz</a> pointed me to <a href="http://www.cis.upenn.edu/~bcpierce/tapl/">Types and Programming Languages</a> as a resource and I was intrigued. I started reading it, and of course my attention started to wane because textbooks. After some googling, and remembering back to my first week at Hacker School, I was reminded of a UPenn grad course called <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a>. The course uses TAPL but also utilizes an interactive book of Coq proofs as its main text. Interactive? Sign me up.</p>
-
-<p>Two ways to run Coq are through the CoqIDE or through Proof General Coq mode in Emacs. I found to my chagrin that CoqIDE was ugly and slow and in general, not something that I wanted to use. But that meant that I had to learn&hellip; Emacs. So for about two hours, I went through the Emacs tutorial and fiddled with my .emacs file, thinking about the time I saw Richard Stallman dressed as a saint from the Church of Emacs and resigned myself to learning a new text editor/operating system/whatever (plz don&rsquo;t hurt me, I&rsquo;m new to emacs).</p>
-
-<p>After this, I couldn&rsquo;t figure out how to run Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn&rsquo;t correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:</p>
-
-<p><code>coq
-Proof. reflexivity. Qed.
-</code></p>
-
-<p>Yay!</p>
-
-<p>Tomorrow I will continue working through Software Foundations. Aki, an alum, has also kindly pointed me to some resources for implementing type inference algorithms which I plan to hit up once I have gotten a feel for the theory behind it. Excited to see where this leads.</p>
-
-<p>Oh, and I remapped <code>Caps Lock</code> from <code>ESC</code> to <code>CTRL</code>. So, uh, yeah.</p>
 ]]></content>
   </entry>
   

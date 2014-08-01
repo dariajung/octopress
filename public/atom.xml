@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[reflexivity.]]></title>
+  <title><![CDATA[Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-07-31T09:16:06-04:00</updated>
+  <updated>2014-08-01T14:30:58-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,193 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Re-learning Math With Coq]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/07/31/re-learning-math-with-coq/"/>
+    <updated>2014-07-31T10:25:40-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/07/31/re-learning-math-with-coq</id>
+    <content type="html"><![CDATA[<p>The last time I was doing a lot of inductive proofs was during my third year of high school. I did a few in my Discrete Mathematics class, but to be quite honest, I hardly remember anything from that it (I should really revisit the material at some point&hellip;).</p>
+
+<p>Considering that it has been more than four years &mdash;I took a gap year between my second and third year of university, I am now going into third year&mdash; I was a bit unsure of my math chops. But working through <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a> has been an absolute blast. And it&rsquo;s been so cool to see the <a href="http://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry-Howard correspondence</a> in action through writing proofs in Coq.</p>
+
+<p>Rntz gave a great presentation on <a href="https://github.com/rntz/curry-howard-slides/raw/master/pres.pdf">Curry-Howard</a>, presenting formal logic, a lambda-calculus, and then showing the connection between formal logic proofs and typed expressions/programs.</p>
+
+<p>So far, I&rsquo;ve been spending time proving some mathematical axioms such as the additive identity, multiplicative communtativity, right distributive property of multiplication over addition of numbers, and so on.</p>
+
+<p>Coq has various proof tactics, <code>intros</code>, <code>destruct</code>, and <code>induction</code>, to name a few.</p>
+
+<p>To show you the kind of stuff I&rsquo;ve been doing, let&rsquo;s work through an example.</p>
+
+<p>Let&rsquo;s prove that <code>n + 0 = 0</code>.</p>
+
+<p>First we define the theorem (adding a 0 to the right side of a natural number gives us the original natural number):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Theorem</span> <span class="n">plus_0_r</span> <span class="o">:</span> <span class="k">forall</span> <span class="n">n</span><span class="o">:</span><span class="n">nat</span><span class="o">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So how do we prove this?</p>
+
+<p>Well, first we need to introduce n into the scope of the proof.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">intros</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Coq shows us that we can now work with n, and that our subgoal is to prove that n + 0 = n.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="mi">1</span> <span class="n">subgoals</span><span class="o">,</span> <span class="n">subgoal</span> <span class="mi">1</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">88</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n</span> <span class="o">:</span> <span class="n">nat</span>
+</span><span class='line'><span class="o">============================</span>
+</span><span class='line'><span class="n">n</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">n</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cool. And now we can induct on n. In induction, you must prove the base case of <code>n = 0</code>, and for <code>n = S n'</code>; <code>S n'</code> can be read as the <em>successor</em> of n&#8217;, which is equivalent to n.</p>
+
+<p>So now, we use the <code>induction</code> tactic in Coq:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">intros</span><span class="o">.</span> <span class="k">induction</span> <span class="n">n</span> <span class="k">as</span> <span class="o">[|</span> <span class="n">n&#39;</span><span class="o">].</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we have two subgoals to prove, the base case and the successor case:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="mi">2</span> <span class="n">subgoals</span><span class="o">,</span> <span class="n">subgoal</span> <span class="mi">1</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">91</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">============================</span>
+</span><span class='line'><span class="mi">0</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">subgoal</span> <span class="mi">2</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">94</span><span class="o">)</span> <span class="k">is</span><span class="o">:</span>
+</span><span class='line'><span class="nc">S</span> <span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="nc">S</span> <span class="n">n&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For my own benefit, I like to write out what case I am proving, which in this case is for when <code>n = 0</code>.
+As we see, Coq gives us <code>0 + 0 = 0</code>. We can simplify this expression by writing <code>simpl</code>, and Coq will reduce this to <code>0 = 0</code>. And we know <code>0 = 0</code>. It&rsquo;s a fact. We can simply write <code>reflexivity</code> to finish proving this subgoal.</p>
+
+<p>As a sidenote, reflexivity will simplify for you, so it wasn&rsquo;t necessary to do the <code>simpl</code> step. However, I found it helps my thought process to write out all of the steps.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">intros</span><span class="o">.</span> <span class="k">induction</span> <span class="n">n</span> <span class="k">as</span> <span class="o">[|</span> <span class="n">n&#39;</span><span class="o">].</span>
+</span><span class='line'>    <span class="nc">Case</span> <span class="s2">&quot;n = 0&quot;</span><span class="o">.</span> <span class="k">simpl</span><span class="o">.</span> <span class="kp">reflexivity</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Coq now tells us we have one subgoal remaining:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="mi">1</span> <span class="n">subgoals</span><span class="o">,</span> <span class="n">subgoal</span> <span class="mi">1</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">94</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n&#39;</span> <span class="o">:</span> <span class="n">nat</span>
+</span><span class='line'><span class="nc">IHn&#39;</span> <span class="o">:</span> <span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">n&#39;</span>
+</span><span class='line'><span class="o">============================</span>
+</span><span class='line'><span class="nc">S</span> <span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="nc">S</span> <span class="n">n&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, we are given <code>IHn'</code>, an induction hypothesis to work with. So let&rsquo;s prove our second subgoal for case &ldquo;n = S n&#8217;&rdquo;:</p>
+
+<p>We can simplify this down to <code>S (n' + 0) = S n</code> by using the <code>simpl</code> tactic. Adding a 0 to n&#8217;, and then calling a successor on it is no different from adding 0 to the successor of n&#8217;.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="mi">1</span> <span class="n">subgoals</span><span class="o">,</span> <span class="n">subgoal</span> <span class="mi">1</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">101</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">Case</span> <span class="o">:=</span> <span class="s2">&quot;n = S n&#39;&quot;</span> <span class="o">:</span> <span class="nn">String</span><span class="p">.</span><span class="n">string</span>
+</span><span class='line'><span class="n">n&#39;</span> <span class="o">:</span> <span class="n">nat</span>
+</span><span class='line'><span class="nc">IHn&#39;</span> <span class="o">:</span> <span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">n&#39;</span>
+</span><span class='line'><span class="o">============================</span>
+</span><span class='line'><span class="nc">S</span> <span class="o">(</span><span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span><span class="o">)</span> <span class="o">=</span> <span class="nc">S</span> <span class="n">n&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But what&rsquo;s this? We have an induction hypothesis that tells us that <code>n' + 0 = n'</code>. Oh, this looks familiar. So let&rsquo;s rewrite <code>S (n' + 0)</code> using our induction hypothesis:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">intros</span><span class="o">.</span> <span class="k">induction</span> <span class="n">n</span> <span class="k">as</span> <span class="o">[|</span> <span class="n">n&#39;</span><span class="o">].</span>
+</span><span class='line'>    <span class="nc">Case</span> <span class="s2">&quot;n = 0&quot;</span><span class="o">.</span> <span class="k">simpl</span><span class="o">.</span> <span class="kp">reflexivity</span><span class="o">.</span>
+</span><span class='line'>    <span class="nc">Case</span> <span class="s2">&quot;n = S n&#39;&quot;</span><span class="o">.</span> <span class="k">simpl</span><span class="o">.</span>  <span class="k">rewrite</span> <span class="o">-&gt;</span> <span class="nn">IHn&#39;</span><span class="p">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="mi">1</span> <span class="n">subgoals</span><span class="o">,</span> <span class="n">subgoal</span> <span class="mi">1</span> <span class="o">(</span><span class="nc">ID</span> <span class="mi">102</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">Case</span> <span class="o">:=</span> <span class="s2">&quot;n = S n&#39;&quot;</span> <span class="o">:</span> <span class="nn">String</span><span class="p">.</span><span class="n">string</span>
+</span><span class='line'><span class="n">n&#39;</span> <span class="o">:</span> <span class="n">nat</span>
+</span><span class='line'><span class="nc">IHn&#39;</span> <span class="o">:</span> <span class="n">n&#39;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">n&#39;</span>
+</span><span class='line'><span class="o">============================</span>
+</span><span class='line'><span class="nc">S</span> <span class="n">n&#39;</span> <span class="o">=</span> <span class="nc">S</span> <span class="n">n&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Omg, the left and the right are equivalent. And now we can say, this is true by reflexivity, and end our proof by writing <code>Qed.</code></p>
+
+<p>Our full proof:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coq'><span class='line'><span class="kn">Proof</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">intros</span><span class="o">.</span> <span class="k">induction</span> <span class="n">n</span> <span class="k">as</span> <span class="o">[|</span> <span class="n">n&#39;</span><span class="o">].</span>
+</span><span class='line'>    <span class="nc">Case</span> <span class="s2">&quot;n = 0&quot;</span><span class="o">.</span> <span class="k">simpl</span><span class="o">.</span> <span class="kp">reflexivity</span><span class="o">.</span>
+</span><span class='line'>    <span class="nc">Case</span> <span class="s2">&quot;n = S n&#39;&quot;</span><span class="o">.</span> <span class="k">simpl</span><span class="o">.</span>  <span class="k">rewrite</span> <span class="o">-&gt;</span> <span class="nn">IHn&#39;</span><span class="p">.</span> <span class="n">reflexivity</span><span class="o">.</span>
+</span><span class='line'><span class="kn">Qed</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>HOW COOL IS THAT???</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Exploring Type Theory]]></title>

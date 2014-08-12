@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Building a Cat Cam - Yet Another Blog</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="I recently purchased my first Raspberry Pi (the Model B+ whooho!) I decided that my first RaspPi project would be to build a Cat Cam to monitor &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/08/12/building-a-cat-cam">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Yet Another Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Yet Another Blog</a></h1>
+  
+    <h2>Daria goes to Hacker School.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Building a Cat Cam</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-12T17:09:18-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I recently purchased my first Raspberry Pi (the Model B+ whooho!)</p>
+
+<p><img src="/images/pi.jpg" alt="&quot;PI&quot;" /></p>
+
+<p>I decided that my first RaspPi project would be to build a Cat Cam to monitor Kitkat while I am away from the apartment. Occasionally he&rsquo;s being doing a few weird things like pooping outside of his litter box while I&rsquo;m not home. Basically, this is me spying on my cat.</p>
+
+<p>After a couple of component orders (PS3Eye webcam, MicroSD card) arrived, I was ready to start setting up my new Pi.</p>
+
+<p>Dana lent me her serial cable so I could access the Pi without an external display. However, this meant that NOOBS wouldn&rsquo;t work (it seems to require an external display), and we had to mount Raspbian Wheezy onto the SD card. There are always bumps along the way to setting up new hardware&hellip; Soon after this though, I was able to SSH into the Pi, which was great!</p>
+
+<p>But more complications followed&hellip; RaspPi is developed in the UK, so the locale was set to en-GB.UTF8. I had some problems figuring out how to get it to be en-US.UTF8 and was going crazy trying to figure it out, because I SWEAR I was selecting install new locales when I tried to generate and update them. (Lol, no I wasn&rsquo;t). Luckily, <a href="https://www.hackerschool.com/residents#Paul-Tagliamonte">Paul</a> was able to help me troubleshoot and not pull my hair out.</p>
+
+<p>Then, I was ready to set up the PS3Eye camera and motion detection snapshots using the motion package and following along with this <a href="http://chris.gg/2012/07/using-a-ps3-eyetoy-with-the-raspberry-pi/">tutorial</a>. The set up with the camera was incredibly straightforward, and things just worked! I was able to view the stream from within the local network of the Pi. But as it turned out, <em>only</em> the local network. When I excitely told Matt to view the stream (after I had pushed a simple Python-Flask app to Heroku), he told me that the stream was empty.</p>
+
+<p>Slightly deflated, I started looking around RaspPi forums and found out that my problem was because the RaspPis, as a default, only allow connections from a local network due to security reasons. Basically all of the suggestions pointed to enabling port forwarding, which seemed like a super insecure move, even for someone who has barely any knowledge of security practices. Basically, I would have to open up the Pi to the outside world so the stream could be viewable on the Internet. This meant that anyone could try to SSH into it; even if it has no sensitive information on it, I still don&rsquo;t want people in my Pi :/.</p>
+
+<p>(I took a break at this point to create a script that emailed my personal email account the IP address of the RaspPi every time it was booted to make it easy to SSH into it. Whoo!)</p>
+
+<p>I wanted to avoid port forwarding if I could. I thought about it a bit, and last night, I remembered the awesome AWESOMENESS that is <a href="https://ngrok.com/">ngrok</a>. Ngrok creates a tunnel between localhost and the Internet. This totally solved my problem! So this morning, I played around with ngrok on the Pi, creating a tunnel that would allow the webcam feed to be viewable from the Internet, and used that in the Flask app feed source. To double check that this worked, I asked Matt to view it from Minnesota (he&rsquo;s on vacay visiting family). AND VICTORY, IT WORKS!</p>
+
+<p>My next steps are to create a start script that runs the motion daemon, and a script to auto start ngrok. I have created a cronjob to delete the contents of a tmp file that takes a picture everytime the webcam detects motion (this can mean A LOT of pictures depending on where it is placed). At midnight every night, the script just deletes the day&rsquo;s worth of pictures, assuming that I will be able to look through them for any suspicious Kitkat behavior before the day is up.</p>
+
+<p>I&rsquo;m really excited to set this up at home and spy on my cat >:D Next, I want to build a toy component so I can play with Kitkat remotely.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-12T17:09:18-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/hardware/'>Hardware</a>, <a class='category' href='/blog/categories/kitkat/'>Kitkat</a>, <a class='category' href='/blog/categories/raspberry-pi/'>Raspberry Pi</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/08/12/building-a-cat-cam/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/08/12/building-a-cat-cam/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/11/why-i-love-my-cat/" title="Previous Post: Why I Love My Cat, an Anecdote about Depression">&laquo; Why I Love My Cat, an Anecdote about Depression</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/12/building-a-cat-cam/">Building a Cat Cam</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/11/why-i-love-my-cat/">Why I Love My Cat, an Anecdote About Depression</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/01/gayle-laakman-mcdowell-talk-recap/">Gayle Laakman McDowell Talk Recap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/31/re-learning-math-with-coq/">Re-learning Math With Coq</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/28/exploring-type-theory/">Exploring Type Theory</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

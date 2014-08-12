@@ -4,7 +4,7 @@
   <title><![CDATA[Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-12T00:08:54-04:00</updated>
+  <updated>2014-08-12T17:41:45-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Building a Cat Cam]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/12/building-a-cat-cam/"/>
+    <updated>2014-08-12T17:09:18-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/12/building-a-cat-cam</id>
+    <content type="html"><![CDATA[<p>I recently purchased my first Raspberry Pi (the Model B+ whooho!)</p>
+
+<p><img src="http://blog.dariajung.com/images/pi.jpg" alt="&quot;PI&quot;" /></p>
+
+<p>I decided that my first RaspPi project would be to build a Cat Cam to monitor Kitkat while I am away from the apartment. Occasionally he&rsquo;s being doing a few weird things like pooping outside of his litter box while I&rsquo;m not home. Basically, this is me spying on my cat.</p>
+
+<p>After a couple of component orders (PS3Eye webcam, MicroSD card) arrived, I was ready to start setting up my new Pi.</p>
+
+<p>Dana lent me her serial cable so I could access the Pi without an external display. However, this meant that NOOBS wouldn&rsquo;t work (it seems to require an external display), and we had to mount Raspbian Wheezy onto the SD card. There are always bumps along the way to setting up new hardware&hellip; Soon after this though, I was able to SSH into the Pi, which was great!</p>
+
+<p>But more complications followed&hellip; RaspPi is developed in the UK, so the locale was set to en-GB.UTF8. I had some problems figuring out how to get it to be en-US.UTF8 and was going crazy trying to figure it out, because I SWEAR I was selecting install new locales when I tried to generate and update them. (Lol, no I wasn&rsquo;t). Luckily, <a href="https://www.hackerschool.com/residents#Paul-Tagliamonte">Paul</a> was able to help me troubleshoot and not pull my hair out.</p>
+
+<p>Then, I was ready to set up the PS3Eye camera and motion detection snapshots using the motion package and following along with this <a href="http://chris.gg/2012/07/using-a-ps3-eyetoy-with-the-raspberry-pi/">tutorial</a>. The set up with the camera was incredibly straightforward, and things just worked! I was able to view the stream from within the local network of the Pi. But as it turned out, <em>only</em> the local network. When I excitely told Matt to view the stream (after I had pushed a simple Python-Flask app to Heroku), he told me that the stream was empty.</p>
+
+<p>Slightly deflated, I started looking around RaspPi forums and found out that my problem was because the RaspPis, as a default, only allow connections from a local network due to security reasons. Basically all of the suggestions pointed to enabling port forwarding, which seemed like a super insecure move, even for someone who has barely any knowledge of security practices. Basically, I would have to open up the Pi to the outside world so the stream could be viewable on the Internet. This meant that anyone could try to SSH into it; even if it has no sensitive information on it, I still don&rsquo;t want people in my Pi :/.</p>
+
+<p>(I took a break at this point to create a script that emailed my personal email account the IP address of the RaspPi every time it was booted to make it easy to SSH into it. Whoo!)</p>
+
+<p>I wanted to avoid port forwarding if I could. I thought about it a bit, and last night, I remembered the awesome AWESOMENESS that is <a href="https://ngrok.com/">ngrok</a>. Ngrok creates a tunnel between localhost and the Internet. This totally solved my problem! So this morning, I played around with ngrok on the Pi, creating a tunnel that would allow the webcam feed to be viewable from the Internet, and used that in the Flask app feed source. To double check that this worked, I asked Matt to view it from Minnesota (he&rsquo;s on vacay visiting family). AND VICTORY, IT WORKS!</p>
+
+<p>My next steps are to create a start script that runs the motion daemon, and a script to auto start ngrok. I have created a cronjob to delete the contents of a tmp file that takes a picture everytime the webcam detects motion (this can mean A LOT of pictures depending on where it is placed). At midnight every night, the script just deletes the day&rsquo;s worth of pictures, assuming that I will be able to look through them for any suspicious Kitkat behavior before the day is up.</p>
+
+<p>I&rsquo;m really excited to set this up at home and spy on my cat >:D Next, I want to build a toy component so I can play with Kitkat remotely.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Why I Love My Cat, an Anecdote About Depression]]></title>

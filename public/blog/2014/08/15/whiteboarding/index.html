@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Whiteboarding to Unconfuse Myself - Yet Another Blog</title>
+  <meta name="author" content="Daria Jung">
+
+  
+  <meta name="description" content="A few days ago, I stumbled on a repository on GitHub that was exploring category theory through the use of Coq, formalizing Edware Kmett&rsquo;s Hask &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.dariajung.com/blog/2014/08/15/whiteboarding">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Yet Another Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Yet Another Blog</a></h1>
+  
+    <h2>Daria goes to Hacker School.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.dariajung.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Whiteboarding to Unconfuse Myself</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-15T14:38:04-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A few days ago, I stumbled on a <a href="https://github.com/jwiegley/category-theory">repository</a> on GitHub that was exploring category theory through the use of Coq, formalizing Edware Kmett&rsquo;s Hask library. Curious, I wondered what Hask was and read the description: &ldquo;Category theory for Haskell with a lens flavor&rdquo;.</p>
+
+<p>But&hellip; what are lenses?</p>
+
+<p>I remembered that I had bookmarked a <a href="http://blog.jakubarnold.cz/2014/07/14/lens-tutorial-introduction-part-1.html">blog post</a> that Steve Klabnik tweeted a while ago because it was related to Haskell. And now it was relevant to my interests.</p>
+
+<p>Lenses are, at a high level, something like &ldquo;getters&rdquo; and &ldquo;setters&rdquo; that are used in imperative programming languages. It&rsquo;s not uncommon to see something like <code>book.author.name</code>. Lenses provide an abstraction like this for Haskell.</p>
+
+<p>I spent a long time staring at the explanations in this blog post, and after pairing with Alan a bit on a simple Lens implementation, felt blown away by the weirdness and how elegant of an idea this was.</p>
+
+<p>A realization that I had about working with Alan (after ten weeks&hellip;) is that he is the type of person to think things out by writing on a white board. Up until this point, I had never really thought about whiteboarding as a way of getting my thoughts out so that I could actually <em>look</em> at them. And the act of writing type signatures out instead of staring at them on a screen made a lot of difference for me. (I do write on scratch paper, but I generally do so very disorganizedly).</p>
+
+<p>After Thursday demo presentations, I spent about thirty minutes whiteboarding out my thought process for the implementations of <code>over</code> and <code>set</code>:</p>
+
+<p><img src="/images/wb2.JPG" alt="whiteboarding 1" /></p>
+
+<p><img src="/images/wb1.JPG" alt="whiteboarding 1" /></p>
+
+<p>I guess moral of the story for me is that I should whiteboard more to figure out what I&rsquo;m doing when I&rsquo;m confused before jumping straight to code. A very simple epiphany, but a very helpful one.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daria Jung</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-15T14:38:04-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/lenses/'>Lenses</a>, <a class='category' href='/blog/categories/whiteboarding/'>whiteboarding</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.dariajung.com/blog/2014/08/15/whiteboarding/" data-via="" data-counturl="http://blog.dariajung.com/blog/2014/08/15/whiteboarding/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/12/building-a-cat-cam/" title="Previous Post: Building a Cat Cam">&laquo; Building a Cat Cam</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/15/whiteboarding/">Whiteboarding to Unconfuse Myself</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/12/building-a-cat-cam/">Building a Cat Cam</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/11/why-i-love-my-cat/">Why I Love My Cat, an Anecdote About Depression</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/01/gayle-laakman-mcdowell-talk-recap/">Gayle Laakman McDowell Talk Recap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/31/re-learning-math-with-coq/">Re-learning Math With Coq</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Daria Jung -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

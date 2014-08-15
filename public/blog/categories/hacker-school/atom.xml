@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-12T17:41:45-04:00</updated>
+  <updated>2014-08-15T15:09:43-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Whiteboarding to Unconfuse Myself]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/15/whiteboarding/"/>
+    <updated>2014-08-15T14:38:04-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/15/whiteboarding</id>
+    <content type="html"><![CDATA[<p>A few days ago, I stumbled on a <a href="https://github.com/jwiegley/category-theory">repository</a> on GitHub that was exploring category theory through the use of Coq, formalizing Edware Kmett&rsquo;s Hask library. Curious, I wondered what Hask was and read the description: &ldquo;Category theory for Haskell with a lens flavor&rdquo;.</p>
+
+<p>But&hellip; what are lenses?</p>
+
+<p>I remembered that I had bookmarked a <a href="http://blog.jakubarnold.cz/2014/07/14/lens-tutorial-introduction-part-1.html">blog post</a> that Steve Klabnik tweeted a while ago because it was related to Haskell. And now it was relevant to my interests.</p>
+
+<p>Lenses are, at a high level, something like &ldquo;getters&rdquo; and &ldquo;setters&rdquo; that are used in imperative programming languages. It&rsquo;s not uncommon to see something like <code>book.author.name</code>. Lenses provide an abstraction like this for Haskell.</p>
+
+<p>I spent a long time staring at the explanations in this blog post, and after pairing with Alan a bit on a simple Lens implementation, felt blown away by the weirdness and how elegant of an idea this was.</p>
+
+<p>A realization that I had about working with Alan (after ten weeks&hellip;) is that he is the type of person to think things out by writing on a white board. Up until this point, I had never really thought about whiteboarding as a way of getting my thoughts out so that I could actually <em>look</em> at them. And the act of writing type signatures out instead of staring at them on a screen made a lot of difference for me. (I do write on scratch paper, but I generally do so very disorganizedly).</p>
+
+<p>After Thursday demo presentations, I spent about thirty minutes whiteboarding out my thought process for the implementations of <code>over</code> and <code>set</code>:</p>
+
+<p><img src="/images/wb2.JPG" alt="whiteboarding 1" /></p>
+
+<p><img src="/images/wb1.JPG" alt="whiteboarding 1" /></p>
+
+<p>I guess moral of the story for me is that I should whiteboard more to figure out what I&rsquo;m doing when I&rsquo;m confused before jumping straight to code. A very simple epiphany, but a very helpful one.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Building a Cat Cam]]></title>
@@ -262,30 +289,6 @@ added &lt;- sequence $ map (\(label, codes) -&gt; addItem root label codes) (cod
 <p>In the afternoon into the evening, I worked with Dana, Minnie, and Sophia on soldering chips, wires, and LEDs together. It was loads of fun and will continue today, I suspect.</p>
 
 <p><img src="https://pbs.twimg.com/media/BtRShaVIUAAQ6LR.jpg:large" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Halfway, What???]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/23/halfway/"/>
-    <updated>2014-07-23T09:52:02-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/23/halfway</id>
-    <content type="html"><![CDATA[<p>Wow, wow, wow. This week marked the halfway point of my time at Hacker School. It&rsquo;s been an exciting time, with the incoming of the new batch (28 new Hacker Schoolers!) and 455 Broadway is much more lively than it was before. It&rsquo;s been harder to find a place to sit, which is a good problem to have. :)</p>
-
-<p>I haven&rsquo;t blogged since last week, so a lot has happened since then:</p>
-
-<ul>
-<li>Very proud to say that I made the <code>cats</code> stream on Zulip.</li>
-<li>My implementation of gunzip is undergoing debugging, so hopefully I can have that done by the end of the week.</li>
-<li>Dana taught me how to solder! I soldered wires onto a strip of NeoPixels.</li>
-<li>Dana and I checked out <a href="https://hackmanhattan.com/">HackManhattan</a>, a space for hardware hackers. They were kind enough to let us go through their extra parts and we found the power sources we were looking for for the party on Friday.</li>
-<li>Mel Chua, our first resident, gave us very informative talks on different learning styles and how to maximize our time at Hacker School. I do sort of wish this happend on the first week for &ldquo;seconds&rdquo; since I feel like some of us floundered at figuring out how to get used to self-directedness.</li>
-<li>I missed my first Friday session to go visit my mom in North Carolina.</li>
-<li>I am back to being addicted to coffee. <a href="http://www.portorico.com/store/">Porto Rico Importing Co.</a> is my vice.</li>
-</ul>
-
-
-<p>Here&rsquo;s to another six weeks! Well, more like 5 and a half weeks. :D:D:D:D:D:D: &lt;&mdash; Some alums taught me this happy/sad combo face.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-12T17:41:45-04:00</updated>
+  <updated>2014-08-15T15:09:43-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Whiteboarding to Unconfuse Myself]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/15/whiteboarding/"/>
+    <updated>2014-08-15T14:38:04-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/15/whiteboarding</id>
+    <content type="html"><![CDATA[<p>A few days ago, I stumbled on a <a href="https://github.com/jwiegley/category-theory">repository</a> on GitHub that was exploring category theory through the use of Coq, formalizing Edware Kmett&rsquo;s Hask library. Curious, I wondered what Hask was and read the description: &ldquo;Category theory for Haskell with a lens flavor&rdquo;.</p>
+
+<p>But&hellip; what are lenses?</p>
+
+<p>I remembered that I had bookmarked a <a href="http://blog.jakubarnold.cz/2014/07/14/lens-tutorial-introduction-part-1.html">blog post</a> that Steve Klabnik tweeted a while ago because it was related to Haskell. And now it was relevant to my interests.</p>
+
+<p>Lenses are, at a high level, something like &ldquo;getters&rdquo; and &ldquo;setters&rdquo; that are used in imperative programming languages. It&rsquo;s not uncommon to see something like <code>book.author.name</code>. Lenses provide an abstraction like this for Haskell.</p>
+
+<p>I spent a long time staring at the explanations in this blog post, and after pairing with Alan a bit on a simple Lens implementation, felt blown away by the weirdness and how elegant of an idea this was.</p>
+
+<p>A realization that I had about working with Alan (after ten weeks&hellip;) is that he is the type of person to think things out by writing on a white board. Up until this point, I had never really thought about whiteboarding as a way of getting my thoughts out so that I could actually <em>look</em> at them. And the act of writing type signatures out instead of staring at them on a screen made a lot of difference for me. (I do write on scratch paper, but I generally do so very disorganizedly).</p>
+
+<p>After Thursday demo presentations, I spent about thirty minutes whiteboarding out my thought process for the implementations of <code>over</code> and <code>set</code>:</p>
+
+<p><img src="/images/wb2.JPG" alt="whiteboarding 1" /></p>
+
+<p><img src="/images/wb1.JPG" alt="whiteboarding 1" /></p>
+
+<p>I guess moral of the story for me is that I should whiteboard more to figure out what I&rsquo;m doing when I&rsquo;m confused before jumping straight to code. A very simple epiphany, but a very helpful one.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Working Gunzip and Soldering]]></title>
@@ -158,59 +185,6 @@ ghci> permute &ldquo;abcd&rdquo;</p>
 ```</p>
 
 <p>Recursion still blows my mind.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bencoding and Networking]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking/"/>
-    <updated>2014-07-01T10:15:49-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/01/bencoding-and-networking</id>
-    <content type="html"><![CDATA[<p>One of the things that I have always been fearful of is networking. Sockets, TCP/IP, and forking, all of that. In a class at university, I had done some networking in C; I remember reading <a href="http://beej.us/guide/bgnet/">Beej&rsquo;s guide to network programming</a>, and I found myself returning to it, and appreciating it a bit more this time. It&rsquo;s funny how when you&rsquo;re learning something in school, you could care less about it. You just want to get from point A to point B in the shortest way possible. But when you have the time to be in a self-directed environment like Hacker School, you find yourself wanting to revisit things that you didn&rsquo;t learn properly the first time around, wanting to tell your past self: &ldquo;You should have paid more attention when you were learning this!&rdquo;</p>
-
-<p>So, to learn networking in Haskell, I have decided to incrementally work towards building a simple Bittorrent client. Yesterday, I read about <a href="http://en.wikipedia.org/wiki/Bencode">bencode</a>, the encoding used by the Bittorrent protocol for torrent files (metadata).</p>
-
-<p>Bencode supports four types of values:</p>
-
-<ul>
-<li>Integers</li>
-<li>(Byte) Strings</li>
-<li>Lists</li>
-<li>Dictionaries (Hash Maps)</li>
-</ul>
-
-
-<p>Integers are encoded as <code>i&lt;integer encoded in base 10 ASCII&gt;e</code>. Integers can be negative, but 0 cannot be -0.</p>
-
-<p>ByteStrings are encoded as <code>&lt;length&gt;:&lt;contents&gt;</code>. So &ldquo;foo&rdquo; would be encoded as 3:foo. The length of the content can be 0, but cannot be negative.</p>
-
-<p>Lists are encoded as <code>l&lt;contents&gt;e</code>. Contents are bencoded elements of the list (in order), and are concatenated. Something like &ldquo;cat31&rdquo; would be encoded as l3:cati31ee.</p>
-
-<p>Dictionaries are encoded as <code>d&lt;contents&gt;e</code>. The keys must be bytestrings, and the dictionary is ordered lexiographically by key. The encoded key value pair follow each other immediately. {&ldquo;cat&rdquo;: &ldquo;meow&rdquo;, &ldquo;dog&rdquo;: 44} would be encoded as d3:cat4:meow3:dogi44ee.</p>
-
-<p>After reading this, I used the <a href="http://www.haskell.org/haskellwiki/Parsec">Parsec</a> library and wrote a parser for bencoded values in Haskell. I tested it on a torrent for Ubuntu and got back this:</p>
-
-<p><img src="/images/torrent.png" alt="&quot;Metadata&quot;" /></p>
-
-<p>We can see things like:</p>
-
-<ul>
-<li>&ldquo;announce&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
-<li>&ldquo;announce-list&rdquo;: &ldquo;<a href="http://torrent.ubuntu.com:6969/announce">http://torrent.ubuntu.com:6969/announce</a>&rdquo;, &ldquo;<a href="http://ipv6.torrent.ubuntu.com:6969/announce">http://ipv6.torrent.ubuntu.com:6969/announce</a>&rdquo;</li>
-<li>&ldquo;comment&rdquo;: &ldquo;Ubuntu CD releases.ubuntu.com&rdquo;</li>
-<li>&ldquo;creation date&rdquo;: 1391706680</li>
-</ul>
-
-
-<p>and so on.</p>
-
-<p>The crazy wall of text is mostly due to all of the pieces for this particular torrent.</p>
-
-<p>After this, to get a better sense of networking in Haskell, I read up on TCP/IP and started working towards this <a href="http://www.haskell.org/haskellwiki/Implement_a_chat_server">tutorial</a> on building a multi-threaded chat server in Haskell, and getting a feel for the Network.Socket library.</p>
-
-<p>At the very basic level: Socket &ndash;> Bind &ndash;> Listen &ndash;> Accept.</p>
-
-<p>My networking journey will continue today&hellip;</p>
 ]]></content>
   </entry>
   

@@ -23,7 +23,7 @@ It's almost the end of my batch at Hacker School, but it's okay because I'm neve
 
 This past week [José Valim](https://www.hackerschool.com/residents#José-Valim) has been in residence at Hacker School! José is the creator of the Elixir programming language, which is built on top of the Erlang Virtual Machine. (Joe Armstrong has said that Elixir "is good shit." [Seriously!](http://joearms.github.io/2013/05/31/a-week-with-elixir.html)). José is also a core contributor to Rails. So. Rad.
 
-On Monday night, José gave us a quick introduction to Elixir and explained that Elixir is a functional, concurrent, but most importantly, a distributed language. He gave us a bit of background on Erlang and its origins as a language used for telecommunication. Erlang provides support for fault tolerent, non-stop, real-time applications. Also, hot swapping is pretty cool (which José did a demo of in Elixir). For these reasons (and many more), the language is used in messaging systems like Facebook messenger and WhatsApp.
+On Monday night, José gave us a quick introduction to Elixir and explained that Elixir is a functional, concurrent, but most importantly, a distributed language. He gave us a bit of background on Erlang and its origins as a language used for telecommunication. Erlang provides support for fault tolerent, non-stop, real-time applications. Also, hot swapping is pretty cool (which José did a demo of in Elixir). For these reasons (and many more), Erlang is the language used in messaging systems like Facebook messenger and WhatsApp.
 
 I've been spending the past few days working through [Etudes for Elixir](http://chimera.labs.oreilly.com/books/1234000001642) in order to get a quick introduction to the language, and get myself up and running. 
 

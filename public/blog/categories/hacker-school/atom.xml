@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-15T15:09:43-04:00</updated>
+  <updated>2014-08-21T00:51:31-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sipping on Elixir]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/21/sipping-on-elixir/"/>
+    <updated>2014-08-21T00:57:53-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/21/sipping-on-elixir</id>
+    <content type="html"><![CDATA[<p>```</p>
+
+<hr />
+
+<p>&lt; holy cow ></p>
+
+<hr />
+
+<pre><code>    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+</code></pre>
+
+<p>```</p>
+
+<p>It&rsquo;s almost the end of my batch at Hacker School, but it&rsquo;s okay because I&rsquo;m never [ever] graduating. &#10084;</p>
+
+<hr/>
+
+
+<p>This past week <a href="https://www.hackerschool.com/residents#Jos%C3%A9-Valim">José Valim</a> has been in residence at Hacker School! José is the creator of the Elixir programming language, which is built on top of the Erlang Virtual Machine. (Joe Armstrong has said that Elixir &ldquo;is good shit.&rdquo; <a href="http://joearms.github.io/2013/05/31/a-week-with-elixir.html">Seriously!</a>). José is also a core contributor to Rails. So. Rad.</p>
+
+<p>On Monday night, José gave us a quick introduction to Elixir and explained that Elixir is a functional, concurrent, but most importantly, a distributed language. He gave us a bit of background on Erlang and its origins as a language used for telecommunication. Erlang provides support for fault tolerent, non-stop, real-time applications. Also, hot swapping is pretty cool (which José did a demo of in Elixir). For these reasons (and many more), the language is used in messaging systems like Facebook messenger and WhatsApp.</p>
+
+<p>I&rsquo;ve been spending the past few days working through <a href="http://chimera.labs.oreilly.com/books/1234000001642">Etudes for Elixir</a> in order to get a quick introduction to the language, and get myself up and running.</p>
+
+<p>Some quick first impressions/takeaways:</p>
+
+<p>Elixir is compatible with Erlang code, but it has a nice Ruby-like syntax. It&rsquo;s kinda like the love child of Ruby and Erlang.
+Elixir has all the goodies like pattern matching, list comprehensions, anonymous functions that I heart from Haskell. There aren&rsquo;t quite type signatures; instead, there are these things called <a href="http://elixir-lang.org/docs/stable/elixir/Kernel.Typespec.html">specs</a>. Specs are mostly used for documenting code, but on some occasion, people use tools like <a href="http://www.erlang.org/doc/man/dialyzer.html">Dialyzer</a> to find type errors (I will probably check this out at some point).</p>
+
+<p>One thing I find super cool about <code>iex</code>, the Elixir repl, is the <code>h</code> command to read documentation.</p>
+
+<p><img src="/images/iex.png" alt="" /></p>
+
+<p>Also, Elixir has SUPERB documentation. I&rsquo;ve been very pleased with how well explainations are written out, and that there are examples! Examples!</p>
+
+<p>I&rsquo;m making my way through most of the topics in Elixir&rsquo;s <a href="http://elixir-lang.org/getting_started/1.html">getting started</a> section through études (currently getting acquainted processes), and I&rsquo;m excited to learn about Mix and OTP next. In general, I&rsquo;m excited to get deeper into Elixir since I don&rsquo;t know much about concurrent and distributed programming.</p>
+
+<p>Today, José did a seminar on how Iterators are implemented in Elixir, going over eager map, eager filter, the idea of inlining and so on before introducing us to the idea of lazy map, etc. It was a very informative session and I will write about that more in a different blog post.</p>
+
+<p>And just throwing this out there: HOW COOL IS IT TO BE ABLE TO ASK QUESTIONS IN PERSON TO THE CREATOR OF THE LANGUAGE YOU&rsquo;RE LEARNING? Thanks a ton to Hacker School for this amazing opportunity.</p>
+
+<p>So far, learning Elixir has been quite nice, and the transition from Haskell to Elixir has been pretty smooth.</p>
+
+<p>Looking forward to all of the things I learn before the end of my batch.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Whiteboarding to Unconfuse Myself]]></title>
@@ -257,38 +313,6 @@ Proof. reflexivity. Qed.
 <p>Tomorrow I will continue working through Software Foundations. Aki, an alum, has also kindly pointed me to some resources for implementing type inference algorithms which I plan to hit up once I have gotten a feel for the theory behind it. Excited to see where this leads.</p>
 
 <p>Oh, and I remapped <code>Caps Lock</code> from <code>ESC</code> to <code>CTRL</code>. So, uh, yeah.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Working Gunzip and Soldering]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering/"/>
-    <updated>2014-07-24T10:01:32-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/24/a-working-gunzip-and-soldering</id>
-    <content type="html"><![CDATA[<p>Yesterday was a super productive day for me. In the morning, I was in the midst of debugging my gunzip implementation in Haskell.
-I have a function <code>addItem</code> that adds a node to a HuffmanTree by writing an IORef val because I needed mutability. When I&rsquo;m creating the HuffmanTree, I need to add a whole slew of values (from a code table) into the tree, so I mapped the addItem function over the list of codes, which returned <code>[IO()]</code>. My problem here was that despite having added items to an initial empty tree, I was returning an unaltered tree. I was confused because I was sure I had allowed for mutability! But why?!</p>
-
-<p>Luckily, Alan happened to be running an impromptu session on Monads where he covered the IO Monad, and attending that helped me figure out what my problem was, I think.</p>
-
-<p>I&rsquo;m still not precisely sure if I&rsquo;m understanding correctly but <code>[IO()]</code> is a list of <code>IO()</code>s. And things in the IO monad won&rsquo;t evaluate until run-time. So basically I had a list of thunk-like things that wouldn&rsquo;t write until evaluated.</p>
-
-<p>This does not work
-<code>haskell
-let added =  map (\(label, codes) -&gt; addItem root label codes) code_table
-</code></p>
-
-<p>but this works
-<code>haskell
-added &lt;- sequence $ map (\(label, codes) -&gt; addItem root label codes) (code_table)
-</code></p>
-
-<p>As an aside, <code>added</code> is actually a useless value (it&rsquo;s just a list of <code>()</code>s). I don&rsquo;t care about it. All I care about is the value of <code>root</code> because I have mutated it to add nodes to it.</p>
-
-<p>After this, I spent some time fixing off by one errors because I was translating Julia code to Haskell and Julia is 1-indexed while Haskell is 0-index. Lol. THEN IT WORKED. HUZZAH!</p>
-
-<p>In the afternoon into the evening, I worked with Dana, Minnie, and Sophia on soldering chips, wires, and LEDs together. It was loads of fun and will continue today, I suspect.</p>
-
-<p><img src="https://pbs.twimg.com/media/BtRShaVIUAAQ6LR.jpg:large" alt="" /></p>
 ]]></content>
   </entry>
   

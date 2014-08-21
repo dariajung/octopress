@@ -9,7 +9,7 @@
   <meta name="author" content="Daria Jung">
 
   
-  <meta name="description" content="After spending about a week and a half on my Haskell BitTorrent client, I&rsquo;ve decided to give it a rest. Am I done? No. Am I close to being done &hellip;">
+  <meta name="description" content="Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/12/recursion-friday/">Recursion Friday</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-12T12:38:25-04:00" pubdate data-updated="true">Jul 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yesterday at Hacker School was Recursion Friday. Basically, a group of HSers sat down and worked on various recursive problems and brain teasers in the languages of our choice.</p>
+
+<p>Recursion used to make me go like this:</p>
+
+<p><img src="http://media.giphy.com/media/NoglyWTK9tCMw/giphy.gif" alt="Scared" /></p>
+
+<p>But somewhere along the way as I was learning Haskell, recursion started to click with my previously recursion-addled brain.</p>
+
+<p>One of the questions yesterday was to find all of the permutations of a string. After some white boarding with Denise and Georgi, talking it through with Alan and Tom, we basically came to the conclusion that the algorithm should be something like this (in pseudocode):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Permute("abcd") =
+</span><span class='line'>    "a" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt; 
+</span><span class='line'>    "b" + Permute("acd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "c" + Permute("bcd") 
+</span><span class='line'>    &lt;list concatenation&gt;
+</span><span class='line'>    "d" + Permute("abc") </span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, generate all of the permutations of the string without one of the elements of the original string, and concat it with all possible permutations of the smaller string, then concat all of those together to get the final list of permutations.</p>
+
+<p>After speaking with Alan about a Haskell implementation, this is what I ended up with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="kr">import</span> <span class="nn">Data.List</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">permute</span> <span class="ow">::</span> <span class="kt">Eq</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="n">a</span><span class="p">]]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">[]</span><span class="p">]</span>
+</span><span class='line'><span class="nf">permute</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">[</span> <span class="n">y</span> <span class="o">|</span> <span class="n">prefix</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">y</span> <span class="ow">&lt;-</span> <span class="n">map</span> <span class="p">(</span><span class="n">prefix</span><span class="kt">:</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">$</span> <span class="n">permute</span> <span class="o">$</span> <span class="n">xs</span> <span class="o">\\</span> <span class="p">[</span><span class="n">prefix</span><span class="p">]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An obnoxiously short list comprehension.</p>
+
+<p>Pull the prefix from the original string, map a list concatenation of the prefix, (prefix:), to the various permutations of the rest of the string. <code>\\</code> is this nifty function in the Data.List library that performs list difference, so it was an easy way to exclude the prefix from the original string (thanks to Alan for showing me that).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">permute</span> <span class="s">&quot;abcd&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s">&quot;abcd&quot;</span><span class="p">,</span><span class="s">&quot;abdc&quot;</span><span class="p">,</span><span class="s">&quot;acbd&quot;</span><span class="p">,</span><span class="s">&quot;acdb&quot;</span><span class="p">,</span><span class="s">&quot;adbc&quot;</span><span class="p">,</span><span class="s">&quot;adcb&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;bacd&quot;</span><span class="p">,</span><span class="s">&quot;badc&quot;</span><span class="p">,</span><span class="s">&quot;bcad&quot;</span><span class="p">,</span><span class="s">&quot;bcda&quot;</span><span class="p">,</span><span class="s">&quot;bdac&quot;</span><span class="p">,</span><span class="s">&quot;bdca&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;cabd&quot;</span><span class="p">,</span><span class="s">&quot;cadb&quot;</span><span class="p">,</span><span class="s">&quot;cbad&quot;</span><span class="p">,</span><span class="s">&quot;cbda&quot;</span><span class="p">,</span><span class="s">&quot;cdab&quot;</span><span class="p">,</span><span class="s">&quot;cdba&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&quot;dabc&quot;</span><span class="p">,</span><span class="s">&quot;dacb&quot;</span><span class="p">,</span><span class="s">&quot;dbac&quot;</span><span class="p">,</span><span class="s">&quot;dbca&quot;</span><span class="p">,</span><span class="s">&quot;dcab&quot;</span><span class="p">,</span><span class="s">&quot;dcba&quot;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Recursion still blows my mind.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -787,89 +889,9 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/15/hacker-school-week-1/">Hacker School Week 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-15T18:20:07-04:00" pubdate data-updated="true">Jun 15<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/hs_logo.png" alt="&quot;HS Logo&quot;" /></p>
-
-<p>This past week was my first week at Hacker School, and I am finally getting around to setting up a blog!</p>
-
-<p>I really haven&rsquo;t had much success with blogging in the past, so I am wondering how this is going to go, but I will try my best to write something everyday. The posts from my fellow batchmates have been very exciting to read, and have been a motivating factor for me to finally get Octopress set up.</p>
-
-<p>Because I had already been working on a <a href="http://www.seas.upenn.edu/~cis194/lectures.html">course on Haskell</a> that I found online before Hacker School started, that was mainly what I focused on during my first week. The course is broken up into 12 lectures, with corresponding homework assignments. The amazing thing is, I was able to work through about one week&rsquo;s worth of material <em>per day</em>. It&rsquo;s incredible what can happen when you are learning for the sake of learning, with no worries that generally come from a work or school setting. If you had told me one year ago that I would be geeking out over Haskell, I would have laughed in your face. I would have thought that it was too academic, too hard of a language for someone like myself to learn. What I am finding though, is that once I commited myself to learning Haskell, once I was comfortable with the idea that I <em>too</em> was capable of learning Haskell, I started to have fun with the assignments.</p>
-
-<p>The most recent assignment I worked on was with using the rose tree data structure from the <code>Data.Tree</code> library. Based on a tree of employees, where employees are given a name and a &ldquo;fun&rdquo; score, I was given the task of maximizing the fun score for a party and  returning its optimized guest list. The caveat is that if an employee&rsquo;s direct superior were also in attendance of the party, that employee wouldn&rsquo;t be able to have any fun, lowering their fun score to 0.</p>
-
-<p>I think my road block for this assignment was implementing a fold function for the <code>tree</code> data type (to which I could pass a function that found the max fun score at each subtree later). I wasn&rsquo;t sure what the type signature for the fold should have been, which took up the most of my time. Once I got this function worked out, I was able to work through the rest of the assignment.</p>
-
-<p>I wrote the fold as such:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">treeFold</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Tree</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
-</span><span class='line'><span class="nf">treeFold</span> <span class="n">f</span> <span class="n">tree</span> <span class="ow">=</span> <span class="n">f</span> <span class="p">(</span><span class="n">rootLabel</span> <span class="n">tree</span><span class="p">)</span> <span class="p">(</span><span class="n">map</span> <span class="p">(</span><span class="n">treeFold</span> <span class="n">f</span><span class="p">)</span> <span class="p">(</span><span class="n">subForest</span> <span class="n">tree</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where <code>tree</code> is defined as</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'> <span class="kr">data</span> <span class="kt">Tree</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Node</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">rootLabel</span> <span class="ow">::</span> <span class="n">a</span><span class="p">,</span> <span class="c1">-- label value</span>
-</span><span class='line'>    <span class="n">subForest</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Tree</span> <span class="n">a</span><span class="p">]</span> <span class="c1">-- zero or more child trees</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <code>rootLabel</code> of the tree returns the element at that Node and then we map <code>treeFold f</code> to the subtrees of the Node, recursively calling <code>treeFold f</code> on the subtrees. These are then passed as parameters to the function <code>f</code>.</p>
-
-<hr />
-
-<p>Something else that I did last week was playing with Arduinos and Addressable LEDs (each pixel is individually programmable!). I bought an Arduino UNO a few years ago, and never had really done anything with it. Dana, a batchmate with lots of hardware experience, brought some addressable LEDs in for some of the Hacker Schoolers to play with.</p>
-
-<p>The cool thing was that Adafruit already had a library called <a href="https://github.com/adafruit/Adafruit_NeoPixel">Adafruit NeoPixels</a> we could use, so we were able to just hook up the LEDs to the Arduino and we immediately saw a light show.</p>
-
-<p><img src="/images/led.jpg" alt="&quot;HS Logo&quot;" /></p>
-
-<p>We played around with making the LEDs blink, which we achieved by Mod-ing the number of LEDs, and then changing the RGB value to (0, 0, 0). It definitely distilled the fear of hardware many of us had once we understood how easy it was to get started with it with all of the resources online. I am totally obsessed with Adafruit now!</p>
-
-<p>My hardware project that I would like to accomplish this summer is a temperature sensor that based on the serial output changes the colors of the addressable LEDs. If warm, the LEDs light up yellow/orange, if cool, a green color, etc.</p>
-
-<p>I am loving Hacker School thus far. Well, love is a bit of an understatement.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -882,6 +904,10 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/21/sipping-on-elixir/">Sipping on Elixir</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/15/whiteboarding/">Whiteboarding to Unconfuse Myself</a>
@@ -897,10 +923,6 @@ the concept of <em>choice</em>, we turn to the <code>Alternative</code> class.</
     
       <li class="post">
         <a href="/blog/2014/08/01/gayle-laakman-mcdowell-talk-recap/">Gayle Laakman McDowell Talk Recap</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/31/re-learning-math-with-coq/">Re-learning Math With Coq</a>
       </li>
     
   </ul>

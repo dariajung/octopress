@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hacker School | Yet Another Blog]]></title>
   <link href="http://blog.dariajung.com/blog/categories/hacker-school/atom.xml" rel="self"/>
   <link href="http://blog.dariajung.com/"/>
-  <updated>2014-08-21T00:56:36-04:00</updated>
+  <updated>2014-08-29T15:15:46-04:00</updated>
   <id>http://blog.dariajung.com/</id>
   <author>
     <name><![CDATA[Daria Jung]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Some Things Hacker School Taught Me]]></title>
+    <link href="http://blog.dariajung.com/blog/2014/08/29/things-hacker-school-taught-me/"/>
+    <updated>2014-08-29T14:08:24-04:00</updated>
+    <id>http://blog.dariajung.com/blog/2014/08/29/things-hacker-school-taught-me</id>
+    <content type="html"><![CDATA[<p>Yesterday was my final day of Hacker School as part of the Summer 2014 Batch.</p>
+
+<p>Here are some things being a Hacker Schooler has taught me:</p>
+
+<h4>Getting Past My Fear of Asking Questions</h4>
+
+<hr />
+
+<p>One of my biggest fears has been asking questions to people with more experience and understanding than me, because I had felt that I would be judged for the things I didn&rsquo;t know. I&rsquo;ve had experiences with programmers in the past who have said things such as: &ldquo;You wouldn&rsquo;t have understood [the talk] anyway,&rdquo; to blantant condescension about my lack of knowledge on the subject matters I was asking about. As a result, I had developed an aversion to &ldquo;outing&rdquo; myself as an idiot.</p>
+
+<p>At Hacker School, I found myself asking questions on Zulip, tapping on shoulders, and exposing my ignorance. And pretty much every time, people were happy to share their knowledge with me, saving me hours of frustration that came with trying to figure things out on my own. StackOverflow and Google Fu can only get you so far. I do believe that this wouldn&rsquo;t have been possible without the Hacker School <a href="https://www.hackerschool.com/manual#sub-sec-social-rules" target="_blank">social rules</a>, but my time around other Hacker Schoolers has definitely lessened the general fear of seeking help. A good rule of thumb is that if you can&rsquo;t figure something out on your own in 15 minutes, go look for help and save yourself from yourself. And if someone is rude to you for asking a question, then I&rsquo;m not sure if I would want that person&rsquo;s help &mdash; though it is quite possible they are having an off day.</p>
+
+<h4>Hardware is Not Scary</h4>
+
+<hr />
+
+<p>Before Hacker School, I had probably blinked an LED a few times and made a synthesizer of sorts with an Arduino, but was otherwise hesitant to touch hardware.</p>
+
+<p>This past summer, I got to hack on Arduino, Raspberry Pi, and BeagleBone projects, with lots and lots of help from the lovely <a href="http://wanderinginny.tumblr.com/post/95941886280/on-hardware-hacking-and-new-york">Dana</a>. I made a surveillance camera to spy on my cat and stream it to the web, a light-reactive LED diplay with Adafruit NeoPixels, and helped build <a href="https://www.youtube.com/watch?v=q7g7J3QnvrI">LED-bot</a>.</p>
+
+<p>Just as with software, you end up following tutorials, looking up documentation for pieces (and how to correctly connect them following circuit diagrams), and tinkering. It&rsquo;s just with physical parts! And there&rsquo;s something rather cool about building something tangible.</p>
+
+<p>I ended up doing much more hardware than I had intended, but I am so grateful for the things that I learnt.</p>
+
+<h4>Learning to Tackle Projects (and understanding when to let go)</h4>
+
+<hr />
+
+<p>At Hacker School, I found myself getting curious about Haskell&rsquo;s type inference system, found that the algorithms used theory that I didn&rsquo;t understand, and spent a few weeks going down a type theory rabbit hole, eventually learning the Coq programming language (Coq is a Proof Assistant) through a UPenn grad course called Software Foundations. And I also decided to put my type theory learning on the back burner, so I could focus on exploring other things during my batch.</p>
+
+<p>Anything difficult is going to have many stepping stones, and acknowledging that getting where you want to be might take several tries is totally ok. I am planning on continuing to tackle the type theory stuff in little chunks so that I don&rsquo;t get overwhelmed by all of the information. This meant that I couldn&rsquo;t just start and finish my stint into type theory in a week, but that it will take dedication and commitment that might take a year, or several years.</p>
+
+<p>I think the notorious BitTorrent client project falls into this category. It&rsquo;s quite a difficult project to see through to the very end (many HSers start, and eventually abandon their clients &mdash; myself included), and it was important to understand that many of got to a point where the project wasn&rsquo;t bringing us joy anymore, and that we had grown tired of it (but wanted to finish at some point). Taking a break and putting the project somewhere out of mind for a while helped me feel rejuvenated after weeks spent on the BitTorrent client. I hope to revisit it at some point.</p>
+
+<p>Some HSers even decided to create a <a href="https://twitter.com/hackerschool/status/504759015679590400">BT Support Group</a>.</p>
+
+<hr />
+
+<p>This list is in no way complete. HS has taught me so many things about being a good programmer and a human being that I have trouble articulating at the moment.</p>
+
+<p>Saying good-byes yesterday was overwhelming and there were many emotions; I don&rsquo;t think it will quite sink in that the batch is over until we go back to the real world/school on Tuesday.</p>
+
+<p>Never graduate. :&lsquo;)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sipping on Elixir]]></title>
@@ -278,41 +329,6 @@ Case "n = S n'". simpl.  rewrite -&gt; IHn'. reflexivity.
 ```</p>
 
 <p>HOW COOL IS THAT???</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Exploring Type Theory]]></title>
-    <link href="http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory/"/>
-    <updated>2014-07-28T22:19:39-04:00</updated>
-    <id>http://blog.dariajung.com/blog/2014/07/28/exploring-type-theory</id>
-    <content type="html"><![CDATA[<p>I started off today with a specific goal in mind. By the end of the day, I was pretty off my mark.</p>
-
-<p>My original intent was to work through a tutorial, <a href="http://www.grabmueller.de/martin/www/pub/AlgorithmW.pdf">Algorithm W Step by Step</a>, for implementing the classic Algorithm W (proposed by Robin Milner) for type inference in Haskell. I was stoked to finally take a closer look at Hindley-Milner and foolishly thought I would spend a few days on it.</p>
-
-<p>In reality, I had started my descent down the rabbit hole. I found myself reading, and while I felt comfortable with the actual Haskell code itself, the reasons for why the tutorial was implementing things by using sets, or talking about free type variables and type schemes made me feel that yeah, maybe(?) I could infer something from my understanding of Haskell, but I was still lacking appropriate knowledge for this literature.</p>
-
-<p>So, I asked this silly question on Zulip:</p>
-
-<blockquote><p><strong>Stream Subject</strong>: Category Theory/Type Theory/Set Theory</p>
-
-<p><strong>Message</strong>: Hi hi. I&rsquo;m delving into Hindley-Milner for type inference and I&rsquo;m finding lots of terminology that I don&rsquo;t understand. Are there any friendly introductions to all of the theories? AM I WAY IN OVER MY HEAD?</p></blockquote>
-
-<p><a href="http://www.rntz.net/">Rntz</a> pointed me to <a href="http://www.cis.upenn.edu/~bcpierce/tapl/">Types and Programming Languages</a> as a resource and I was intrigued. I started reading it, and of course my attention started to wane because textbooks. After some googling, and remembering back to my first week at Hacker School, I was reminded of a UPenn grad course called <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a>. The course uses TAPL but also utilizes an interactive book of Coq proofs as its main text. Interactive? Sign me up.</p>
-
-<p>Two ways to run Coq are through the CoqIDE or through Proof General Coq mode in Emacs. I found to my chagrin that CoqIDE was ugly and slow and in general, not something that I wanted to use. But that meant that I had to learn&hellip; Emacs. So for about two hours, I went through the Emacs tutorial and fiddled with my .emacs file, thinking about the time I saw Richard Stallman dressed as a saint from the Church of Emacs and resigned myself to learning a new text editor/operating system/whatever (plz don&rsquo;t hurt me, I&rsquo;m new to emacs).</p>
-
-<p>After this, I couldn&rsquo;t figure out how to run Coq through Proof General, and time passed while I grew increasingly frustrated. Then Alan to the rescue! He helped me figure out that emacs wasn&rsquo;t correctly loading my path, and once that was fixed, I was able to write Coq and do cute stuff like:</p>
-
-<p><code>coq
-Proof. reflexivity. Qed.
-</code></p>
-
-<p>Yay!</p>
-
-<p>Tomorrow I will continue working through Software Foundations. Aki, an alum, has also kindly pointed me to some resources for implementing type inference algorithms which I plan to hit up once I have gotten a feel for the theory behind it. Excited to see where this leads.</p>
-
-<p>Oh, and I remapped <code>Caps Lock</code> from <code>ESC</code> to <code>CTRL</code>. So, uh, yeah.</p>
 ]]></content>
   </entry>
   
